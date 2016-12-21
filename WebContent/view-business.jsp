@@ -21,7 +21,7 @@
 
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 
 		<h1>Kid Friendly STL</h1>
 
