@@ -340,12 +340,12 @@ public class FriendlyControllerServlet extends HttpServlet {
 			errorMessage = "Error with the state field.";
 			return errorMessage;
 		}
-		else if (!zip.isEmpty() && (zip.length() < 5 || !zip.matches("[-+]?\\d*\\.?\\d+"))) 
+		else if (!zip.isEmpty() && (zip.length() != 5 || !zip.matches("[-+]?\\d*\\.?\\d+"))) 
 		{
 			errorMessage = "Error with the zip field.";
 			return errorMessage;
 		}
-		else if (!phone.isEmpty() && (phone.length() < 10 || !phone.matches("[-+]?\\d*\\.?\\d+")))
+		else if (!phone.isEmpty() && (phone.length() != 10 || !phone.matches("[-+]?\\d*\\.?\\d+")))
 		{
 			errorMessage = "Error with the phone field.";
 			return errorMessage;

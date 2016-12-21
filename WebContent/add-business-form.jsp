@@ -58,7 +58,7 @@
 						<input type="text" class="form-control" name="businessState" id="businessState" placeholder="State" value="MO">
 					</div>
 					<div class="col-md-4">
-						<input type="text" class="form-control" name="businessZip" id="businessZip" placeholder="Zip">
+						<input type="text" class="form-control" name="businessZip" id="businessZip" placeholder="Zip (5-digit)">
 					</div>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 					<div class="form-group">
 					<div class="col-md-6">
 						<label for="businessPhone">Phone</label><br>
-						<input type="tel" class="form-control" name="businessPhone" id="businessPhone" placeholder="Phone">
+						<input type="tel" class="form-control" name="businessPhone" id="businessPhone" placeholder="Phone (10-digit)">
 					</div>
 					<div class="col-md-6">
 						<label for="businessWebsite">Website</label><br>
