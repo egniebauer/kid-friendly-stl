@@ -27,7 +27,6 @@
 
 		<br />
 
-		<!-- Buttons -->
 
 		<!-- home link -->
 		<c:url var="homeLink" value="FriendlyControllerServlet">
@@ -46,302 +45,266 @@
 			<c:param name="businessID" value="${THE_BUSINESS.id}" />
 		</c:url>
 		
+		
+		<!-- Buttons -->
 		<a class="btn btn-default" href="${homeLink}" role="button" >home</a> 
 		<a class="btn btn-default" href="${updateLink}" role="button">update</a>
 		<a class="btn btn-danger" href="${deleteLink}" role="button" 
 		onclick="if (!(confirm('Are you sure you want to delete this business?'))) return false">DELETE</a>
+		<br /><br />		
 		
-		<hr>
-		<h2>${THE_BUSINESS.name}</h2>
-		<hr>
-		<h3>
-			<small> ${THE_BUSINESS.address}, ${THE_BUSINESS.city},
-				${THE_BUSINESS.state} ${THE_BUSINESS.zip} | <span
-				class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-				${THE_BUSINESS.phone} | <span class="glyphicon glyphicon-globe"
-				aria-hidden="true"></span> <a href="${THE_BUSINESS.website}">website</a>
-			</small>
-
-		</h3>
-		<br /> <br />
-		<!-- BUSINESS_CATEGORY - Table -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>Categories</strong>
-			</div>
+		<h3>${THE_BUSINESS.name}</h3>
+		
+		<div class="row">
+			<!-- Contact Information -->
+  			<div class="col-md-12">
+  			
+				<address>
+				${THE_BUSINESS.address}<br>
+				${THE_BUSINESS.city}, ${THE_BUSINESS.state} ${THE_BUSINESS.zip}<br>
+				<br>
+				<abbr title="Phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></abbr> ${THE_BUSINESS.phone}<br>
+				<abbr title="Website"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></abbr> <a href="${THE_BUSINESS.website}">website</a>
+				</address>
+  			</div>
+  		</div>
+  		
+  		
+  		<div class="row">
+			<!-- BUSINESS_CATEGORY -->
+  			<div class="col-md-3">
+			<h4>Categories</h4>
 			
-			<!-- Table -->
-			<table class="table table-condensed table-bordered">
-				<tbody>
-					<tr>
-
+				<ul class="list-unstyled">
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.activeLife == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Active Life</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Active Life</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Active Life</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Active Life</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.artsEntertainment == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Arts & Entertainment</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Arts & Entertainment</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Arts & Entertainment</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Arts & Entertainment</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.education == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Education</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Education</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Education</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Education</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.foodRestaurant == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Food & Restaurant</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Food & Restaurants</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Food & Restaurant</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Food & Restaurants</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.healthMedical == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Health & Medical</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Health/ Medical</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Health & Medical</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Health/ Medical</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.hotelTravel == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Hotel & Travel</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Hotels & Travel</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Hotel & Travel</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Hotels & Travel</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
-							<c:when
-								test="${BUSINESS_CATEGORY.publicServiceGovernment == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Public Services</td>
+							<c:when test="${BUSINESS_CATEGORY.publicServiceGovernment == true}">
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Public Services/ Government</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Public Services</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Public Services/ Government</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.religious == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Religious</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Religious</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Religious</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Religious</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.shopping == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Shopping</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Shopping</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Shopping</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Shopping</li>
 							</c:otherwise>
 						</c:choose>
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-
-		<!-- BUSINESS_AGE_RANGE -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>Age Ranges</strong>
+				</ul>
 			</div>
 			
-			<!-- Table -->
-			<table class="table table-condensed table-bordered">
-				<tbody>
-					<tr>
-
+			
+			
+			<!-- BUSINESS_AGE_RANGE -->
+  			<div class="col-md-3">
+			<h4>Age Ranges</h4>
+			
+				<ul class="list-unstyled">
+				
 						<c:choose>
 							<c:when test="${BUSINESS_AGE_RANGE.allAges == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> All Ages</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>All Ages</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>All Ages</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> All Ages</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_AGE_RANGE.baby == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Baby</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Baby</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Baby</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Baby</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_AGE_RANGE.toddler == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Toddler</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Toddler</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Toddler</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Toddler</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_AGE_RANGE.preschooler == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Preschooler</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Preschooler</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Preschooler</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Preschooler</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_AGE_RANGE.gradeSchooler == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Grade Schooler</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Grade Schooler</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Grade Schooler</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Grade Schooler</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_AGE_RANGE.teen == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Teen</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Teen</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Teen</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Teen</li>
 							</c:otherwise>
 						</c:choose>
 
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- KID_FRIENDLY_DETAIL - Best Times -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>Best Times</strong>
-			</div>
-			
-			<!-- Table -->
-			<table class="table table-condensed table-bordered">
-				<tbody>
-					<tr>
+				</ul>
+			</div>				
+				
+				
+			<!-- KID_FRIENDLY_DETAIL - Best Times -->
+  			<div class="col-md-3">
+			<h4>Best Times</h4>
+				
+				<ul class="list-unstyled">
 
 						<c:choose>
 							<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.allDay == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> All Day</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>All Day</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>All Day</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> All Day</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.morning == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Morning</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Morning</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Morning</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Morning</li>
 							</c:otherwise>
 						</c:choose>
 						
 						<c:choose>
 							<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.afternoon == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Afternoon</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Afternoon</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Afternoon</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Afternoon</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.evening == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Evening</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Evening</em></li>
 							</c:when>
 							<c:otherwise>
-								<td>Evening</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Evening</li>
 							</c:otherwise>
 						</c:choose>
 
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- KID_FRIENDLY_DETAIL -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>Kid Friendly Details</strong>
+				</ul>
 			</div>
+
+
+			<!-- KID_FRIENDLY_DETAIL -->
+  			<div class="col-md-3">
+			<h4>Kid Friendly Details</h4>
 			
-			<!-- Table -->
-			<table class="table table-condensed table-bordered">
-				<tbody>
-					<tr>
+				<ul class="list-unstyled">
 
 						<c:choose>
 							<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Lots of Families</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Lots of Families</em></li>
 							</c:when>
 							<c:otherwise>
-								<td class="danger"><span class="glyphicon glyphicon-remove"
-									aria-hidden="true"></span> Lots of Families</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Lots of Families</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:choose>
 							<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == true}">
-								<td class="success"><span class="glyphicon glyphicon-ok"
-									aria-hidden="true"></span> Kid's Free/ Discount</td>
+								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Kids Free/ Discount</em></li>
 							</c:when>
 							<c:otherwise>
-								<td class="danger"><span class="glyphicon glyphicon-remove"
-									aria-hidden="true"></span> Kid's Free/ Discount</td>
+								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Kids Free Discount</li>
 							</c:otherwise>
 						</c:choose>
 					
-						<td>Details: ${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+						<dl>
+  							<dt>Details</dt>
+  							<dd>${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</dd>
+						</dl>
 
+				</ul>
+  			</div>
+  			
+  			
+		</div>
 	</div>
 </body>
 </html>
