@@ -340,20 +340,15 @@ public class FriendlyControllerServlet extends HttpServlet {
 			errorMessage = "Error with the state field.";
 			return errorMessage;
 		}
-		else if (!zip.isEmpty()) 
+		else if (!zip.isEmpty() && (zip.length() < 5 || !zip.matches("[-+]?\\d*\\.?\\d+"))) 
 		{
-			if (zip.length() < 5 || !zip.matches("[-+]?\\d*\\.?\\d+")){
-				errorMessage = "Error with the zip field.";
-				return errorMessage;
-			}
+			errorMessage = "Error with the zip field.";
+			return errorMessage;
 		}
-		else if (!phone.isEmpty())
+		else if (!phone.isEmpty() && (phone.length() < 10 || !phone.matches("[-+]?\\d*\\.?\\d+")))
 		{
-			if (phone.length() < 10 || !phone.matches("[-+]?\\d*\\.?\\d+"))
-			{
-				errorMessage = "Error with the phone field.";
-				return errorMessage;
-			}
+			errorMessage = "Error with the phone field.";
+			return errorMessage;
 		}
 		else if (website.length() > 45)
 		{
@@ -395,7 +390,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 			return errorMessage;
 		}
 		
-		return errorMessage;
+		//return errorMessage;
 	}
 
 	private KidFriendlyDetail createKidFriendlyDetail(int businessID, HttpServletRequest request) 
