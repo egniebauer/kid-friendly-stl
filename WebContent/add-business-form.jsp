@@ -29,105 +29,149 @@
 		
 		<form action="FriendlyControllerServlet" method="POST">
 			<input type="hidden" name="command" value="ADD" />
-		<!-- Business -->
-			<div class="form-group">
-				<label for="business">Contact Information</label>
-				<input type="text" class="form-control" name="businessName" id="businessName" placeholder="Name">
-				<br />
-				<input type="text" class="form-control" name="businessAddress" id="businessAddress" placeholder="Address">
-				<input type="text" class="form-control" name="businessCity" id="businessCity" placeholder="City" value="Saint Louis">
-				<input type="text" class="form-control" name="businessState" id="businessState" placeholder="State" value="MO">
-				<input type="text" class="form-control" name="businessZip" id="businessZip" placeholder="Zip">
-				<br />
-				<input type="tel" class="form-control" name="businessPhone" id="businessPhone" placeholder="Phone">
-				<input type="text" class="form-control" name="businessWebsite" id="businessWebsite" placeholder="Website">
-			</div>
 			
-			<br />
-			
+		
+				<!-- Contact Information -->
+				<div class="row">
+					<div class="form-group">
+					<div class="col-md-12">
+						<label for="business">Business Name</label><br>
+						<input type="text" class="form-control" name="businessName" id="businessName" placeholder="Name">
+					</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="form-group">
+					<div class="col-md-12">
+						<label for="address">Address</label><br>
+						<input type="text" class="form-control" name="businessAddress" id="businessAddress" placeholder="Address">
+					</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+					<div class="col-md-4">
+						<input type="text" class="form-control" name="businessCity" id="businessCity" placeholder="City" value="Saint Louis">
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="form-control" name="businessState" id="businessState" placeholder="State" value="MO">
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="form-control" name="businessZip" id="businessZip" placeholder="Zip">
+					</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="form-group">
+					<div class="col-md-6">
+						<label for="businessPhone">Phone</label><br>
+						<input type="tel" class="form-control" name="businessPhone" id="businessPhone" placeholder="Phone">
+					</div>
+					<div class="col-md-6">
+						<label for="businessWebsite">Website</label><br>
+						<input type="text" class="form-control" name="businessWebsite" id="businessWebsite" placeholder="Website">
+					</div>
+					</div>
+				</div>
+				<br />
+
+
+	<br>
+	<div class="row">
 		<!-- Category -->
+		<div class="col-md-4">	
 				<label for="category">Categories</label>
 				<p><small>Please select at least one category:</small></p>
 			<div class="checkbox">
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="activeLife" value="activeLife"> Active Life
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="artsEntertainment" value="artsEntertainment"> Arts & Entertainment
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="education" value="education"> Education
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="foodRestaurant" value="foodRestaurant"> Food & Restaurant
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="healthMedical" value="healthMedical"> Health & Medical
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="hotelTravel" value="hotelTravel"> Hotels & Travel
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="publicServiceGovernment" value="publicServiceGovernment"> Public Services
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="religious" value="religious"> Religious
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="category" id="shopping" value="shopping"> Shopping
 				</label>
 			</div>
-			
-			<br />
-
+		</div>
+		
 		<!-- Age Ranges -->
+		<div class="col-md-4">
 				<label for="ageRange">Age Ranges</label>
 				<p><small>Please select at least one age group:</small></p>
 			<div class="checkbox">
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="ageRange" id="allAges" value="allAges"> All Ages
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="ageRange" id="baby" value="baby"> Baby
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="ageRange" id="toddler" value="toddler"> Toddler
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="ageRange" id="preschooler" value="preschooler"> Preschooler
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="ageRange" id="gradeSchooler" value="gradeSchooler"> Grade Schooler
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="ageRange" id="teen" value="teen"> Teen
 				</label>
 			</div>
-
-			<br />
+		</div>
 
 		<!-- KID FRIENDLY DETAILS - Best Times -->
+		<div class="col-md-4">
 				<label for="bestTimes">Best Times</label>
 				<p><small>Please select at least one time:</small></p>
 			<div class="checkbox">
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="bestTimes" id="allDay" value="allDay"> All Day
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="bestTimes" id="morning" value="morning"> Morning
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="bestTimes" id="afternoon" value="afternoon"> Afternoon
 				</label>
-				<label class="checkbox-inline">
+				<label class="checkbox">
 					<input type="checkbox" name="bestTimes" id="evening" value="evening"> Evening
 				</label>
 			</div>
+		</div>
+	</div>
 
-			<br />
 
+	<br>
+	<div class="row">
 		<!-- KID FRIENDLY DETAILS -->
+		<div class="col-md-12">	
 				<label for="kidFriendlyDetails">Kid Friendly Details</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
 			<div class="radio">
 				Lots of Families?  
 				<label class="radio-inline">
@@ -139,6 +183,8 @@
 					No
 				</label>
 			</div>
+		</div>
+		<div class="col-md-6">
 			<div class="radio">
 				Kid's Free or Kid's Discount Offered?  
 				<label class="radio-inline">
@@ -149,12 +195,17 @@
 					<input type="radio" name="kidsFreeDiscount" id="kidsFreeDiscountFalse" value=0 checked>
 					No
 				</label>
-				<br /> <br />
-				<textarea class="form-control" rows="3" name="kidsFreeDiscountDetail" id="kidsFreeDiscountDetail" placeholder="Kid's Discount Details"></textarea>
-				<p><small>Limit 255 characters</small></p>
 			</div>
-
-			<br />
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<p><small>Limit 255 characters</small></p>
+			<textarea class="form-control" rows="3" name="kidsFreeDiscountDetail" id="kidsFreeDiscountDetail" placeholder="Kid's Discount Details"></textarea>
+		</div>
+	</div>
+	<br>
 
 		<!-- Buttons -->
 			<input class="btn btn-default" type="submit" value="Submit">
@@ -164,9 +215,7 @@
 			<br />
 
 		</form>	  
+		</div>
 
-	<br />
-
-	</div>
 </body>
 </html>

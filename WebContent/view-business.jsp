@@ -58,7 +58,6 @@
 		<div class="row">
 			<!-- Contact Information -->
   			<div class="col-md-12">
-  			
 				<address>
 				${THE_BUSINESS.address}<br>
 				${THE_BUSINESS.city}, ${THE_BUSINESS.state} ${THE_BUSINESS.zip}<br>
@@ -72,9 +71,8 @@
   		
   		<div class="row">
 			<!-- BUSINESS_CATEGORY -->
-  			<div class="col-md-3">
+  			<div class="col-md-4">
 			<h4>Categories</h4>
-			
 				<ul class="list-unstyled">
 						<c:choose>
 							<c:when test="${BUSINESS_CATEGORY.activeLife == true}">
@@ -162,7 +160,7 @@
 			
 			
 			<!-- BUSINESS_AGE_RANGE -->
-  			<div class="col-md-3">
+  			<div class="col-md-4">
 			<h4>Age Ranges</h4>
 			
 				<ul class="list-unstyled">
@@ -226,7 +224,7 @@
 				
 				
 			<!-- KID_FRIENDLY_DETAIL - Best Times -->
-  			<div class="col-md-3">
+  			<div class="col-md-4">
 			<h4>Best Times</h4>
 				
 				<ul class="list-unstyled">
@@ -269,12 +267,15 @@
 
 				</ul>
 			</div>
-
-
+		</div>
+		<br>
+		<div class="row">
 			<!-- KID_FRIENDLY_DETAIL -->
-  			<div class="col-md-3">
-			<h4>Kid Friendly Details</h4>
+  			<div class="col-md-12">
+				<h4>Kid Friendly Details</h4>
+			</div>
 			
+			<div class="col-md-6">
 				<ul class="list-unstyled">
 
 						<c:choose>
@@ -285,7 +286,11 @@
 								<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Lots of Families</li>
 							</c:otherwise>
 						</c:choose>
-
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<ul class="list-unstyled">
+				
 						<c:choose>
 							<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == true}">
 								<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Kids Free/ Discount</em></li>
@@ -295,16 +300,21 @@
 							</c:otherwise>
 						</c:choose>
 					
-						<dl>
-  							<dt>Details</dt>
-  							<dd>${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</dd>
-						</dl>
-
+				</ul>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="list-unstyled">
+					<dl>
+						<dt>Details</dt>
+						<dd>${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</dd>
+					</dl>
 				</ul>
   			</div>
+  		</div>	
   			
-  			
-		</div>
 	</div>
 </body>
 </html>

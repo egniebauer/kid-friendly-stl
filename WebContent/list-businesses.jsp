@@ -34,7 +34,7 @@
 	<br />
 
 	<!-- Results Table -->
-	<table class="table table-hover table-striped">
+	<table class="table table-hover table-striped table-bordered">
 		<tbody>
 		
 		<c:forEach var="currentBusiness" items="${BUSINESS_LIST}" >
@@ -47,7 +47,7 @@
 			
 		<tr>
 			<td>
-				<a href="${viewLink}"><h5>${currentBusiness.name}</h5></a>
+				<a href="${viewLink}"><h4>${currentBusiness.name}</h4></a>
 			</td>
 		</tr>
 		
