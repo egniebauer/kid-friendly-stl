@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import com.kidfriendlystl.FriendlyDAO;
+import com.kidfriendlystl.BusinessDAO;
 
 /**
  * Servlet implementation class FriendlyControllerServlet
@@ -21,7 +21,7 @@ import com.kidfriendlystl.FriendlyDAO;
 public class FriendlyControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	private FriendlyDAO friendlyDAO;
+	private BusinessDAO businessDAO;
 	
 	@Resource(name="jdbc/kid_friendly_stl")
 	private DataSource dataSource;
@@ -34,7 +34,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		// create our DAO ... and pass connection pool/datasource
 		try { 
-			friendlyDAO = new FriendlyDAO(dataSource);
+			businessDAO = new BusinessDAO(dataSource);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
@@ -120,7 +120,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("businessID"));
 		
 		// delete entry from database
-		friendlyDAO.deleteBusiness(id);
+		businessDAO.delete(id);
 		
 		// return home
 		listBusinesses(request, response);
@@ -149,7 +149,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 					phone, website);
 			
 			// add the business to the database and retrieve its businessID
-			friendlyDAO.updateBusiness(updatedBusiness);		
+			businessDAO.update(updatedBusiness);		
 			
 			// create other objects with businessID
 			Category updatedCategory = createCategory(id, request);
@@ -157,9 +157,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 			KidFriendlyDetail updatedKidFriendlyDetail = createKidFriendlyDetail(id, request);
 			
 			// add objects to database
-			friendlyDAO.updateCategory(updatedCategory);
-			friendlyDAO.updateAgeRange(updatedAgeRange);
-			friendlyDAO.updateKidFriendlyDetail(updatedKidFriendlyDetail);
+			businessDAO.updateCategory(updatedCategory);
+			businessDAO.updateAgeRange(updatedAgeRange);
+			businessDAO.updateKidFriendlyDetail(updatedKidFriendlyDetail);
 			
 	        // SEND AS REDIRECT to avoid multiple-browser reload issue
 	        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + id);
@@ -180,10 +180,10 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String theBusinessID = request.getParameter("businessID");
 		
 		// retrieve Business from database, create necessary objects
-		Business theBusiness = friendlyDAO.getBusiness(theBusinessID);
-		Category businessCategory = friendlyDAO.getCategory(theBusinessID);
-		AgeRange businessAgeRange = friendlyDAO.getAgeRange(theBusinessID);
-		KidFriendlyDetail businessKidFriendlyDetail = friendlyDAO.getKidFriendlyDetail(theBusinessID);
+		Business theBusiness = businessDAO.get(theBusinessID);
+		Category businessCategory = businessDAO.getCategory(theBusinessID);
+		AgeRange businessAgeRange = businessDAO.getAgeRange(theBusinessID);
+		KidFriendlyDetail businessKidFriendlyDetail = businessDAO.getKidFriendlyDetail(theBusinessID);
 		
 		// place Business objects in the request attribute
 		request.setAttribute("THE_BUSINESS", theBusiness);
@@ -204,10 +204,10 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String theBusinessID = request.getParameter("businessID");
 		
 		// retrieve Business from database, create necessary objects
-		Business theBusiness = friendlyDAO.getBusiness(theBusinessID);
-		Category businessCategory = friendlyDAO.getCategory(theBusinessID);
-		AgeRange businessAgeRange = friendlyDAO.getAgeRange(theBusinessID);
-		KidFriendlyDetail businessKidFriendlyDetail = friendlyDAO.getKidFriendlyDetail(theBusinessID);
+		Business theBusiness = businessDAO.get(theBusinessID);
+		Category businessCategory = businessDAO.getCategory(theBusinessID);
+		AgeRange businessAgeRange = businessDAO.getAgeRange(theBusinessID);
+		KidFriendlyDetail businessKidFriendlyDetail = businessDAO.getKidFriendlyDetail(theBusinessID);
 		
 		// place Business objects in the request attribute
 		request.setAttribute("THE_BUSINESS", theBusiness);
@@ -225,9 +225,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 			throws Exception {
 			
 		// get businesses from DAO
-		List<Business> businesses = friendlyDAO.getBusinesses();
-		List<Category> categories = friendlyDAO.getCategories();
-		List<AgeRange> ages = friendlyDAO.getAges();
+		List<Business> businesses = businessDAO.getBusinesses();
+		List<Category> categories = businessDAO.getCategories();
+		List<AgeRange> ages = businessDAO.getAges();
 		
 		// add businesses to the request
 		request.setAttribute("BUSINESS_LIST", businesses);
@@ -258,7 +258,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 			String website = request.getParameter("businessWebsite");
 			
 			// check if duplicate 
-			boolean dup = friendlyDAO.isDuplicate(name);
+			boolean dup = businessDAO.isDuplicate(name);
 			
 			if (!dup) {
 				// create a new Business object
@@ -266,7 +266,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 						phone, website);
 				
 				// add the business to the database and retrieve its businessID
-				int businessID = friendlyDAO.addBusiness(newBusiness);		
+				int businessID = businessDAO.add(newBusiness);		
 				
 				// create other objects with businessID
 				Category newCategory = createCategory(businessID, request);
@@ -274,9 +274,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 				KidFriendlyDetail newKidFriendlyDetail = createKidFriendlyDetail(businessID, request);
 				
 				// add objects to database
-				friendlyDAO.addCategory(newCategory);
-				friendlyDAO.addAgeRange(newAgeRange);
-				friendlyDAO.addKidFriendlyDetail(newKidFriendlyDetail);
+				businessDAO.addCategory(newCategory);
+				businessDAO.addAgeRange(newAgeRange);
+				businessDAO.addKidFriendlyDetail(newKidFriendlyDetail);
 				
 		        // SEND AS REDIRECT to avoid multiple-browser reload issue
 		        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + businessID);

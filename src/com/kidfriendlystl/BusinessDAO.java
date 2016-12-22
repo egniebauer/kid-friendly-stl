@@ -10,11 +10,11 @@ import java.util.List;
 import javax.sql.DataSource;
 
 
-public class FriendlyDAO {
+public class BusinessDAO {
 
 	private DataSource dataSource;
 
-	public FriendlyDAO(DataSource theDataSource) {
+	public BusinessDAO(DataSource theDataSource) {
 		this.dataSource = theDataSource;
 	}
 	
@@ -187,7 +187,7 @@ public class FriendlyDAO {
 		}
 	}
 
-	public Business getBusiness(String theBusinessID) 
+	public Business get(String theBusinessID) 
 			throws Exception{
 		
 		// create empty Business and int businessID
@@ -401,7 +401,7 @@ public class FriendlyDAO {
 		}
 	}
 
-	public int addBusiness(Business newBusiness) 
+	public int add(Business newBusiness) 
 			throws Exception {
 		
 		int businessID = 0;
@@ -563,7 +563,7 @@ public class FriendlyDAO {
 		
 	}
 	
-	public void updateBusiness(Business updatedBusiness) 
+	public void update(Business updatedBusiness) 
 			throws Exception {
 				
 		// create JDBC objects
@@ -716,7 +716,7 @@ public class FriendlyDAO {
 		}
 	}
 
-	public void deleteBusiness(int id) throws Exception {
+	public void delete(int id) throws Exception {
 		
 		// create JDBC objects
 		Connection myConn = null;
@@ -772,4 +772,6 @@ public class FriendlyDAO {
 			close(myConn, myStmt, myRS);
 		}
 	}
+
+
 }
