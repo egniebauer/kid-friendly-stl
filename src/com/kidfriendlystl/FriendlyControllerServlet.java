@@ -1,4 +1,4 @@
-package com.redokidtwo;
+package com.kidfriendlystl;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import com.redokidtwo.FriendlyDAO;
+import com.kidfriendlystl.FriendlyDAO;
 
 /**
  * Servlet implementation class FriendlyControllerServlet

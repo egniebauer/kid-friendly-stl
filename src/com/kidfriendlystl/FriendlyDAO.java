@@ -1,4 +1,4 @@
-package com.redokidtwo;
+package com.kidfriendlystl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -562,7 +562,6 @@ public class FriendlyDAO {
 		}
 		
 	}
-
 	
 	public void updateBusiness(Business updatedBusiness) 
 			throws Exception {
@@ -679,7 +678,6 @@ public class FriendlyDAO {
 		}
 		
 	}
-
 	
 	public void updateKidFriendlyDetail(KidFriendlyDetail updatedKidFriendlyDetail) 
 			throws Exception {
