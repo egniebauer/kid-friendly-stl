@@ -22,6 +22,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private BusinessDAO businessDAO;
+	private CategoryDAO categoryDAO;
+	private AgeRangeDAO ageRangeDAO;
+	private KidFriendlyDetailDAO kidFriendlyDetailDAO;
 	
 	@Resource(name="jdbc/kid_friendly_stl")
 	private DataSource dataSource;
@@ -32,9 +35,12 @@ public class FriendlyControllerServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		
-		// create our DAO ... and pass connection pool/datasource
+		// create DAOs ... pass connection pool/datasource
 		try { 
-			businessDAO = new BusinessDAO(dataSource);
+			this.businessDAO = new BusinessDAO(dataSource);
+			this.categoryDAO = new CategoryDAO(dataSource);
+			this.ageRangeDAO = new AgeRangeDAO(dataSource);
+			this.kidFriendlyDetailDAO = new KidFriendlyDetailDAO(dataSource);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
@@ -157,9 +163,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 			KidFriendlyDetail updatedKidFriendlyDetail = createKidFriendlyDetail(id, request);
 			
 			// add objects to database
-			businessDAO.updateCategory(updatedCategory);
-			businessDAO.updateAgeRange(updatedAgeRange);
-			businessDAO.updateKidFriendlyDetail(updatedKidFriendlyDetail);
+			categoryDAO.update(updatedCategory);
+			ageRangeDAO.update(updatedAgeRange);
+			kidFriendlyDetailDAO.update(updatedKidFriendlyDetail);
 			
 	        // SEND AS REDIRECT to avoid multiple-browser reload issue
 	        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + id);
@@ -181,9 +187,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		// retrieve Business from database, create necessary objects
 		Business theBusiness = businessDAO.get(theBusinessID);
-		Category businessCategory = businessDAO.getCategory(theBusinessID);
-		AgeRange businessAgeRange = businessDAO.getAgeRange(theBusinessID);
-		KidFriendlyDetail businessKidFriendlyDetail = businessDAO.getKidFriendlyDetail(theBusinessID);
+		Category businessCategory = categoryDAO.get(theBusinessID);
+		AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
+		KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);
 		
 		// place Business objects in the request attribute
 		request.setAttribute("THE_BUSINESS", theBusiness);
@@ -205,9 +211,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		// retrieve Business from database, create necessary objects
 		Business theBusiness = businessDAO.get(theBusinessID);
-		Category businessCategory = businessDAO.getCategory(theBusinessID);
-		AgeRange businessAgeRange = businessDAO.getAgeRange(theBusinessID);
-		KidFriendlyDetail businessKidFriendlyDetail = businessDAO.getKidFriendlyDetail(theBusinessID);
+		Category businessCategory = categoryDAO.get(theBusinessID);
+		AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
+		KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);
 		
 		// place Business objects in the request attribute
 		request.setAttribute("THE_BUSINESS", theBusiness);
@@ -225,9 +231,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 			throws Exception {
 			
 		// get businesses from DAO
-		List<Business> businesses = businessDAO.getBusinesses();
-		List<Category> categories = businessDAO.getCategories();
-		List<AgeRange> ages = businessDAO.getAges();
+		List<Business> businesses = businessDAO.getAll();
+		List<Category> categories = categoryDAO.getAll();
+		List<AgeRange> ages = ageRangeDAO.getAll();
 		
 		// add businesses to the request
 		request.setAttribute("BUSINESS_LIST", businesses);
@@ -274,9 +280,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 				KidFriendlyDetail newKidFriendlyDetail = createKidFriendlyDetail(businessID, request);
 				
 				// add objects to database
-				businessDAO.addCategory(newCategory);
-				businessDAO.addAgeRange(newAgeRange);
-				businessDAO.addKidFriendlyDetail(newKidFriendlyDetail);
+				categoryDAO.add(newCategory);
+				ageRangeDAO.add(newAgeRange);
+				kidFriendlyDetailDAO.add(newKidFriendlyDetail);
 				
 		        // SEND AS REDIRECT to avoid multiple-browser reload issue
 		        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + businessID);
