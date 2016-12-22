@@ -119,64 +119,23 @@ public class FriendlyControllerServlet extends HttpServlet {
 
 	}
 	
-	private void deleteBusiness(HttpServletRequest request, HttpServletResponse response) 
+	private void listBusinesses(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+			
+		// get businesses from DAO
+		List<Business> businesses = businessDAO.getAll();
+		List<Category> categories = categoryDAO.getAll();
+		List<AgeRange> ages = ageRangeDAO.getAll();
 		
-		// read the businessID
-		int id = Integer.parseInt(request.getParameter("businessID"));
+		// add businesses to the request
+		request.setAttribute("BUSINESS_LIST", businesses);
+		request.setAttribute("CATEGORY_LIST", categories);
+		request.setAttribute("AGE_LIST", ages);
 		
-		// delete entry from database
-		businessDAO.delete(id);
+		//send to JSP page (view)
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-businesses.jsp");
+		dispatcher.forward(request, response);
 		
-		// return home
-		listBusinesses(request, response);
-	}
-
-	private void updateBusiness(HttpServletRequest request, HttpServletResponse response) 
-			throws Exception {
-		
-		// validate form input
-		String errorMessage = validateForm(request);
-		
-		if (errorMessage.equals("PASS")){
-			
-			// read form data
-			int id = Integer.parseInt(request.getParameter("businessID"));
-			String name = request.getParameter("businessName"); 
-			String address = request.getParameter("businessAddress");
-			String city = request.getParameter("businessCity");
-			String state = request.getParameter("businessState"); 
-			String zip = request.getParameter("businessZip");
-			String phone = request.getParameter("businessPhone");
-			String website = request.getParameter("businessWebsite");
-			
-			// create a new Business object
-			Business updatedBusiness = new Business(id, name, address, city, state, zip,
-					phone, website);
-			
-			// add the business to the database and retrieve its businessID
-			businessDAO.update(updatedBusiness);		
-			
-			// create other objects with businessID
-			Category updatedCategory = createCategory(id, request);
-			AgeRange updatedAgeRange = createAgeRange(id, request);
-			KidFriendlyDetail updatedKidFriendlyDetail = createKidFriendlyDetail(id, request);
-			
-			// add objects to database
-			categoryDAO.update(updatedCategory);
-			ageRangeDAO.update(updatedAgeRange);
-			kidFriendlyDetailDAO.update(updatedKidFriendlyDetail);
-			
-	        // SEND AS REDIRECT to avoid multiple-browser reload issue
-	        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + id);
-		}
-		else {			
-			request.setAttribute("ERROR_MESSAGE", errorMessage);
-			
-			// send to .jsp page: oops.jsp
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
-			dispatcher.forward(request, response);
-		}
 	}
 
 	private void loadBusiness(HttpServletRequest request, HttpServletResponse response) 
@@ -226,25 +185,6 @@ public class FriendlyControllerServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 		
 	}
-	
-	private void listBusinesses(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-			
-		// get businesses from DAO
-		List<Business> businesses = businessDAO.getAll();
-		List<Category> categories = categoryDAO.getAll();
-		List<AgeRange> ages = ageRangeDAO.getAll();
-		
-		// add businesses to the request
-		request.setAttribute("BUSINESS_LIST", businesses);
-		request.setAttribute("CATEGORY_LIST", categories);
-		request.setAttribute("AGE_LIST", ages);
-		
-		//send to JSP page (view)
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-businesses.jsp");
-		dispatcher.forward(request, response);
-		
-	}
 
 	private void addBusiness(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
@@ -254,24 +194,16 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		if (errorMessage.equals("PASS"))
 		{
-			// read form data
-			String name = request.getParameter("businessName"); 
-			String address = request.getParameter("businessAddress");
-			String city = request.getParameter("businessCity");
-			String state = request.getParameter("businessState"); 
-			String zip = request.getParameter("businessZip");
-			String phone = request.getParameter("businessPhone");
-			String website = request.getParameter("businessWebsite");
+			
+			// create a new Business object
+			Business newBusiness = createBusiness(request);
 			
 			// check if duplicate 
-			boolean dup = businessDAO.isDuplicate(name);
+			boolean dup = businessDAO.isDuplicate(newBusiness.getName());
 			
 			if (!dup) {
-				// create a new Business object
-				Business newBusiness = new Business(name, address, city, state, zip,
-						phone, website);
 				
-				// add the business to the database and retrieve its businessID
+				// add the newBusiness to the database and retrieve its generated key
 				int businessID = businessDAO.add(newBusiness);		
 				
 				// create other objects with businessID
@@ -286,14 +218,54 @@ public class FriendlyControllerServlet extends HttpServlet {
 				
 		        // SEND AS REDIRECT to avoid multiple-browser reload issue
 		        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + businessID);
+			
 			}
 			else {
+			
 				request.setAttribute("ERROR_MESSAGE", "Duplicate name; please verify this business is not already listed.");
 				
 				// send to .jsp page: oops.jsp
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
 				dispatcher.forward(request, response);
+			
 			}
+		}
+		else {			
+			
+			request.setAttribute("ERROR_MESSAGE", errorMessage);
+			
+			// send to .jsp page: oops.jsp
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
+			dispatcher.forward(request, response);
+		
+		}
+	}
+
+	private void updateBusiness(HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		
+		// validate form input
+		String errorMessage = validateForm(request);
+		
+		if (errorMessage.equals("PASS")){
+			
+			Business updatedBusiness = createBusiness(request);
+			
+			// add the business to the database and retrieve its businessID
+			businessDAO.update(updatedBusiness);		
+			
+			// create other objects with businessID
+			Category updatedCategory = createCategory(updatedBusiness.getId(), request);
+			AgeRange updatedAgeRange = createAgeRange(updatedBusiness.getId(), request);
+			KidFriendlyDetail updatedKidFriendlyDetail = createKidFriendlyDetail(updatedBusiness.getId(), request);
+			
+			// add objects to database
+			categoryDAO.update(updatedCategory);
+			ageRangeDAO.update(updatedAgeRange);
+			kidFriendlyDetailDAO.update(updatedKidFriendlyDetail);
+			
+	        // SEND AS REDIRECT to avoid multiple-browser reload issue
+	        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + updatedBusiness.getId());
 		}
 		else {			
 			request.setAttribute("ERROR_MESSAGE", errorMessage);
@@ -302,9 +274,27 @@ public class FriendlyControllerServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
 			dispatcher.forward(request, response);
 		}
+		
+	}
+
+	private void deleteBusiness(HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		
+		// read the businessID
+		String businessID = request.getParameter("businessID");
+		int id = Integer.parseInt(businessID);
+		
+		// delete entry from database
+		businessDAO.delete(id);
+		
+		// return home
+		listBusinesses(request, response);
+		
 	}
 
 	private String validateForm(HttpServletRequest request) {
+		
+		// default error
 		String errorMessage = "Unknown Error";
 		
 		// read parameters - Business
@@ -398,6 +388,142 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		//return errorMessage;
 	}
+	
+
+	private Business createBusiness(HttpServletRequest request) 
+			throws Exception {
+		
+		// read form data
+		String businessID = request.getParameter("businessID");
+		int id = Integer.parseInt(businessID);
+		String name = request.getParameter("businessName"); 
+		String address = request.getParameter("businessAddress");
+		String city = request.getParameter("businessCity");
+		String state = request.getParameter("businessState"); 
+		String zip = request.getParameter("businessZip");
+		String phone = request.getParameter("businessPhone");
+		String website = request.getParameter("businessWebsite");
+		
+		// create a new Business object
+		Business newBusiness = new Business(id, name, address, city, state, zip,
+				phone, website);
+		return newBusiness;
+		
+	}
+
+	private Category createCategory(int businessID, HttpServletRequest request) 
+			throws Exception {
+		
+		// create an empty Category object
+		Category newCategory;
+		
+		// set parameters to false
+		boolean activeLife = false;
+		boolean artsEntertainment = false;
+		boolean education = false;
+		boolean foodRestaurant = false;
+		boolean healthMedical = false;
+		boolean hotelTravel = false;
+		boolean publicServiceGovernment = false;
+		boolean religious = false;
+		boolean shopping = false;
+		
+		// retrieve form data
+		String[] categories = request.getParameterValues("category"); 
+		
+		if (categories.length > 0) {
+			
+			for (String category : categories) {
+				switch (category) {
+					case "activeLife":
+						activeLife = true;
+						break;
+					case "artsEntertainment":
+						artsEntertainment = true;
+						break;
+					case "education":
+						education = true;
+						break;
+					case "foodRestaurant":
+						foodRestaurant = true;
+						break;
+					case "healthMedical":
+						healthMedical = true;
+						break;
+					case "hotelTravel":
+						hotelTravel = true;
+						break;
+					case "publicServiceGovernment":
+						publicServiceGovernment = true;
+						break;
+					case "religious":
+						religious = true;
+						break;
+					case "shopping":
+						shopping = true;
+						break;
+				}
+			}
+		}
+		
+		// assign data to newCategory and return
+		newCategory= new Category (businessID, activeLife, artsEntertainment, education, 
+				foodRestaurant, healthMedical, hotelTravel, publicServiceGovernment, 
+				religious, shopping);
+		
+		return newCategory;
+		
+	}
+
+	private AgeRange createAgeRange(int businessID, HttpServletRequest request) 
+			throws Exception {
+		
+		// create an empty AgeRange object
+		AgeRange newAgeRange;
+		
+		// set parameters to false
+		boolean allAges = false;
+		boolean baby = false;
+		boolean toddler = false;
+		boolean preschooler = false;
+		boolean gradeSchooler = false;
+		boolean teen = false;
+		
+		// retrieve data from the form
+		String[] ages = request.getParameterValues("ageRange");
+		
+		if (ages.length > 0){
+			for (String age: ages){
+				switch (age) {
+					case "allAges":
+						allAges = true;
+						break;
+					case "baby":
+						baby = true;
+						break;
+					case "toddler":
+						toddler = true;
+						break;
+					case "preschooler":
+						preschooler = true;
+						break;
+					case "gradeSchooler":
+						gradeSchooler = true;
+						break;
+					case "teen":
+						teen = true;
+						break;
+				}
+			}
+		}
+		
+		// assign to object and return
+		newAgeRange = new AgeRange(businessID, allAges, baby, toddler, preschooler,
+				gradeSchooler, teen);
+		
+		return newAgeRange;
+		
+	}
 
 	private KidFriendlyDetail createKidFriendlyDetail(int businessID, HttpServletRequest request) 
 			throws Exception {
@@ -455,121 +581,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 				afternoon, evening, kidsFreeDiscount, kidsFreeDiscountDetail);
 		
 		return newKidFriendlyDetail;
-	}
-
-	private AgeRange createAgeRange(int businessID, HttpServletRequest request) 
-			throws Exception {
 		
-		// create an empty AgeRange object
-		AgeRange newAgeRange;
-		
-		// set parameters to false
-		boolean allAges = false;
-		boolean baby = false;
-		boolean toddler = false;
-		boolean preschooler = false;
-		boolean gradeSchooler = false;
-		boolean teen = false;
-		
-		// retrieve data from the form
-		String[] ages = request.getParameterValues("ageRange");
-		
-		if (ages.length > 0){
-			for (String age: ages){
-				switch (age) {
-					case "allAges":
-						allAges = true;
-						break;
-					case "baby":
-						baby = true;
-						break;
-					case "toddler":
-						toddler = true;
-						break;
-					case "preschooler":
-						preschooler = true;
-						break;
-					case "gradeSchooler":
-						gradeSchooler = true;
-						break;
-					case "teen":
-						teen = true;
-						break;
-				}
-			}
-		}
-		
-		// assign those values to the parameters
-		newAgeRange = new AgeRange(businessID, allAges, baby, toddler, preschooler,
-				gradeSchooler, teen);
-		
-		// return the new object
-		return newAgeRange;
-	}
-
-	
-	private Category createCategory(int businessID, HttpServletRequest request) 
-			throws Exception {
-		
-		// create an empty Category object
-		Category newCategory;
-		
-		// set parameters to false
-		boolean activeLife = false;
-		boolean artsEntertainment = false;
-		boolean education = false;
-		boolean foodRestaurant = false;
-		boolean healthMedical = false;
-		boolean hotelTravel = false;
-		boolean publicServiceGovernment = false;
-		boolean religious = false;
-		boolean shopping = false;
-		
-		// retrieve form data
-		String[] categories = request.getParameterValues("category"); 
-		
-		if (categories.length > 0) {
-			
-			for (String category : categories) {
-				switch (category) {
-					case "activeLife":
-						activeLife = true;
-						break;
-					case "artsEntertainment":
-						artsEntertainment = true;
-						break;
-					case "education":
-						education = true;
-						break;
-					case "foodRestaurant":
-						foodRestaurant = true;
-						break;
-					case "healthMedical":
-						healthMedical = true;
-						break;
-					case "hotelTravel":
-						hotelTravel = true;
-						break;
-					case "publicServiceGovernment":
-						publicServiceGovernment = true;
-						break;
-					case "religious":
-						religious = true;
-						break;
-					case "shopping":
-						shopping = true;
-						break;
-				}
-			}
-		}
-		
-		// assign data to newCategory
-		newCategory= new Category (businessID, activeLife, artsEntertainment, education, 
-				foodRestaurant, healthMedical, hotelTravel, publicServiceGovernment, 
-				religious, shopping);
-		
-		// return newCategory
-		return newCategory;
 	}
 
 }
