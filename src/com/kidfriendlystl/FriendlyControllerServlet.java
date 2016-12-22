@@ -198,7 +198,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		request.setAttribute("BUSINESS_KID_FRIENDLY_DETAIL", businessKidFriendlyDetail);
 		
 		// send to .jsp page: view-business.jsp
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/update-business-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/form.jsp");
 		dispatcher.forward(request, response);
 		
 	}

@@ -18,6 +18,24 @@ public class BusinessDAO {
 		this.dataSource = theDataSource;
 	}
 	
+	private void close(Connection myConn, Statement myStmt, ResultSet myRS) {
+		try {
+			if (myRS != null) {
+				myRS.close();
+			}
+			
+			if (myStmt != null) {
+				myStmt.close();
+			}
+			
+			if (myConn != null) {
+				myConn.close();	// doesn't really close ... returns it to connection pool
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public List<Business> getAll() 
 			throws Exception {
 		
@@ -64,24 +82,6 @@ public class BusinessDAO {
 		finally {
 			// close JDBC objects
 			close(myConn, myStmt, myRS);
-		}
-	}
-
-	private void close(Connection myConn, Statement myStmt, ResultSet myRS) {
-		try {
-			if (myRS != null) {
-				myRS.close();
-			}
-			
-			if (myStmt != null) {
-				myStmt.close();
-			}
-			
-			if (myConn != null) {
-				myConn.close();	// doesn't really close ... returns it to connection pool
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

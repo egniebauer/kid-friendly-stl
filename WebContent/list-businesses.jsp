@@ -27,7 +27,7 @@
 	
 	<!-- Buttons -->
 	<p>
-		<a class="btn btn-default" href="add-business-form.jsp" role="button">Add New Listing</a>
+		<a class="btn btn-default" href="form.jsp" role="button">Add New Listing</a>
 		<button type="button" class="btn btn-default">Search Listings</button>
 	</p>
 	
