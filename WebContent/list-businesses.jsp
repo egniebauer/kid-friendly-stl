@@ -8,51 +8,37 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<link type="text/css"  rel="stylesheet" href="css/bootstrap-theme.min.css" />         
-	<link type="text/css"  rel="stylesheet" href="css/bootstrap-theme.min.css.map" />         
-	<link type="text/css"  rel="stylesheet" href="css/bootstrap.min.css" />         
-	<link type="text/css"  rel="stylesheet" href="css/bootstrap.min.css.map" />         
+	<link type="text/css"  rel="stylesheet" href="css/bootstrap-theme.min.css" /><link type="text/css"  rel="stylesheet" href="css/bootstrap-theme.min.css.map" /><link type="text/css"  rel="stylesheet" href="css/bootstrap.min.css" /><link type="text/css"  rel="stylesheet" href="css/bootstrap.min.css.map" />
 	<script src="js/bootstrap.min.js"></script>
-	
 	<title>Kid Friendly STL</title>
-	
 </head>
 <body>
 <div class="container">
-
+<!-- PAGE HEADING -->
 	<h1>Kid Friendly STL</h1>
-
 	<br />
-	
-	<!-- Buttons -->
-	<p>
+<!-- BUTTONS -->
+	<div>
 		<a class="btn btn-default" href="form.jsp" role="button">Add New Listing</a>
 		<button type="button" class="btn btn-default">Search Listings</button>
-	</p>
-	
+	</div>
 	<br />
-
-	<!-- Results Table -->
+<!-- RESULTS TABLE -->
 	<table class="table table-hover table-striped table-bordered">
 		<tbody>
-		
 		<c:forEach var="currentBusiness" items="${BUSINESS_LIST}" >
-						
-			<!-- view link for each business -->
+	<!-- Generate viewLink for each business -->
 			<c:url var="viewLink" value="FriendlyControllerServlet">
 				<c:param name="command" value="VIEW" />
 				<c:param name="businessID" value="${currentBusiness.id}" />
 			</c:url>
-			
-		<tr>
-			<td>
-				<a href="${viewLink}"><h4>${currentBusiness.name}</h4></a>
-			</td>
-		</tr>
-		
+	<!-- Generate row for each business -->
+			<tr>
+				<td>
+					<a href="${viewLink}"><h4>${currentBusiness.name}</h4></a>
+				</td>
+			</tr>
 		</c:forEach>
-		
 		</tbody>	
 	</table>
 </div>	
