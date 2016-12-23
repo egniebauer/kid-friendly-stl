@@ -35,7 +35,7 @@
 		</c:url>
 		
 		<a class="btn btn-default" href="${homeLink}" role="button" >home</a> 
-		<a class="btn btn-default" href="add-business-form.jsp" role="button" >add</a> 
+		<a class="btn btn-default" href="form.jsp" role="button" >add</a> 
 		
 		<br /> <br />
 		
