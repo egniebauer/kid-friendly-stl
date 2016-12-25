@@ -10,6 +10,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css" /><link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css.map" /><link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" /><link type="text/css" rel="stylesheet" href="css/bootstrap.min.css.map" />
 	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/jquery-3.1.1.js" type="text/javascript"></script>
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="js/zipcodeUS.js" type="text/javascript"></script>
+	<script src="js/statesUS.js" type="text/javascript"></script>
+	<script src="js/phoneUS.js" type="text/javascript"></script>
+	<script src="js/validate-form.js" type="text/javascript"></script>
 	<title>
 		<c:choose>
 			<c:when test="${empty THE_BUSINESS.id}">
@@ -37,7 +43,7 @@
 	</small></h1>
 	<br />
 <!-- START FORM -->	
-	<form action="FriendlyControllerServlet" method="POST">
+	<form id="kidFriendlyListing" action="FriendlyControllerServlet" method="POST">
 <!-- Establish NEW or EXISTING Listing -->
 		<c:choose>
 			<c:when test="${empty THE_BUSINESS.id}">
@@ -51,57 +57,112 @@
 <!-- CONTACT INFORMATION -->
 		<div class="row">
 			<div class="form-group">
-			<div class="col-md-12">
-				<label for="business">Business Name</label><br>
+			<div class="col-sm-12">
+				<label for="business">Business Name*</label><br>
 				<input required type="text" class="form-control" name="businessName" id="businessName" placeholder="Name" value="${empty THE_BUSINESS.name ? '': THE_BUSINESS.name}">
 			</div>
 			</div>
 		</div>
-		<br>
 		<div class="row">
 			<div class="form-group">
-			<div class="col-md-12">
+			<div class="col-sm-12">
 				<label for="businessAddress">Address</label><br>
 				<input type="text" class="form-control" name="businessAddress" id="businessAddress" placeholder="Address" value="${empty THE_BUSINESS.address ? '': THE_BUSINESS.address}">
 			</div>
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-sm-4">
 			<div class="form-group">
-			<div class="col-md-4">
-				<label for="businessCity"></label>
-				<input required type="text" class="form-control" name="businessCity" id="businessCity" placeholder="City" value="${empty THE_BUSINESS.city ? '': THE_BUSINESS.city}">
+				<label for="businessCity">City*</label>
+				<input required type="text" class="form-control" name="businessCity" id="businessCity" placeholder="City" value="${empty THE_BUSINESS.city ? 'Saint Louis': THE_BUSINESS.city}">
 			</div>
-			<div class="col-md-4">
-				<label for="businessState"></label>
-				<input required type="text" class="form-control" name="businessState" id="businessState" placeholder="State"  value="${empty THE_BUSINESS.state ? '': THE_BUSINESS.state}">
 			</div>
-			<div class="col-md-4">
-				<label for="businessZip"></label>
-				<input type="text" class="form-control" name="businessZip" id="businessZip" placeholder="Zip (5-digit)"  value="${empty THE_BUSINESS.zip ? '': THE_BUSINESS.zip}">
+			<div class="col-sm-4">
+			<div class="form-group">
+				<label for="businessState">State*</label>
+				<select disabled class="form-control" name="businessState" id="businessState">
+					<option value="AL">Alabama</option>
+					<option value="AK">Alaska</option>
+					<option value="AZ">Arizona</option>
+					<option value="AR">Arkansas</option>
+					<option value="CA">California</option>
+					<option value="CO">Colorado</option>
+					<option value="CT">Connecticut</option>
+					<option value="DE">Delaware</option>
+					<option value="DC">District Of Columbia</option>
+					<option value="FL">Florida</option>
+					<option value="GA">Georgia</option>
+					<option value="HI">Hawaii</option>
+					<option value="ID">Idaho</option>
+					<option value="IL">Illinois</option>
+					<option value="IN">Indiana</option>
+					<option value="IA">Iowa</option>
+					<option value="KS">Kansas</option>
+					<option value="KY">Kentucky</option>
+					<option value="LA">Louisiana</option>
+					<option value="ME">Maine</option>
+					<option value="MD">Maryland</option>
+					<option value="MA">Massachusetts</option>
+					<option value="MI">Michigan</option>
+					<option value="MN">Minnesota</option>
+					<option value="MS">Mississippi</option>
+					<option value="MO" selected>Missouri</option>
+					<option value="MT">Montana</option>
+					<option value="NE">Nebraska</option>
+					<option value="NV">Nevada</option>
+					<option value="NH">New Hampshire</option>
+					<option value="NJ">New Jersey</option>
+					<option value="NM">New Mexico</option>
+					<option value="NY">New York</option>
+					<option value="NC">North Carolina</option>
+					<option value="ND">North Dakota</option>
+					<option value="OH">Ohio</option>
+					<option value="OK">Oklahoma</option>
+					<option value="OR">Oregon</option>
+					<option value="PA">Pennsylvania</option>
+					<option value="RI">Rhode Island</option>
+					<option value="SC">South Carolina</option>
+					<option value="SD">South Dakota</option>
+					<option value="TN">Tennessee</option>
+					<option value="TX">Texas</option>
+					<option value="UT">Utah</option>
+					<option value="VT">Vermont</option>
+					<option value="VA">Virginia</option>
+					<option value="WA">Washington</option>
+					<option value="WV">West Virginia</option>
+					<option value="WI">Wisconsin</option>
+					<option value="WY">Wyoming</option>
+				</select>
+			</div>
+			</div>
+			<div class="col-sm-4">
+			<div class="form-group">
+				<label for="businessZip">Zip</label>
+				<input type="text" class="form-control" name="businessZip" id="businessZip" placeholder="Zip (5-digit)" value="${empty THE_BUSINESS.zip ? '': THE_BUSINESS.zip}">
 			</div>
 			</div>
 		</div>
-		<br>
 		<div class="row">
+			<div class="col-sm-6">
 			<div class="form-group">
-			<div class="col-md-6">
 				<label for="businessPhone">Phone</label><br>
 				<input type="tel" class="form-control" name="businessPhone" id="businessPhone" placeholder="Phone (10-digit)"  value="${empty THE_BUSINESS.phone ? '': THE_BUSINESS.phone}">
 			</div>
-			<div class="col-md-6">
+			</div>
+			<div class="col-sm-6">
+			<div class="form-group">
 				<label for="businessWebsite">Website</label><br>
-				<input type="text" class="form-control" name="businessWebsite" id="businessWebsite" placeholder="Website"  value="${empty THE_BUSINESS.website ? '': THE_BUSINESS.website}">
+				<input type="url" class="form-control" name="businessWebsite" id="businessWebsite" placeholder="Website"  value="${empty THE_BUSINESS.website ? '': THE_BUSINESS.website}">
 			</div>
 			</div>
 		</div>
-		<br /><br />
+		<br />
 		<div class="row">
 <!-- CATEGORY -->
-			<div class="col-md-4">	
-				<label for="category">Categories</label>
-				<p><small>Please select at least one category:</small></p>
-				<div class="checkbox">
+			<div class="col-sm-4">	
+				<h5>Categories*</h5>
+				<div class="checkbox form-group">
 					<label class="checkbox" for="activeLife">
 						<input type="checkbox" name="category" id="activeLife" value="activeLife" ${BUSINESS_CATEGORY.activeLife == true ? 'checked' : '' }> Active Life
 					</label>
@@ -132,10 +193,9 @@
 				</div>
 			</div>
 <!-- AGE RANGES -->
-			<div class="col-md-4">
-				<h5>Age Ranges</h5>
-				<p><small>Please select at least one age group:</small></p>
-				<div class="checkbox">
+			<div class="col-sm-4">
+				<h5>Age Ranges*</h5>
+				<div class="checkbox form-group">
 					<label class="checkbox" for="allAges">
 						<input type="checkbox" name="ageRange" id="allAges" value="allAges" ${BUSINESS_AGE_RANGE.allAges == true ? 'checked' : '' }> All Ages
 					</label>
@@ -157,10 +217,9 @@
 				</div>
 			</div>
 <!-- KID FRIENDLY DETAILS - Best Times -->
-			<div class="col-md-4">
-				<h5>Best Times</h5>
-				<p><small>Please select at least one time:</small></p>
-				<div class="checkbox">
+			<div class="col-sm-4">
+				<h5>Best Times*</h5>
+				<div class="checkbox form-group">
 					<label class="checkbox" for="allDay">
 						<input type="checkbox" name="bestTimes" id="allDay" value="allDay" ${BUSINESS_KID_FRIENDLY_DETAIL.allDay == true ? 'checked' : '' }> All Day
 					</label>
@@ -179,14 +238,14 @@
 		<br />
 		<div class="row">
 <!-- KID FRIENDLY DETAILS - Details -->
-			<div class="col-md-12">	
+			<div class="col-sm-12">	
 				<h5>Kid Friendly Details</h5>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">
-				<div class="radio">
-					<p>Lots of Families?</p>
+			<div class="col-sm-6">
+				<div class="radio form-group">
+					<p>Lots of Families?*</p>
 					<label class="radio-inline" for="multipleFamiliesTrue">
 						<input type="radio" name="multipleFamilies" id="multipleFamiliesTrue" value=1 ${BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == true ? 'checked' : '' }> Yes!
 					</label>
@@ -195,9 +254,9 @@
 					</label>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="radio">
-					<p>Kid's Free or Kid's Discount Offered?</p>
+			<div class="col-sm-6">
+				<div class="radio form-group">
+					<p>Kid's Free or Kid's Discount Offered?*</p>
 					<label class="radio-inline" for="kidsFreeDiscountTrue">
 						<input type="radio" name="kidsFreeDiscount" id="kidsFreeDiscountTrue" value=1 ${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == true ? 'checked' : '' }> Yes!
 					</label>
@@ -209,7 +268,7 @@
 		</div>
 		<br />
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-sm-12">
 				<p><small>Limit 255 characters</small></p>
 				<label for="kidsFreeDiscountDetail"></label>
 				<textarea class="form-control" rows="3" name="kidsFreeDiscountDetail" id="kidsFreeDiscountDetail" placeholder="Kid's Discount Details">${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</textarea>
@@ -225,6 +284,7 @@
 		</c:if>
 			<input class="btn btn-default" type="submit" value="${empty THE_BUSINESS.id ? 'Submit': 'Update'}">
 			<a class="btn btn-danger" href="${empty cancelLink ? 'FriendlyControllerServlet' : cancelLink}" role="button">Cancel</a>
+		<br /><br />
 	</form>	  
 </div>
 </body>
