@@ -81,58 +81,58 @@
 			<div class="col-sm-4">
 			<div class="form-group">
 				<label for="businessState">State*</label>
-				<select disabled class="form-control" name="businessState" id="businessState">
-					<option value="AL">Alabama</option>
-					<option value="AK">Alaska</option>
-					<option value="AZ">Arizona</option>
-					<option value="AR">Arkansas</option>
-					<option value="CA">California</option>
-					<option value="CO">Colorado</option>
-					<option value="CT">Connecticut</option>
-					<option value="DE">Delaware</option>
-					<option value="DC">District Of Columbia</option>
-					<option value="FL">Florida</option>
-					<option value="GA">Georgia</option>
-					<option value="HI">Hawaii</option>
-					<option value="ID">Idaho</option>
-					<option value="IL">Illinois</option>
-					<option value="IN">Indiana</option>
-					<option value="IA">Iowa</option>
-					<option value="KS">Kansas</option>
-					<option value="KY">Kentucky</option>
-					<option value="LA">Louisiana</option>
-					<option value="ME">Maine</option>
-					<option value="MD">Maryland</option>
-					<option value="MA">Massachusetts</option>
-					<option value="MI">Michigan</option>
-					<option value="MN">Minnesota</option>
-					<option value="MS">Mississippi</option>
-					<option value="MO" selected>Missouri</option>
-					<option value="MT">Montana</option>
-					<option value="NE">Nebraska</option>
-					<option value="NV">Nevada</option>
-					<option value="NH">New Hampshire</option>
-					<option value="NJ">New Jersey</option>
-					<option value="NM">New Mexico</option>
-					<option value="NY">New York</option>
-					<option value="NC">North Carolina</option>
-					<option value="ND">North Dakota</option>
-					<option value="OH">Ohio</option>
-					<option value="OK">Oklahoma</option>
-					<option value="OR">Oregon</option>
-					<option value="PA">Pennsylvania</option>
-					<option value="RI">Rhode Island</option>
-					<option value="SC">South Carolina</option>
-					<option value="SD">South Dakota</option>
-					<option value="TN">Tennessee</option>
-					<option value="TX">Texas</option>
-					<option value="UT">Utah</option>
-					<option value="VT">Vermont</option>
-					<option value="VA">Virginia</option>
-					<option value="WA">Washington</option>
-					<option value="WV">West Virginia</option>
-					<option value="WI">Wisconsin</option>
-					<option value="WY">Wyoming</option>
+				<select class="form-control" name="businessState" id="businessState">
+					<option value="AL" ${THE_BUSINESS.state == "AL" ? 'selected' : ''}>Alabama</option>
+					<option value="AK" ${THE_BUSINESS.state == "AK" ? 'selected' : ''}>Alaska</option>
+					<option value="AZ" ${THE_BUSINESS.state == "AZ" ? 'selected' : ''}>Arizona</option>
+					<option value="AR" ${THE_BUSINESS.state == "AR" ? 'selected' : ''}>Arkansas</option>
+					<option value="CA" ${THE_BUSINESS.state == "CA" ? 'selected' : ''}>California</option>
+					<option value="CO" ${THE_BUSINESS.state == "CO" ? 'selected' : ''}>Colorado</option>
+					<option value="CT" ${THE_BUSINESS.state == "CT" ? 'selected' : ''}>Connecticut</option>
+					<option value="DE" ${THE_BUSINESS.state == "DE" ? 'selected' : ''}>Delaware</option>
+					<option value="DC" ${THE_BUSINESS.state == "DC" ? 'selected' : ''}>District Of Columbia</option>
+					<option value="FL" ${THE_BUSINESS.state == "FL" ? 'selected' : ''}>Florida</option>
+					<option value="GA" ${THE_BUSINESS.state == "GA" ? 'selected' : ''}>Georgia</option>
+					<option value="HI" ${THE_BUSINESS.state == "HI" ? 'selected' : ''}>Hawaii</option>
+					<option value="ID" ${THE_BUSINESS.state == "ID" ? 'selected' : ''}>Idaho</option>
+					<option value="IL" ${THE_BUSINESS.state == "IL" ? 'selected' : ''}>Illinois</option>
+					<option value="IN" ${THE_BUSINESS.state == "IN" ? 'selected' : ''}>Indiana</option>
+					<option value="IA" ${THE_BUSINESS.state == "IA" ? 'selected' : ''}>Iowa</option>
+					<option value="KS" ${THE_BUSINESS.state == "KS" ? 'selected' : ''}>Kansas</option>
+					<option value="KY" ${THE_BUSINESS.state == "KY" ? 'selected' : ''}>Kentucky</option>
+					<option value="LA" ${THE_BUSINESS.state == "LA" ? 'selected' : ''}>Louisiana</option>
+					<option value="ME" ${THE_BUSINESS.state == "ME" ? 'selected' : ''}>Maine</option>
+					<option value="MD" ${THE_BUSINESS.state == "MD" ? 'selected' : ''}>Maryland</option>
+					<option value="MA" ${THE_BUSINESS.state == "MA" ? 'selected' : ''}>Massachusetts</option>
+					<option value="MI" ${THE_BUSINESS.state == "MI" ? 'selected' : ''}>Michigan</option>
+					<option value="MN" ${THE_BUSINESS.state == "MN" ? 'selected' : ''}>Minnesota</option>
+					<option value="MS" ${THE_BUSINESS.state == "MS" ? 'selected' : ''}>Mississippi</option>
+					<option value="MO" ${ empty THE_BUSINESS.state or THE_BUSINESS.state == "MO" ? 'selected' : ''}>Missouri</option>
+					<option value="MT" ${THE_BUSINESS.state == "MT" ? 'selected' : ''}>Montana</option>
+					<option value="NE" ${THE_BUSINESS.state == "NE" ? 'selected' : ''}>Nebraska</option>
+					<option value="NV" ${THE_BUSINESS.state == "NV" ? 'selected' : ''}>Nevada</option>
+					<option value="NH" ${THE_BUSINESS.state == "NH" ? 'selected' : ''}>New Hampshire</option>
+					<option value="NJ" ${THE_BUSINESS.state == "NJ" ? 'selected' : ''}>New Jersey</option>
+					<option value="NM" ${THE_BUSINESS.state == "NM" ? 'selected' : ''}>New Mexico</option>
+					<option value="NY" ${THE_BUSINESS.state == "NY" ? 'selected' : ''}>New York</option>
+					<option value="NC" ${THE_BUSINESS.state == "NC" ? 'selected' : ''}>North Carolina</option>
+					<option value="ND" ${THE_BUSINESS.state == "ND" ? 'selected' : ''}>North Dakota</option>
+					<option value="OH" ${THE_BUSINESS.state == "OH" ? 'selected' : ''}>Ohio</option>
+					<option value="OK" ${THE_BUSINESS.state == "OK" ? 'selected' : ''}>Oklahoma</option>
+					<option value="OR" ${THE_BUSINESS.state == "OR" ? 'selected' : ''}>Oregon</option>
+					<option value="PA" ${THE_BUSINESS.state == "PA" ? 'selected' : ''}>Pennsylvania</option>
+					<option value="RI" ${THE_BUSINESS.state == "RI" ? 'selected' : ''}>Rhode Island</option>
+					<option value="SC" ${THE_BUSINESS.state == "SC" ? 'selected' : ''}>South Carolina</option>
+					<option value="SD" ${THE_BUSINESS.state == "SD" ? 'selected' : ''}>South Dakota</option>
+					<option value="TN" ${THE_BUSINESS.state == "TN" ? 'selected' : ''}>Tennessee</option>
+					<option value="TX" ${THE_BUSINESS.state == "TX" ? 'selected' : ''}>Texas</option>
+					<option value="UT" ${THE_BUSINESS.state == "UT" ? 'selected' : ''}>Utah</option>
+					<option value="VT" ${THE_BUSINESS.state == "VT" ? 'selected' : ''}>Vermont</option>
+					<option value="VA" ${THE_BUSINESS.state == "VA" ? 'selected' : ''}>Virginia</option>
+					<option value="WA" ${THE_BUSINESS.state == "WA" ? 'selected' : ''}>Washington</option>
+					<option value="WV" ${THE_BUSINESS.state == "WV" ? 'selected' : ''}>West Virginia</option>
+					<option value="WI" ${THE_BUSINESS.state == "WI" ? 'selected' : ''}>Wisconsin</option>
+					<option value="WY" ${THE_BUSINESS.state == "WY" ? 'selected' : ''}>Wyoming</option>
 				</select>
 			</div>
 			</div>
@@ -153,7 +153,10 @@
 			<div class="col-sm-6">
 			<div class="form-group">
 				<label for="businessWebsite">Website</label><br>
+				<div class="input-group">
+				<span class="input-group-addon">http://</span>
 				<input type="url" class="form-control" name="businessWebsite" id="businessWebsite" placeholder="Website"  value="${empty THE_BUSINESS.website ? '': THE_BUSINESS.website}">
+				</div>
 			</div>
 			</div>
 		</div>

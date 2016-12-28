@@ -5,27 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 public class CreateTable {
 	
 
-	public static Business business(HttpServletRequest request) 
-			throws Exception {
-		
-		// read form data
-		String businessID = request.getParameter("businessID");
-		int id = Integer.parseInt(businessID);
-		String name = request.getParameter("businessName"); 
-		String address = request.getParameter("businessAddress");
-		String city = request.getParameter("businessCity");
-		String state = request.getParameter("businessState"); 
-		String zip = request.getParameter("businessZip");
-		String phone = request.getParameter("businessPhone");
-		String website = request.getParameter("businessWebsite");
-		
-		// create a new Business object
-		Business newBusiness = new Business(id, name, address, city, state, zip,
-				phone, website);
-		return newBusiness;
-		
-	}
-
 	public static Category category(int businessID, HttpServletRequest request) 
 			throws Exception {
 		
@@ -197,6 +176,48 @@ public class CreateTable {
 		
 		return newKidFriendlyDetail;
 		
+	}
+
+	public static Business newBusiness(HttpServletRequest request) {
+		
+		// read form data
+		String name = request.getParameter("businessName"); 
+		String address = request.getParameter("businessAddress");
+		String city = request.getParameter("businessCity");
+		String state = request.getParameter("businessState"); 
+		String zip = request.getParameter("businessZip");
+		String phone = request.getParameter("businessPhone");
+		String website = request.getParameter("businessWebsite");
+		
+		// create new business object (without existing id)
+		Business newBusiness =  new Business(name, address, city, state, zip,
+						phone, website);
+		
+		// return business
+		return newBusiness;
+		
+	}
+
+	public static Business existingBusiness(HttpServletRequest request) {
+		
+		// read form data
+		String businessID = request.getParameter("businessID");
+		int id = Integer.parseInt(businessID);
+		String name = request.getParameter("businessName"); 
+		String address = request.getParameter("businessAddress");
+		String city = request.getParameter("businessCity");
+		String state = request.getParameter("businessState"); 
+		String zip = request.getParameter("businessZip");
+		String phone = request.getParameter("businessPhone");
+		String website = request.getParameter("businessWebsite");
+		
+		// create new business object (with existing id)
+		Business newBusiness = new Business(id, name, address, city, state, zip,
+						phone, website);
+		
+		// return business
+		return newBusiness;
+
 	}
 
 }

@@ -196,7 +196,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		{
 			
 			// create a new Business object
-			Business newBusiness = CreateTable.business(request);
+			Business newBusiness = CreateTable.newBusiness(request);
 			
 			// check if duplicate 
 			boolean dup = businessDAO.isDuplicate(newBusiness.getName());
@@ -249,7 +249,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		if (errorMessage.equals("PASS")){
 			
-			Business updatedBusiness = CreateTable.business(request);
+			Business updatedBusiness = CreateTable.existingBusiness(request);
 			
 			// add the business to the database and retrieve its businessID
 			businessDAO.update(updatedBusiness);		
