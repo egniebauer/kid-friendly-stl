@@ -303,7 +303,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String city = request.getParameter("businessCity");
 		String state = request.getParameter("businessState"); 
 		String zip = request.getParameter("businessZip");
+		zip = zip.replaceAll("[^0-9]", "");
 		String phone = request.getParameter("businessPhone");
+		phone = phone.replaceAll("[^0-9]", "");
 		String website = request.getParameter("businessWebsite");
 		// read parameters - Category
 		String[] categories = request.getParameterValues("category"); 
