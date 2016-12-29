@@ -153,10 +153,7 @@
 			<div class="col-sm-6">
 			<div class="form-group">
 				<label for="businessWebsite">Website</label><br>
-				<div class="input-group">
-				<span class="input-group-addon">http://</span>
 				<input type="url" class="form-control" name="businessWebsite" id="businessWebsite" placeholder="Website"  value="${empty THE_BUSINESS.website ? '': THE_BUSINESS.website}">
-				</div>
 			</div>
 			</div>
 		</div>

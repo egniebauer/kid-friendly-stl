@@ -18,6 +18,7 @@ $('#kidFriendlyListing').validate({
         },
         businessZip: {
         	zipcodeUS: true,
+    		maxlength: 5
         },
         businessPhone: {
         	phoneUS: true,
@@ -64,8 +65,11 @@ $('#kidFriendlyListing').validate({
         businessState: {
             required: "The state field is required.",
         },
+        businessZip: {
+    		maxlength: "The zip must be 5 digits."
+        },
         businessWebsite: {
-        	url: "Please enter a valid url."
+        	url: "Please enter a valid url (remember: http://)."
         },
         category: {
             required: "Please select at least one category.",
