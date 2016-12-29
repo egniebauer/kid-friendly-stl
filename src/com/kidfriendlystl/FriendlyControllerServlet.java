@@ -348,7 +348,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 			errorMessage = "Error with the phone field.";
 			return errorMessage;
 		}
-		else if (website.length() > 45)
+		else if (!website.isEmpty() && (website.length() > 45 || !website.startsWith("http://")))
 		{
 			errorMessage = "Error with the website field.";
 			return errorMessage;

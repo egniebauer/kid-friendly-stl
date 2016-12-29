@@ -46,7 +46,7 @@
 				${THE_BUSINESS.city}, ${THE_BUSINESS.state} ${THE_BUSINESS.zip}<br>
 				<br>
 				<abbr title="Phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></abbr> ${String.valueOf(THE_BUSINESS.phone).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3")}<br>
-				<abbr title="Website"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></abbr> <a href="${THE_BUSINESS.website}">website</a>
+				<abbr title="Website"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></abbr> <a href="${THE_BUSINESS.website}">${empty THE_BUSINESS.website ? '' : 'website'}</a>
 				</address>
   			</div>
   		</div>
