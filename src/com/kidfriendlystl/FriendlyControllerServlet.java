@@ -298,19 +298,28 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String errorMessage = "Unknown Error";
 		
 		// read parameters - Business
-		String name = request.getParameter("businessName");		
+		String name = request.getParameter("businessName");
 		String address = request.getParameter("businessAddress");
 		String city = request.getParameter("businessCity");
 		String state = request.getParameter("businessState"); 
 		String zip = request.getParameter("businessZip");
-		zip = zip.replaceAll("[^0-9]", "");
 		String phone = request.getParameter("businessPhone");
-		phone = phone.replaceAll("[^0-9]", "");
 		String website = request.getParameter("businessWebsite");
+		
+		// format parameters (strip non-digits, leading whitespace, etc.)
+		name = name.replaceFirst("^\\s+", "");
+		city = city.replaceFirst("^\\s+", "");
+		address = address.replaceFirst("^\\s+", "");
+		zip = zip.replaceAll("[^0-9]", "");
+		phone = phone.replaceAll("[^0-9]", "");
+		phone = phone.replaceFirst("^1", "");
+		
 		// read parameters - Category
 		String[] categories = request.getParameterValues("category"); 
+		
 		// read parameters - AgeRange
 		String[] ages = request.getParameterValues("ageRange");
+		
 		// read parameters - KidFriendlyDetail
 		String[] bestTimes = request.getParameterValues("bestTimes");
 		String multipleFamiliesRadio = request.getParameter("multipleFamilies");

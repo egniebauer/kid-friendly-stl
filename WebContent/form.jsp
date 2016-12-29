@@ -270,8 +270,10 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<p><small>Limit 255 characters</small></p>
-				<label for="kidsFreeDiscountDetail"></label>
-				<textarea class="form-control" rows="3" name="kidsFreeDiscountDetail" id="kidsFreeDiscountDetail" placeholder="Kid's Discount Details">${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</textarea>
+				<div class="form-group">
+					<label for="kidsFreeDiscountDetail"></label>
+					<textarea class="form-control" rows="3" name="kidsFreeDiscountDetail" id="kidsFreeDiscountDetail" placeholder="Kid's Discount Details">${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</textarea>
+				</div>
 			</div>
 		</div>
 		<br />
