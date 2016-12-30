@@ -13,7 +13,6 @@
 	<script src="js/jquery-3.1.1.js" type="text/javascript"></script>
 	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 	<script src="js/zipcodeUS.js" type="text/javascript"></script>
-	<script src="js/statesUS.js" type="text/javascript"></script>
 	<script src="js/phoneUS.js" type="text/javascript"></script>
 	<script src="js/validate-form.js" type="text/javascript"></script>
 	<title>
