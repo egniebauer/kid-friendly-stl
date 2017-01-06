@@ -24,7 +24,7 @@
 	</div>
 	<br />
 <!-- RESULTS TABLE -->
-	<table class="table table-hover table-striped table-bordered">
+	<table class="table table-hover table-striped">
 		<tbody>
 		<c:forEach var="currentBusiness" items="${BUSINESS_LIST}" >
 	<!-- Generate viewLink for each business -->
@@ -35,7 +35,14 @@
 	<!-- Generate row for each business -->
 			<tr>
 				<td>
-					<a href="${viewLink}"><h4>${currentBusiness.name}</h4></a>
+					<h4>${currentBusiness.name}</h4>
+					<p>${empty currentBusiness.address ? '': currentBusiness.address}${!empty currentBusiness.address && !empty currentBusiness.phone ? ' | ': ''}${String.valueOf(currentBusiness.phone).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3")}</p>
+				</td>
+				<td>
+					<a class="btn btn-default" href="${viewLink}" role="button">View more</a>
+				</td>
+				<td>
+					<p>rating</p>
 				</td>
 			</tr>
 		</c:forEach>
