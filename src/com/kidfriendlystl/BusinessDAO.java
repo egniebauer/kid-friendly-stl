@@ -156,8 +156,8 @@ public class BusinessDAO {
 			
 			// create PreparedStatement for INSERT
 			String sql = "INSERT INTO kid_friendly_stl.business "
-					+ "(name, address, city, state, zip, phone, website) "
-					+ "values (?, ?, ?, ?, ?, ?, ?)";
+					+ "(name, address, city, state, zip, phone, website, rating) "
+					+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
@@ -169,6 +169,7 @@ public class BusinessDAO {
 			myStmt.setString(5, newBusiness.getZip());
 			myStmt.setString(6, newBusiness.getPhone());
 			myStmt.setString(7, newBusiness.getWebsite());
+			myStmt.setInt(8, newBusiness.getRating());
 			
 			// execute SQL INSERT
 			myStmt.execute();
@@ -200,7 +201,7 @@ public class BusinessDAO {
 			
 			// create PreparedStatement for UPDATE
 			String sql = "UPDATE kid_friendly_stl.business "
-					+ "SET name=?, address=?, city=?, state=?, zip=?, phone=?, website=? "
+					+ "SET name=?, address=?, city=?, state=?, zip=?, phone=?, website=?, rating=? "
 					+ "WHERE id=?";
 			
 			myStmt = myConn.prepareStatement(sql);
@@ -213,7 +214,8 @@ public class BusinessDAO {
 			myStmt.setString(5, updatedBusiness.getZip());
 			myStmt.setString(6, updatedBusiness.getPhone());
 			myStmt.setString(7, updatedBusiness.getWebsite());
-			myStmt.setInt(8, updatedBusiness.getId());
+			myStmt.setInt(8, updatedBusiness.getRating());
+			myStmt.setInt(9, updatedBusiness.getId());
 			
 			// execute SQL INSERT
 			myStmt.execute();

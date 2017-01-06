@@ -305,6 +305,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");
+		String rating = request.getParameter("businessRating");
 		
 		// format parameters (strip non-digits, leading whitespace, etc.)
 		name = name.replaceFirst("^\\s+", "");
@@ -360,6 +361,11 @@ public class FriendlyControllerServlet extends HttpServlet {
 		else if (!website.isEmpty() && (website.length() > 45 || !website.startsWith("http://")))
 		{
 			errorMessage = "Error with the website field.";
+			return errorMessage;
+		}
+		else if (rating == null) 
+		{
+			errorMessage = "Error with the rating selection.";
 			return errorMessage;
 		}
 		else if (categories == null || categories.length < 1) 

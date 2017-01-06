@@ -44,7 +44,7 @@
 		<div class="col-md-6">
 			<h3>${THE_BUSINESS.name}</h3>
 		</div>
-		<div class="col-md-6 text-right">
+		<div class="col-md-6 text-center">
 			<h3>
 				<c:forEach begin="1" end="${THE_BUSINESS.rating}">
 	   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
