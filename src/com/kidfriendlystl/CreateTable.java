@@ -188,6 +188,7 @@ public class CreateTable {
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");
+		int rating = Integer.parseInt(request.getParameter("businessRating"));
 
 		// format parameters (strip non-digits, leading whitespace, etc.)
 		name = name.replaceFirst("^\\s+", "");
@@ -196,10 +197,11 @@ public class CreateTable {
 		zip = zip.replaceAll("[^0-9]", "");
 		phone = phone.replaceAll("[^0-9]", "");
 		phone = phone.replaceFirst("^1", "");
+		
 
 		// create new business object (without existing id)
 		Business newBusiness =  new Business(name, address, city, state, zip,
-						phone, website);
+						phone, website, rating);
 		
 		// return business
 		return newBusiness;
@@ -218,6 +220,7 @@ public class CreateTable {
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");
+		int rating = Integer.parseInt(request.getParameter("businessRating"));
 
 		// format parameters (strip non-digits, leading whitespace, etc.)
 		name = name.replaceFirst("^\\s+", "");
@@ -229,7 +232,7 @@ public class CreateTable {
 		
 		// create new business object (with existing id)
 		Business newBusiness = new Business(id, name, address, city, state, zip,
-						phone, website);
+						phone, website, rating);
 		
 		// return business
 		return newBusiness;

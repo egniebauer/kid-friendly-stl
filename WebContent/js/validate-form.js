@@ -23,6 +23,10 @@ $('#kidFriendlyListing').validate({
         businessPhone: {
         	phoneUS: true,
         },
+        businessRating: {
+            required: true,
+            minlength: 1
+        },
         businessWebsite: {
         	url: true
         },
@@ -70,6 +74,10 @@ $('#kidFriendlyListing').validate({
         },
         businessWebsite: {
         	url: "Please enter a valid url (remember: http://)."
+        },
+        businessRating: {
+            required: "Please a star rating.",
+            minlength: "Please a star rating."
         },
         category: {
             required: "Please select at least one category.",

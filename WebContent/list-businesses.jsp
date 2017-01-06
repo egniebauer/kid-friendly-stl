@@ -39,10 +39,15 @@
 					<p>${empty currentBusiness.address ? '': currentBusiness.address}${!empty currentBusiness.address && !empty currentBusiness.phone ? ' | ': ''}${String.valueOf(currentBusiness.phone).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3")}</p>
 				</td>
 				<td>
-					<a class="btn btn-default" href="${viewLink}" role="button">View more</a>
+					<c:forEach begin="1" end="${currentBusiness.rating}">
+   						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</c:forEach>
+					<c:forEach begin="1" end="${5 - currentBusiness.rating}">
+   						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+					</c:forEach>
 				</td>
 				<td>
-					<p>rating</p>
+					<a class="btn btn-default" href="${viewLink}" role="button">View more</a>
 				</td>
 			</tr>
 		</c:forEach>

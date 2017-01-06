@@ -162,40 +162,40 @@
 			<div class="col-sm-3">
 				<h5>Overall Rating</h5>
 				<div class="radio form-group">
-					<label class="radio" for="overallRating5">
-						<input type="radio" name="overallRating" id="overallRating5" value=5 ${THE_BUSINESSL.overallRating == 5 ? 'checked' : '' }>
+					<label class="radio" for="businessRating5">
+						<input type="radio" name="businessRating" id="businessRating5" value=5 ${THE_BUSINESS.rating == 5 ? 'checked' : '' }>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					</label>
-					<label class="radio" for="overallRating4">
-						<input type="radio" name="overallRating" id="overallRating4" value=4 ${THE_BUSINESSL.overallRating == 4 ? 'checked' : '' }>
+					<label class="radio" for="businessRating4">
+						<input type="radio" name="businessRating" id="businessRating4" value=4 ${THE_BUSINESS.rating == 4 ? 'checked' : '' }>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 					</label>
-					<label class="radio" for="overallRating3">
-						<input type="radio" name="overallRating" id="overallRating3" value=3 ${empty THE_BUSINESSL.overallRating || THE_BUSINESSL.overallRating == 3 ? 'checked' : '' }>
+					<label class="radio" for="businessRating3">
+						<input type="radio" name="businessRating" id="businessRating3" value=3 ${empty THE_BUSINESS.rating || THE_BUSINESSL.rating == 3 ? 'checked' : '' }>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 					</label>
-					<label class="radio" for="overallRating2">
-						<input type="radio" name="overallRating" id="overallRating2" value=2 ${THE_BUSINESSL.overallRating == 2 ? 'checked' : '' }>
+					<label class="radio" for="businessRating2">
+						<input type="radio" name="businessRating" id="businessRating2" value=2 ${THE_BUSINESS.rating == 2 ? 'checked' : '' }>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 					</label>
-					<label class="radio" for="overallRating1">
-						<input type="radio" name="overallRating" id="overallRating1" value=1 ${THE_BUSINESSL.overallRating == 1 ? 'checked' : '' }>
+					<label class="radio" for="businessRating1">
+						<input type="radio" name="businessRating" id="businessRating1" value=1 ${THE_BUSINESS.rating == 1 ? 'checked' : '' }>
 						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>

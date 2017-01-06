@@ -14,9 +14,12 @@
 </head>
 <body>
 <div class="container">
+	<div class="row">
 <!-- HEADING -->
-	<h1>Kid Friendly STL</h1>
-	<br />
+  		<div class="col-md-12">
+			<h1>Kid Friendly STL</h1>
+		</div>
+	</div>
 <!-- Generate Links -->
 	<c:url var="homeLink" value="FriendlyControllerServlet">
 		<c:param name="command" value="LIST" />
@@ -30,27 +33,41 @@
 		<c:param name="businessID" value="${THE_BUSINESS.id}" />
 	</c:url>
 <!-- BUTTONS -->
-	<div>
+	<div class="row">
 		<a class="btn btn-default" href="${homeLink}" role="button" >home</a> 
 		<a class="btn btn-default" href="${updateLink}" role="button">update</a>
 		<a class="btn btn-danger" href="${deleteLink}" role="button" 
 		onclick="if (!(confirm('Are you sure you want to delete this business?'))) return false">DELETE</a>
 	</div>
+	<div class="row">
 <!-- SUBHEADING -->	
-	<h3>${THE_BUSINESS.name}</h3>
-		<div class="row">
+		<div class="col-md-6">
+			<h3>${THE_BUSINESS.name}</h3>
+		</div>
+		<div class="col-md-6 text-right">
+			<h3>
+				<c:forEach begin="1" end="${THE_BUSINESS.rating}">
+	   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+				</c:forEach>
+				<c:forEach begin="1" end="${5 - THE_BUSINESS.rating}">
+	   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+				</c:forEach>
+			</h3>
+		</div>
+	</div>
+	<div class="row">
 <!-- CONTACT INFORMATION -->
-  			<div class="col-md-12">
-				<address>
-				${THE_BUSINESS.address}<br>
-				${THE_BUSINESS.city}, ${THE_BUSINESS.state} ${THE_BUSINESS.zip}<br>
-				<br>
-				<abbr title="Phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></abbr> ${String.valueOf(THE_BUSINESS.phone).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3")}<br>
-				<abbr title="Website"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></abbr> <a href="${THE_BUSINESS.website}">${empty THE_BUSINESS.website ? '' : 'website'}</a>
-				</address>
-  			</div>
-  		</div>
-  		<div class="row">
+		<div class="col-md-12">
+			<address>
+			${THE_BUSINESS.address}<br>
+			${THE_BUSINESS.city}, ${THE_BUSINESS.state} ${THE_BUSINESS.zip}<br>
+			<br>
+			<abbr title="Phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></abbr> ${String.valueOf(THE_BUSINESS.phone).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3")}<br>
+			<abbr title="Website"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></abbr> <a href="${THE_BUSINESS.website}">${empty THE_BUSINESS.website ? '' : 'website'}</a>
+			</address>
+		</div>
+	</div>
+	<div class="row">
 <!-- BUSINESS_CATEGORY -->
 	 		<div class="col-md-4">
 				<h4>Categories</h4>

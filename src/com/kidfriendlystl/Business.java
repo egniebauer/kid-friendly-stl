@@ -10,9 +10,10 @@ public class Business {
 	private String zip;
 	private String phone;
 	private String website;
+	private int rating;			// *required
 	
 	public Business(int id, String name, String address, String city, String state, String zip,
-			String phone, String website) {
+			String phone, String website, int rating) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -21,10 +22,11 @@ public class Business {
 		this.zip = zip;
 		this.phone = phone;
 		this.website = website;
+		this.rating = rating;
 	}
 
 	public Business(String name, String address, String city, String state, String zip,
-			String phone, String website) {
+			String phone, String website, int rating) {
 		this.name = name;
 		this.address = address;
 		this.city = city;
@@ -32,6 +34,7 @@ public class Business {
 		this.zip = zip;
 		this.phone = phone;
 		this.website = website;
+		this.rating = rating;
 	}
 
 	public int getId() {
@@ -66,6 +69,10 @@ public class Business {
 		return website;
 	}
 
+	public int getRating() {
+		return rating;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -96,6 +103,10 @@ public class Business {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}	
+	
+	public void setRating(int rating) {
+		this.rating = rating;
 	}	
 	
 }

@@ -69,9 +69,10 @@ public class BusinessDAO {
 				String zip = myRS.getString("zip");
 				String phone = myRS.getString("phone");
 				String website = myRS.getString("website");
+				int rating = myRS.getInt("rating");
 				
 				// create new Business object
-				Business currentBusiness = new Business(id, name, address, city, state, zip, phone, website);
+				Business currentBusiness = new Business(id, name, address, city, state, zip, phone, website, rating);
 				
 				// add Student object to list
 				businesses.add(currentBusiness);
@@ -121,9 +122,10 @@ public class BusinessDAO {
 				String zip = myRS.getString("zip");
 				String phone = myRS.getString("phone"); 
 				String website = myRS.getString("website");
+				int rating = myRS.getInt("rating");
 				
 				theBusiness = new Business(businessID, name, address, city, state, zip,
-						phone, website);
+						phone, website, rating);
 			}
 			else {
 				throw new Exception("Could not find business id: " + businessID);
@@ -280,6 +282,5 @@ public class BusinessDAO {
 			close(myConn, myStmt, myRS);
 		}
 	}
-
 
 }
