@@ -197,11 +197,31 @@ public class CreateTable {
 		zip = zip.replaceAll("[^0-9]", "");
 		phone = phone.replaceAll("[^0-9]", "");
 		phone = phone.replaceFirst("^1", "");
+				
+		// rating breakdown
+		int rating1 = 0;
+		int rating2 = 0;
+		int rating3 = 0;
+		int rating4 = 0;
+		int rating5 = 0;
+
+		switch (rating) {
+			case 1:	rating1 = 1;
+					break;
+			case 2:	rating2 = 1;
+					break;
+			case 3:	rating3 = 1;
+					break;
+			case 4:	rating4 = 1;
+					break;
+			case 5:	rating5 = 1;
+					break;
+		}
 		
 
 		// create new business object (without existing id)
 		Business newBusiness =  new Business(name, address, city, state, zip,
-						phone, website, rating);
+						phone, website, rating1, rating2, rating3, rating4, rating5);
 		
 		// return business
 		return newBusiness;
@@ -229,10 +249,30 @@ public class CreateTable {
 		zip = zip.replaceAll("[^0-9]", "");
 		phone = phone.replaceAll("[^0-9]", "");
 		phone = phone.replaceFirst("^1", "");
+
+		// rating breakdown
+		int rating1 = 0;
+		int rating2 = 0;
+		int rating3 = 0;
+		int rating4 = 0;
+		int rating5 = 0;
 		
+		switch (rating) {
+			case 1:	rating1 = 1;
+					break;
+			case 2:	rating2 = 1;
+					break;
+			case 3:	rating3 = 1;
+					break;
+			case 4:	rating4 = 1;
+					break;
+			case 5:	rating5 = 1;
+					break;
+		}
+
 		// create new business object (with existing id)
 		Business newBusiness = new Business(id, name, address, city, state, zip,
-						phone, website, rating);
+						phone, website, rating1, rating2, rating3, rating4, rating5);
 		
 		// return business
 		return newBusiness;
