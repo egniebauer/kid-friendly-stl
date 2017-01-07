@@ -3,17 +3,15 @@ package com.kidfriendlystl;
 public class AgeRange {
 	
 	private int businessID;
-	private boolean allAges;
 	private boolean baby;
 	private boolean toddler;
 	private boolean preschooler;
 	private boolean gradeSchooler;
 	private boolean teen;
 	
-	public AgeRange(int businessID, boolean allAges, boolean baby, boolean toddler, boolean preschooler,
+	public AgeRange(int businessID, boolean baby, boolean toddler, boolean preschooler,
 			boolean gradeSchooler, boolean teen) {
 		this.businessID = businessID;
-		this.allAges = allAges;
 		this.baby = baby;
 		this.toddler = toddler;
 		this.preschooler = preschooler;
@@ -21,9 +19,8 @@ public class AgeRange {
 		this.teen = teen;
 	}
 	
-	public AgeRange(boolean allAges, boolean baby, boolean toddler, boolean preschooler,
+	public AgeRange(boolean baby, boolean toddler, boolean preschooler,
 			boolean gradeSchooler, boolean teen) {
-		this.allAges = allAges;
 		this.baby = baby;
 		this.toddler = toddler;
 		this.preschooler = preschooler;
@@ -33,10 +30,6 @@ public class AgeRange {
 
 	public int getBusinessID() {
 		return businessID;
-	}
-
-	public boolean isAllAges() {
-		return allAges;
 	}
 
 	public boolean isBaby() {
@@ -61,10 +54,6 @@ public class AgeRange {
 
 	public void setBusinessID(int businessID) {
 		this.businessID = businessID;
-	}
-
-	public void setAllAges(boolean allAges) {
-		this.allAges = allAges;
 	}
 
 	public void setBaby(boolean baby) {

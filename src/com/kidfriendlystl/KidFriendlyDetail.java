@@ -4,18 +4,16 @@ public class KidFriendlyDetail {
 	
 	private int businessID;
 	private boolean multipleFamilies;
-	private boolean allDay;
 	private boolean morning;
 	private boolean afternoon;
 	private boolean evening;
 	private boolean kidsFreeDiscount;
 	private String kidsFreeDiscountDetail;
 	
-	public KidFriendlyDetail(int businessID, boolean multipleFamilies, boolean allDay, boolean morning,
+	public KidFriendlyDetail(int businessID, boolean multipleFamilies, boolean morning,
 			boolean afternoon, boolean evening, boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
 		this.businessID = businessID;
 		this.multipleFamilies = multipleFamilies;
-		this.allDay = allDay;
 		this.morning = morning;
 		this.afternoon = afternoon;
 		this.evening = evening;
@@ -23,10 +21,9 @@ public class KidFriendlyDetail {
 		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
 	}
 
-	public KidFriendlyDetail(boolean multipleFamilies, boolean allDay, boolean morning,
+	public KidFriendlyDetail(boolean multipleFamilies, boolean morning,
 			boolean afternoon, boolean evening, boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
 		this.multipleFamilies = multipleFamilies;
-		this.allDay = allDay;
 		this.morning = morning;
 		this.afternoon = afternoon;
 		this.evening = evening;
@@ -40,10 +37,6 @@ public class KidFriendlyDetail {
 
 	public boolean isMultipleFamilies() {
 		return multipleFamilies;
-	}
-
-	public boolean isAllDay() {
-		return allDay;
 	}
 
 	public boolean isMorning() {
@@ -72,10 +65,6 @@ public class KidFriendlyDetail {
 
 	public void setMultipleFamilies(boolean multipleFamilies) {
 		this.multipleFamilies = multipleFamilies;
-	}
-
-	public void setAllDay(boolean allDay) {
-		this.allDay = allDay;
 	}
 
 	public void setMorning(boolean morning) {

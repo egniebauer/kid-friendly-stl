@@ -76,7 +76,6 @@ public class CreateTable {
 		AgeRange newAgeRange;
 		
 		// set parameters to false
-		boolean allAges = false;
 		boolean baby = false;
 		boolean toddler = false;
 		boolean preschooler = false;
@@ -89,9 +88,6 @@ public class CreateTable {
 		if (ages.length > 0){
 			for (String age: ages){
 				switch (age) {
-					case "allAges":
-						allAges = true;
-						break;
 					case "baby":
 						baby = true;
 						break;
@@ -112,7 +108,7 @@ public class CreateTable {
 		}
 		
 		// assign to object and return
-		newAgeRange = new AgeRange(businessID, allAges, baby, toddler, preschooler,
+		newAgeRange = new AgeRange(businessID, baby, toddler, preschooler,
 				gradeSchooler, teen);
 		
 		return newAgeRange;
@@ -127,7 +123,6 @@ public class CreateTable {
 		
 		// set params to false
 		boolean multipleFamilies = false;
-		boolean allDay = false;
 		boolean morning = false;
 		boolean afternoon = false;
 		boolean evening = false;
@@ -137,9 +132,6 @@ public class CreateTable {
 		String[] bestTimes = request.getParameterValues("bestTimes");
 		for (String time : bestTimes) {
 			switch (time) {
-				case "allDay":
-					allDay = true;
-					break;
 				case "morning":
 					morning = true;
 					break;
@@ -171,7 +163,7 @@ public class CreateTable {
 		String kidsFreeDiscountDetail = request.getParameter("kidsFreeDiscountDetail");
 		
 		// assign to object and return
-		newKidFriendlyDetail = new KidFriendlyDetail(businessID, multipleFamilies, allDay, morning,
+		newKidFriendlyDetail = new KidFriendlyDetail(businessID, multipleFamilies, morning,
 				afternoon, evening, kidsFreeDiscount, kidsFreeDiscountDetail);
 		
 		return newKidFriendlyDetail;

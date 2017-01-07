@@ -62,7 +62,6 @@ public class AgeRangeDAO {
 			while (myRS.next()){
 				//retrieve data from ResultSet row
 				int businessID = myRS.getInt("business_id");
-				boolean allAges = myRS.getBoolean("all_ages");
 				boolean baby = myRS.getBoolean("baby");
 				boolean gradeSchooler = myRS.getBoolean("grade_schooler");
 				boolean preschooler = myRS.getBoolean("preschooler");
@@ -70,7 +69,7 @@ public class AgeRangeDAO {
 				boolean toddler = myRS.getBoolean("toddler");
 				
 				// create new Business object
-				AgeRange currentAgeRange = new AgeRange(businessID, allAges, baby, toddler, preschooler,
+				AgeRange currentAgeRange = new AgeRange(businessID, baby, toddler, preschooler,
 						 gradeSchooler, teen);
 				
 				// add Student object to list
@@ -114,14 +113,13 @@ public class AgeRangeDAO {
 			
 			// retrieve data from ResultSet and assign to empty AgeRange
 			if (myRS.next()) {
-				boolean allAges = myRS.getBoolean("all_ages");
 				boolean baby = myRS.getBoolean("baby");
 				boolean toddler = myRS.getBoolean("toddler");
 				boolean preschooler = myRS.getBoolean("preschooler");
 				boolean gradeSchooler = myRS.getBoolean("grade_schooler");
 				boolean teen = myRS.getBoolean("teen");
 				
-				theAgeRange = new AgeRange(businessID, allAges, baby, toddler, preschooler,
+				theAgeRange = new AgeRange(businessID, baby, toddler, preschooler,
 						gradeSchooler, teen);
 			}
 			else {
@@ -150,19 +148,18 @@ public class AgeRangeDAO {
 			
 			// create PreparedStatement for INSERT
 			String sql = "INSERT INTO kid_friendly_stl.age_range "
-					+ "(business_id, all_ages, baby, toddler, preschooler, grade_schooler, teen) "
-					+ "values (?, ?, ?, ?, ?, ?, ?)";
+					+ "(business_id, baby, toddler, preschooler, grade_schooler, teen) "
+					+ "values (?, ?, ?, ?, ?, ?)";
 			
 			myStmt = myConn.prepareStatement(sql);
 			
 			// set param values
 			myStmt.setInt(1, newAgeRange.getBusinessID());
-			myStmt.setBoolean(2, newAgeRange.isAllAges());
-			myStmt.setBoolean(3, newAgeRange.isBaby());
-			myStmt.setBoolean(4, newAgeRange.isToddler());
-			myStmt.setBoolean(5, newAgeRange.isPreschooler());
-			myStmt.setBoolean(6, newAgeRange.isGradeSchooler());
-			myStmt.setBoolean(7, newAgeRange.isTeen());
+			myStmt.setBoolean(2, newAgeRange.isBaby());
+			myStmt.setBoolean(3, newAgeRange.isToddler());
+			myStmt.setBoolean(4, newAgeRange.isPreschooler());
+			myStmt.setBoolean(5, newAgeRange.isGradeSchooler());
+			myStmt.setBoolean(6, newAgeRange.isTeen());
 			
 			// execute SQL INSERT
 			myStmt.execute();			
@@ -187,19 +184,18 @@ public class AgeRangeDAO {
 			
 			// create PreparedStatement for UPDATE
 			String sql = "UPDATE kid_friendly_stl.age_range "
-					+ "SET all_ages=?, baby=?, toddler=?, preschooler=?, grade_schooler=?, teen=? "
+					+ "SET baby=?, toddler=?, preschooler=?, grade_schooler=?, teen=? "
 					+ "WHERE business_id=?";
 			
 			myStmt = myConn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setBoolean(1, updatedAgeRange.isAllAges());
-			myStmt.setBoolean(2, updatedAgeRange.isBaby());
-			myStmt.setBoolean(3, updatedAgeRange.isToddler());
-			myStmt.setBoolean(4, updatedAgeRange.isPreschooler());
-			myStmt.setBoolean(5, updatedAgeRange.isGradeSchooler());
-			myStmt.setBoolean(6, updatedAgeRange.isTeen());
-			myStmt.setInt(7, updatedAgeRange.getBusinessID());
+			myStmt.setBoolean(1, updatedAgeRange.isBaby());
+			myStmt.setBoolean(2, updatedAgeRange.isToddler());
+			myStmt.setBoolean(3, updatedAgeRange.isPreschooler());
+			myStmt.setBoolean(4, updatedAgeRange.isGradeSchooler());
+			myStmt.setBoolean(5, updatedAgeRange.isTeen());
+			myStmt.setInt(6, updatedAgeRange.getBusinessID());
 			
 			// execute SQL INSERT
 			myStmt.execute();			

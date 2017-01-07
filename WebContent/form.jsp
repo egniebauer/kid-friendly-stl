@@ -241,9 +241,6 @@
 			<div class="col-sm-3">
 				<h5>Age Ranges*</h5>
 				<div class="checkbox form-group">
-					<label class="checkbox" for="allAges">
-						<input type="checkbox" name="ageRange" id="allAges" value="allAges" ${BUSINESS_AGE_RANGE.allAges == true ? 'checked' : '' }> All Ages
-					</label>
 					<label class="checkbox" for="baby">
 						<input type="checkbox" name="ageRange" id="baby" value="baby" ${BUSINESS_AGE_RANGE.baby == true ? 'checked' : '' }> Baby
 					</label>
@@ -265,9 +262,6 @@
 			<div class="col-sm-3">
 				<h5>Best Times*</h5>
 				<div class="checkbox form-group">
-					<label class="checkbox" for="allDay">
-						<input type="checkbox" name="bestTimes" id="allDay" value="allDay" ${BUSINESS_KID_FRIENDLY_DETAIL.allDay == true ? 'checked' : '' }> All Day
-					</label>
 					<label class="checkbox" for="morning">
 						<input type="checkbox" name="bestTimes" id="morning" value="morning" ${BUSINESS_KID_FRIENDLY_DETAIL.morning == true ? 'checked' : '' }> Morning
 					</label>

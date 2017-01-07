@@ -151,14 +151,6 @@
 				<h4>Age Ranges</h4>
 				<ul class="list-unstyled">
 					<c:choose>
-						<c:when test="${BUSINESS_AGE_RANGE.allAges == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>All Ages</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> All Ages</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
 						<c:when test="${BUSINESS_AGE_RANGE.baby == true}">
 							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Baby</em></li>
 						</c:when>
@@ -204,14 +196,6 @@
   			<div class="col-md-4">
 				<h4>Best Times</h4>
 				<ul class="list-unstyled">
-					<c:choose>
-						<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.allDay == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>All Day</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> All Day</li>
-						</c:otherwise>
-					</c:choose>
 					<c:choose>
 						<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.morning == true}">
 							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Morning</em></li>
