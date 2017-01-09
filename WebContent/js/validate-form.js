@@ -7,6 +7,7 @@ $('#kidFriendlyListing').validate({
     		maxlength: 45
         },
         businessAddress: {
+            required: true,
     		maxlength: 45
         },
         businessCity: {
@@ -60,6 +61,7 @@ $('#kidFriendlyListing').validate({
     		maxlength: "The name field can't exceed 45 characters."
         },
         businessAddress: {
+            required: "The address field is required.",
     		maxlength: "The address field can't exceed 45 characters."
         },
         businessCity: {
