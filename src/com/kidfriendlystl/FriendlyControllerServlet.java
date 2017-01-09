@@ -25,6 +25,10 @@ public class FriendlyControllerServlet extends HttpServlet {
 	private CategoryDAO categoryDAO;
 	private AgeRangeDAO ageRangeDAO;
 	private KidFriendlyDetailDAO kidFriendlyDetailDAO;
+	private BreastfeedingDAO breastfeedingDAO;
+	private PlayAreaDAO playAreaDAO;
+	private RestaurantMenuDAO restaurantMenuDAO;
+	private RestroomDAO restroomDAO;
 	
 	@Resource(name="jdbc/kid_friendly_stl")
 	private DataSource dataSource;
@@ -41,6 +45,8 @@ public class FriendlyControllerServlet extends HttpServlet {
 			this.categoryDAO = new CategoryDAO(dataSource);
 			this.ageRangeDAO = new AgeRangeDAO(dataSource);
 			this.kidFriendlyDetailDAO = new KidFriendlyDetailDAO(dataSource);
+			this.breastfeedingDAO = new BreastfeedingDAO(dataSource);
+			
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
