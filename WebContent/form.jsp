@@ -404,7 +404,7 @@
 										<input type="radio" name="breastfeedingClean" id="breastfeedingCleanTrue" value=1 ${BUSINESS_BREASTFEEDING.clean == true ? 'checked' : '' }> Yes!
 									</label>
 									<label class="radio-inline" for="breastfeedingClean">
-										<input type="radio" name="breastfeedingClean" id="breastfeedingCleanFalse" value=0  ${empty BUSINESS_BREASTFEEDING.clean || BUSINESS_BUSINESS_BREASTFEEDING.clean == false ? 'checked' : '' }> No
+										<input type="radio" name="breastfeedingClean" id="breastfeedingCleanFalse" value=0  ${empty BUSINESS_BREASTFEEDING.clean || BUSINESS_BREASTFEEDING.clean == false ? 'checked' : '' }> No
 									</label>
 								</div>
 				      		</div>

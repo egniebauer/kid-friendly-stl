@@ -46,6 +46,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 			this.ageRangeDAO = new AgeRangeDAO(dataSource);
 			this.kidFriendlyDetailDAO = new KidFriendlyDetailDAO(dataSource);
 			this.breastfeedingDAO = new BreastfeedingDAO(dataSource);
+			this.playAreaDAO = new PlayAreaDAO(dataSource);
+			this.restaurantMenuDAO = new RestaurantMenuDAO(dataSource);
+			this.restroomDAO = new RestroomDAO(dataSource);
 			
 		} catch (Exception e) {
 			throw new ServletException(e);
@@ -130,13 +133,9 @@ public class FriendlyControllerServlet extends HttpServlet {
 			
 		// get businesses from DAO
 		List<Business> businesses = businessDAO.getAll();
-		List<Category> categories = categoryDAO.getAll();
-		List<AgeRange> ages = ageRangeDAO.getAll();
 		
 		// add businesses to the request
 		request.setAttribute("BUSINESS_LIST", businesses);
-		request.setAttribute("CATEGORY_LIST", categories);
-		request.setAttribute("AGE_LIST", ages);
 		
 		//send to JSP page (view)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-businesses.jsp");
@@ -155,12 +154,20 @@ public class FriendlyControllerServlet extends HttpServlet {
 		Category businessCategory = categoryDAO.get(theBusinessID);
 		AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
 		KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);
+		Breastfeeding businessBreastfeeding = breastfeedingDAO.get(theBusinessID);
+		PlayArea businessPlayArea = playAreaDAO.get(theBusinessID);
+		RestaurantMenu businessRestaurantMenu = restaurantMenuDAO.get(theBusinessID);
+		Restroom businessRestroom = restroomDAO.get(theBusinessID);
 		
 		// place Business objects in the request attribute
 		request.setAttribute("THE_BUSINESS", theBusiness);
 		request.setAttribute("BUSINESS_CATEGORY", businessCategory);
 		request.setAttribute("BUSINESS_AGE_RANGE", businessAgeRange);
 		request.setAttribute("BUSINESS_KID_FRIENDLY_DETAIL", businessKidFriendlyDetail);
+		request.setAttribute("BUSINESS_BREASTFEEDING", businessBreastfeeding);
+		request.setAttribute("BUSINESS_PLAY_AREA", businessPlayArea);
+		request.setAttribute("BUSINESS_RESTAURANT_MENU", businessRestaurantMenu);
+		request.setAttribute("BUSINESS_RESTROOM", businessRestroom);
 		
 		// send to .jsp page: view-business.jsp
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/form.jsp");
@@ -179,12 +186,20 @@ public class FriendlyControllerServlet extends HttpServlet {
 		Category businessCategory = categoryDAO.get(theBusinessID);
 		AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
 		KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);
+		Breastfeeding businessBreastfeeding = breastfeedingDAO.get(theBusinessID);
+		PlayArea businessPlayArea = playAreaDAO.get(theBusinessID);
+		RestaurantMenu businessRestaurantMenu = restaurantMenuDAO.get(theBusinessID);
+		Restroom businessRestroom = restroomDAO.get(theBusinessID);
 		
 		// place Business objects in the request attribute
 		request.setAttribute("THE_BUSINESS", theBusiness);
 		request.setAttribute("BUSINESS_CATEGORY", businessCategory);
 		request.setAttribute("BUSINESS_AGE_RANGE", businessAgeRange);
 		request.setAttribute("BUSINESS_KID_FRIENDLY_DETAIL", businessKidFriendlyDetail);
+		request.setAttribute("BUSINESS_BREASTFEEDING", businessBreastfeeding);
+		request.setAttribute("BUSINESS_PLAY_AREA", businessPlayArea);
+		request.setAttribute("BUSINESS_RESTAURANT_MENU", businessRestaurantMenu);
+		request.setAttribute("BUSINESS_RESTROOM", businessRestroom);
 		
 		// send to .jsp page: view-business.jsp
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view-business.jsp");
@@ -216,11 +231,19 @@ public class FriendlyControllerServlet extends HttpServlet {
 				Category newCategory = CreateTable.category(businessID, request);
 				AgeRange newAgeRange = CreateTable.ageRange(businessID, request);
 				KidFriendlyDetail newKidFriendlyDetail = CreateTable.kidFriendlyDetail(businessID, request);
+				Breastfeeding newBreastfeeding = CreateTable.breastfeeding(businessID, request);
+				PlayArea newPlayArea = CreateTable.playArea(businessID, request);
+				RestaurantMenu newRestaurantMenu = CreateTable.restaurantMenu(businessID, request);
+				Restroom newRestroom = CreateTable.restroom(businessID, request);				
 				
 				// add objects to database
 				categoryDAO.add(newCategory);
 				ageRangeDAO.add(newAgeRange);
 				kidFriendlyDetailDAO.add(newKidFriendlyDetail);
+				breastfeedingDAO.add(newBreastfeeding);
+				playAreaDAO.add(newPlayArea);
+				restaurantMenuDAO.add(newRestaurantMenu);
+				restroomDAO.add(newRestroom);
 				
 		        // SEND AS REDIRECT to avoid multiple-browser reload issue
 		        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + businessID);
@@ -264,11 +287,19 @@ public class FriendlyControllerServlet extends HttpServlet {
 			Category updatedCategory = CreateTable.category(updatedBusiness.getId(), request);
 			AgeRange updatedAgeRange = CreateTable.ageRange(updatedBusiness.getId(), request);
 			KidFriendlyDetail updatedKidFriendlyDetail = CreateTable.kidFriendlyDetail(updatedBusiness.getId(), request);
+			Breastfeeding updatedBreastfeeding = CreateTable.breastfeeding(updatedBusiness.getId(), request);
+			PlayArea updatedPlayArea = CreateTable.playArea(updatedBusiness.getId(), request);
+			RestaurantMenu updatedRestaurantMenu = CreateTable.restaurantMenu(updatedBusiness.getId(), request);
+			Restroom updatedRestroom = CreateTable.restroom(updatedBusiness.getId(), request);				
 			
 			// add objects to database
 			categoryDAO.update(updatedCategory);
 			ageRangeDAO.update(updatedAgeRange);
 			kidFriendlyDetailDAO.update(updatedKidFriendlyDetail);
+			breastfeedingDAO.update(updatedBreastfeeding);
+			playAreaDAO.update(updatedPlayArea);
+			restaurantMenuDAO.update(updatedRestaurantMenu);
+			restroomDAO.update(updatedRestroom);
 			
 	        // SEND AS REDIRECT to avoid multiple-browser reload issue
 	        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + updatedBusiness.getId());
@@ -332,6 +363,13 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String multipleFamiliesRadio = request.getParameter("multipleFamilies");
 		String kidsFreeDiscountRadio = request.getParameter("kidsFreeDiscount");
 		String kidsFreeDiscountDetail = request.getParameter("kidsFreeDiscountDetail");
+		
+		//TODO - read parameters from supplemental tables
+		
+		// read parameters - Breastfeeding
+		// read parameters - PlayArea
+		// read parameters - RestaurantMenu
+		// read parameters - Restroom
 		
 		// check form data
 		if (name == null || name.isEmpty() || name.length() > 45)

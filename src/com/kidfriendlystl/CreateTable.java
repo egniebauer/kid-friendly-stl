@@ -4,7 +4,30 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CreateTable {
 	
-
+	public static Breastfeeding breastfeeding(int businessID, HttpServletRequest request) 
+			throws Exception {
+		//TODO
+		return null;
+	}
+	
+	public static PlayArea playArea(int businessID, HttpServletRequest request) 
+			throws Exception {
+		//TODO
+		return null;
+	}
+	
+	public static RestaurantMenu restaurantMenu(int businessID, HttpServletRequest request) 
+			throws Exception {
+		//TODO
+		return null;
+	}
+	
+	public static Restroom restroom(int businessID, HttpServletRequest request) 
+			throws Exception {
+		//TODO
+		return null;
+	}
+	
 	public static Category category(int businessID, HttpServletRequest request) 
 			throws Exception {
 		
