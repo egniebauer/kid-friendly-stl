@@ -199,7 +199,7 @@ public class CreateTable {
 		String name = request.getParameter("businessName");
 		String address = request.getParameter("businessAddress");
 		String city = request.getParameter("businessCity");
-		String state = request.getParameter("businessState"); 
+		State state = State.valueOf(request.getParameter("businessState")); 
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");
@@ -251,7 +251,7 @@ public class CreateTable {
 		String name = request.getParameter("businessName");
 		String address = request.getParameter("businessAddress");
 		String city = request.getParameter("businessCity");
-		String state = request.getParameter("businessState"); 
+		State state = State.valueOf(request.getParameter("businessState")); 
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");

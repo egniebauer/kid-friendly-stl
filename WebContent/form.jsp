@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.kidfriendlystl.State" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -86,57 +87,9 @@
 			<div class="form-group">
 				<label for="businessState">State*</label>
 				<select class="form-control" name="businessState" id="businessState">
-					<option value="AL" ${THE_BUSINESS.state == "AL" ? 'selected' : ''}>Alabama</option>
-					<option value="AK" ${THE_BUSINESS.state == "AK" ? 'selected' : ''}>Alaska</option>
-					<option value="AZ" ${THE_BUSINESS.state == "AZ" ? 'selected' : ''}>Arizona</option>
-					<option value="AR" ${THE_BUSINESS.state == "AR" ? 'selected' : ''}>Arkansas</option>
-					<option value="CA" ${THE_BUSINESS.state == "CA" ? 'selected' : ''}>California</option>
-					<option value="CO" ${THE_BUSINESS.state == "CO" ? 'selected' : ''}>Colorado</option>
-					<option value="CT" ${THE_BUSINESS.state == "CT" ? 'selected' : ''}>Connecticut</option>
-					<option value="DE" ${THE_BUSINESS.state == "DE" ? 'selected' : ''}>Delaware</option>
-					<option value="DC" ${THE_BUSINESS.state == "DC" ? 'selected' : ''}>District Of Columbia</option>
-					<option value="FL" ${THE_BUSINESS.state == "FL" ? 'selected' : ''}>Florida</option>
-					<option value="GA" ${THE_BUSINESS.state == "GA" ? 'selected' : ''}>Georgia</option>
-					<option value="HI" ${THE_BUSINESS.state == "HI" ? 'selected' : ''}>Hawaii</option>
-					<option value="ID" ${THE_BUSINESS.state == "ID" ? 'selected' : ''}>Idaho</option>
-					<option value="IL" ${THE_BUSINESS.state == "IL" ? 'selected' : ''}>Illinois</option>
-					<option value="IN" ${THE_BUSINESS.state == "IN" ? 'selected' : ''}>Indiana</option>
-					<option value="IA" ${THE_BUSINESS.state == "IA" ? 'selected' : ''}>Iowa</option>
-					<option value="KS" ${THE_BUSINESS.state == "KS" ? 'selected' : ''}>Kansas</option>
-					<option value="KY" ${THE_BUSINESS.state == "KY" ? 'selected' : ''}>Kentucky</option>
-					<option value="LA" ${THE_BUSINESS.state == "LA" ? 'selected' : ''}>Louisiana</option>
-					<option value="ME" ${THE_BUSINESS.state == "ME" ? 'selected' : ''}>Maine</option>
-					<option value="MD" ${THE_BUSINESS.state == "MD" ? 'selected' : ''}>Maryland</option>
-					<option value="MA" ${THE_BUSINESS.state == "MA" ? 'selected' : ''}>Massachusetts</option>
-					<option value="MI" ${THE_BUSINESS.state == "MI" ? 'selected' : ''}>Michigan</option>
-					<option value="MN" ${THE_BUSINESS.state == "MN" ? 'selected' : ''}>Minnesota</option>
-					<option value="MS" ${THE_BUSINESS.state == "MS" ? 'selected' : ''}>Mississippi</option>
-					<option value="MO" ${empty THE_BUSINESS.state or THE_BUSINESS.state == "MO" ? 'selected' : ''}>Missouri</option>
-					<option value="MT" ${THE_BUSINESS.state == "MT" ? 'selected' : ''}>Montana</option>
-					<option value="NE" ${THE_BUSINESS.state == "NE" ? 'selected' : ''}>Nebraska</option>
-					<option value="NV" ${THE_BUSINESS.state == "NV" ? 'selected' : ''}>Nevada</option>
-					<option value="NH" ${THE_BUSINESS.state == "NH" ? 'selected' : ''}>New Hampshire</option>
-					<option value="NJ" ${THE_BUSINESS.state == "NJ" ? 'selected' : ''}>New Jersey</option>
-					<option value="NM" ${THE_BUSINESS.state == "NM" ? 'selected' : ''}>New Mexico</option>
-					<option value="NY" ${THE_BUSINESS.state == "NY" ? 'selected' : ''}>New York</option>
-					<option value="NC" ${THE_BUSINESS.state == "NC" ? 'selected' : ''}>North Carolina</option>
-					<option value="ND" ${THE_BUSINESS.state == "ND" ? 'selected' : ''}>North Dakota</option>
-					<option value="OH" ${THE_BUSINESS.state == "OH" ? 'selected' : ''}>Ohio</option>
-					<option value="OK" ${THE_BUSINESS.state == "OK" ? 'selected' : ''}>Oklahoma</option>
-					<option value="OR" ${THE_BUSINESS.state == "OR" ? 'selected' : ''}>Oregon</option>
-					<option value="PA" ${THE_BUSINESS.state == "PA" ? 'selected' : ''}>Pennsylvania</option>
-					<option value="RI" ${THE_BUSINESS.state == "RI" ? 'selected' : ''}>Rhode Island</option>
-					<option value="SC" ${THE_BUSINESS.state == "SC" ? 'selected' : ''}>South Carolina</option>
-					<option value="SD" ${THE_BUSINESS.state == "SD" ? 'selected' : ''}>South Dakota</option>
-					<option value="TN" ${THE_BUSINESS.state == "TN" ? 'selected' : ''}>Tennessee</option>
-					<option value="TX" ${THE_BUSINESS.state == "TX" ? 'selected' : ''}>Texas</option>
-					<option value="UT" ${THE_BUSINESS.state == "UT" ? 'selected' : ''}>Utah</option>
-					<option value="VT" ${THE_BUSINESS.state == "VT" ? 'selected' : ''}>Vermont</option>
-					<option value="VA" ${THE_BUSINESS.state == "VA" ? 'selected' : ''}>Virginia</option>
-					<option value="WA" ${THE_BUSINESS.state == "WA" ? 'selected' : ''}>Washington</option>
-					<option value="WV" ${THE_BUSINESS.state == "WV" ? 'selected' : ''}>West Virginia</option>
-					<option value="WI" ${THE_BUSINESS.state == "WI" ? 'selected' : ''}>Wisconsin</option>
-					<option value="WY" ${THE_BUSINESS.state == "WY" ? 'selected' : ''}>Wyoming</option>
+					<c:forEach items="<%=State.values()%>" var="state">
+						<option value="${state.abbreviation}" ${THE_BUSINESS.state == state.abbreviation ? 'selected' : ''}>${state.name}</option>
+					</c:forEach>
 				</select>
 			</div>
 			</div>

@@ -6,7 +6,7 @@ public class Business {
 	private String name;		// *required
 	private String address;	
 	private String city;		// *required
-	private String state;		// *required
+	private State state;		// *required
 	private String zip;
 	private String phone;
 	private String website;
@@ -18,7 +18,7 @@ public class Business {
 	private int rating4;
 	private int rating5;
 	
-	public Business(int id, String name, String address, String city, String state, String zip,
+	public Business(int id, String name, String address, String city, State state, String zip,
 			String phone, String website, int rating1, int rating2, int rating3, int rating4, int rating5) {
 		this.id = id;
 		this.name = name;
@@ -37,7 +37,7 @@ public class Business {
 		this.rating = (rating1*1 + rating2*2 + rating3*3 + rating4*4 +rating5*5) / (rating1+rating2+rating3+rating4+rating5);
 	}
 
-	public Business(String name, String address, String city, String state, String zip,
+	public Business(String name, String address, String city, State state, String zip,
 			String phone, String website, int rating1, int rating2, int rating3, int rating4, int rating5) {
 		this.name = name;
 		this.address = address;
@@ -71,7 +71,7 @@ public class Business {
 		return city;
 	}
 
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 
@@ -107,7 +107,7 @@ public class Business {
 		this.city = city;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 

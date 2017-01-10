@@ -65,7 +65,7 @@ public class BusinessDAO {
 				String name = myRS.getString("name");
 				String address = myRS.getString("address");
 				String city = myRS.getString("city");
-				String state = myRS.getString("state");
+				State state = State.valueOf(myRS.getString("state"));
 				String zip = myRS.getString("zip");
 				String phone = myRS.getString("phone");
 				String website = myRS.getString("website");
@@ -123,7 +123,7 @@ public class BusinessDAO {
 				String name = myRS.getString("name"); 
 				String address = myRS.getString("address"); 
 				String city = myRS.getString("city"); 
-				String state = myRS.getString("state"); 
+				State state = State.valueOf(myRS.getString("state")); 
 				String zip = myRS.getString("zip");
 				String phone = myRS.getString("phone"); 
 				String website = myRS.getString("website");
@@ -174,7 +174,7 @@ public class BusinessDAO {
 			myStmt.setString(1, newBusiness.getName());
 			myStmt.setString(2, newBusiness.getAddress());
 			myStmt.setString(3, newBusiness.getCity());
-			myStmt.setString(4, newBusiness.getState());
+			myStmt.setString(4, newBusiness.getState().toString());
 			myStmt.setString(5, newBusiness.getZip());
 			myStmt.setString(6, newBusiness.getPhone());
 			myStmt.setString(7, newBusiness.getWebsite());
@@ -223,7 +223,7 @@ public class BusinessDAO {
 			myStmt.setString(1, updatedBusiness.getName());
 			myStmt.setString(2, updatedBusiness.getAddress());
 			myStmt.setString(3, updatedBusiness.getCity());
-			myStmt.setString(4, updatedBusiness.getState());
+			myStmt.setString(4, updatedBusiness.getState().toString());
 			myStmt.setString(5, updatedBusiness.getZip());
 			myStmt.setString(6, updatedBusiness.getPhone());
 			myStmt.setString(7, updatedBusiness.getWebsite());
