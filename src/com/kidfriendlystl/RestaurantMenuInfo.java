@@ -1,6 +1,6 @@
 package com.kidfriendlystl;
 
-public class RestaurantMenu {
+public class RestaurantMenuInfo {
 	
 	private int businessID;
 	private boolean highChair;
@@ -19,7 +19,7 @@ public class RestaurantMenu {
 	private boolean fewOpts;
 	private boolean noOpts;
 	
-	public RestaurantMenu(int businessID, boolean highChair, boolean booster, boolean activities, boolean healthy,
+	public RestaurantMenuInfo(int businessID, boolean highChair, boolean booster, boolean activities, boolean healthy,
 			boolean allergyFriendly, boolean unhealthy, boolean noKidsMenu, boolean manyOpts, boolean someOpts, boolean fewOpts,
 			boolean noOpts) {
 		this.businessID = businessID;
@@ -36,7 +36,7 @@ public class RestaurantMenu {
 		this.noOpts = noOpts;
 	}
 
-	public RestaurantMenu(boolean highChair, boolean booster, boolean activities, boolean healthy, boolean allergyFriendly,
+	public RestaurantMenuInfo(boolean highChair, boolean booster, boolean activities, boolean healthy, boolean allergyFriendly,
 			boolean unhealthy, boolean noKidsMenu, boolean manyOpts, boolean someOpts, boolean fewOpts, boolean noOpts) {
 		this.highChair = highChair;
 		this.booster = booster;

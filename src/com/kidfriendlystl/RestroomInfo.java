@@ -1,6 +1,6 @@
 package com.kidfriendlystl;
 
-public class Restroom {
+public class RestroomInfo {
 	
 	private int businessID;
 	private boolean clean;
@@ -11,7 +11,7 @@ public class Restroom {
 	private boolean familyRoom;
 	private boolean noChangingTable;
 	
-	public Restroom(int businessID, boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom,
+	public RestroomInfo(int businessID, boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom,
 			boolean mensRoom, boolean familyRoom, boolean noChangingTable) {
 		this.businessID = businessID;
 		this.clean = clean;
@@ -23,7 +23,7 @@ public class Restroom {
 		this.noChangingTable = noChangingTable;
 	}
 
-	public Restroom(boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom, boolean mensRoom,
+	public RestroomInfo(boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom, boolean mensRoom,
 			boolean familyRoom, boolean noChangingTable) {
 		this.clean = clean;
 		this.toddlerSeat = toddlerSeat;

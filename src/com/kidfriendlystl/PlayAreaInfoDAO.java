@@ -10,11 +10,11 @@ import java.util.List;
 import javax.sql.DataSource;
 
 
-public class PlayAreaDAO {
+public class PlayAreaInfoDAO {
 
 	private DataSource dataSource;
 
-	public PlayAreaDAO(DataSource theDataSource) {
+	public PlayAreaInfoDAO(DataSource theDataSource) {
 		this.dataSource = theDataSource;
 	}
 	
@@ -36,21 +36,21 @@ public class PlayAreaDAO {
 		}
 	}
 
-	public List<PlayArea> getAll() {
+	public List<PlayAreaInfo> getAll() {
 		//TODO
 		return null;
 	}
 	
-	public PlayArea get(String theBusinessID) {
+	public PlayAreaInfo get(String theBusinessID) {
 		//TODO
 		return null;
 	}
 	
-	public void add(PlayArea newPlayArea) {
+	public void add(PlayAreaInfo newPlayAreaInfo) {
 		//TODO
 	}
 	
-	public void update(PlayArea updatedPlayArea) {
+	public void update(PlayAreaInfo updatedPlayAreaInfo) {
 		//TODO
 	}
 }

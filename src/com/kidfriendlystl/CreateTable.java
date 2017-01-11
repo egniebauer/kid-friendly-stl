@@ -10,19 +10,19 @@ public class CreateTable {
 		return null;
 	}
 	
-	public static PlayArea playArea(int businessID, HttpServletRequest request) 
+	public static PlayAreaInfo playAreaInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
 		//TODO
 		return null;
 	}
 	
-	public static RestaurantMenu restaurantMenu(int businessID, HttpServletRequest request) 
+	public static RestaurantMenuInfo restaurantMenuInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
 		//TODO
 		return null;
 	}
 	
-	public static Restroom restroom(int businessID, HttpServletRequest request) 
+	public static RestroomInfo restroomInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
 		//TODO
 		return null;

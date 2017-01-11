@@ -1,6 +1,6 @@
 package com.kidfriendlystl;
 
-public class PlayArea {
+public class PlayAreaInfo {
 	
 	private int businessID;
 	private boolean clean;
@@ -9,7 +9,7 @@ public class PlayArea {
 	private boolean gated;
 	private boolean fun;
 	
-	public PlayArea(int businessID, boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
+	public PlayAreaInfo(int businessID, boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
 		this.businessID = businessID;
 		this.clean = clean;
 		this.inside = inside;
@@ -18,7 +18,7 @@ public class PlayArea {
 		this.fun = fun;
 	}
 
-	public PlayArea(boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
+	public PlayAreaInfo(boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
 		this.clean = clean;
 		this.inside = inside;
 		this.outside = outside;

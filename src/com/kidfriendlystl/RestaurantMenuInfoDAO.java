@@ -10,11 +10,11 @@ import java.util.List;
 import javax.sql.DataSource;
 
 
-public class RestroomDAO {
+public class RestaurantMenuInfoDAO {
 
 	private DataSource dataSource;
 
-	public RestroomDAO(DataSource theDataSource) {
+	public RestaurantMenuInfoDAO(DataSource theDataSource) {
 		this.dataSource = theDataSource;
 	}
 	
@@ -36,21 +36,21 @@ public class RestroomDAO {
 		}
 	}
 
-	public List<Restroom> getAll() {
+	public List<RestaurantMenuInfo> getAll() {
 		//TODO
 		return null;
 	}
 	
-	public Restroom get(String theBusinessID) {
+	public RestaurantMenuInfo get(String theBusinessID) {
 		//TODO
 		return null;
 	}
 	
-	public void add(Restroom newRestroom) {
+	public void add(RestaurantMenuInfo newRestaurantMenuInfo) {
 		//TODO
 	}
 	
-	public void update(Restroom updatedRestroom) {
+	public void update(RestaurantMenuInfo updatedRestaurantMenuInfo) {
 		//TODO
 	}
 }
