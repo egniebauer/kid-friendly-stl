@@ -121,47 +121,44 @@
 				<h5>Overall Rating</h5>
 				<div class="radio form-group">
 					<label class="radio" for="businessRating5">
-						<input type="radio" name="businessRating" id="businessRating5" value=5 ${THE_BUSINESS.rating == 5 ? 'checked' : '' }>
+						<input type="radio" name="businessRating" id="businessRating5" value=5>
 						<c:forEach begin="1" end="5">
 			   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						</c:forEach>
-						<c:forEach begin="1" end="0">
-			   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-						</c:forEach>
 					</label>
 					<label class="radio" for="businessRating4">
-						<input type="radio" name="businessRating" id="businessRating4" value=4 ${THE_BUSINESS.rating == 4 ? 'checked' : '' }>
+						<input type="radio" name="businessRating" id="businessRating4" value=4>
 						<c:forEach begin="1" end="4">
 			   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						</c:forEach>
-						<c:forEach begin="1" end="1">
+						<c:forEach begin="5" end="5">
 			   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						</c:forEach>
 					</label>
 					<label class="radio" for="businessRating3">
-						<input type="radio" name="businessRating" id="businessRating3" value=3 ${empty THE_BUSINESS.rating || THE_BUSINESSL.rating == 3 ? 'checked' : '' }>
+						<input type="radio" name="businessRating" id="businessRating3" value=3>
 						<c:forEach begin="1" end="3">
 			   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						</c:forEach>
-						<c:forEach begin="1" end="2">
+						<c:forEach begin="4" end="5">
 			   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						</c:forEach>
 					</label>
 					<label class="radio" for="businessRating2">
-						<input type="radio" name="businessRating" id="businessRating2" value=2 ${THE_BUSINESS.rating == 2 ? 'checked' : '' }>
+						<input type="radio" name="businessRating" id="businessRating2" value=2>
 						<c:forEach begin="1" end="2">
 			   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						</c:forEach>
-						<c:forEach begin="1" end="3">
+						<c:forEach begin="3" end="5">
 			   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						</c:forEach>
 					</label>
 					<label class="radio" for="businessRating1">
-						<input type="radio" name="businessRating" id="businessRating1" value=1 ${THE_BUSINESS.rating == 1 ? 'checked' : '' }>
+						<input type="radio" name="businessRating" id="businessRating1" value=1>
 						<c:forEach begin="1" end="1">
 			   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						</c:forEach>
-						<c:forEach begin="1" end="4">
+						<c:forEach begin="2" end="5">
 			   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 						</c:forEach>
 					</label>
@@ -274,12 +271,12 @@
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="restroomsHeading">
 				      <h3 class="panel-title">
-				        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#restrooms" aria-expanded="true" aria-controls="restrooms">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#restrooms" aria-expanded="false" aria-controls="restrooms">
 				          Restrooms
 				        </a>
 				      </h3>
 				    </div>
-				    <div id="restrooms" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="restrooms">
+				    <div id="restrooms" class="panel-collapse collapse" role="tabpanel" aria-labelledby="restrooms">
 				      <div class="panel-body">
 				      	<div class="row">
 				      		<div class="col-sm-4">

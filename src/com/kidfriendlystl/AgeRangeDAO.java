@@ -68,11 +68,11 @@ public class AgeRangeDAO {
 				boolean teen = myRS.getBoolean("teen");
 				boolean toddler = myRS.getBoolean("toddler");
 				
-				// create new Business object
+				// create new AgeRange object
 				AgeRange currentAgeRange = new AgeRange(businessID, baby, toddler, preschooler,
 						 gradeSchooler, teen);
 				
-				// add Student object to list
+				// add AgeRange object to list
 				ages.add(currentAgeRange);
 			}
 			// return list

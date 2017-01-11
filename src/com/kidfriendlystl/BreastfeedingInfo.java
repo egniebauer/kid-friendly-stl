@@ -1,6 +1,6 @@
 package com.kidfriendlystl;
 
-public class Breastfeeding {
+public class BreastfeedingInfo {
 	
 	private int businessID;
 	private boolean clean;
@@ -11,7 +11,7 @@ public class Breastfeeding {
 	private boolean grossOpts;
 	private boolean nonSpecificOpts;
 	
-	public Breastfeeding(int businessID, boolean clean, boolean comfortable, boolean bottleWarmer,
+	public BreastfeedingInfo(int businessID, boolean clean, boolean comfortable, boolean bottleWarmer,
 			boolean lactationRoom, boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
 		this.businessID = businessID;
 		this.clean = clean;
@@ -23,7 +23,7 @@ public class Breastfeeding {
 		this.nonSpecificOpts = nonSpecificOpts;
 	}
 
-	public Breastfeeding(boolean clean, boolean comfortable, boolean bottleWarmer, boolean lactationRoom,
+	public BreastfeedingInfo(boolean clean, boolean comfortable, boolean bottleWarmer, boolean lactationRoom,
 			boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
 		this.clean = clean;
 		this.comfortable = comfortable;

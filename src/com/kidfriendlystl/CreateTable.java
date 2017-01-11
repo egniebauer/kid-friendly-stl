@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CreateTable {
 	
-	public static Breastfeeding breastfeeding(int businessID, HttpServletRequest request) 
+	public static BreastfeedingInfo breastfeedingInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
 		//TODO
 		return null;
