@@ -135,11 +135,23 @@ public class PlayAreaInfoDAO {
 			
 			// set param values
 			stmt.setInt(1, newPlayAreaInfo.getBusinessID());
-			stmt.setBoolean(2, newPlayAreaInfo.isClean());
+			if (newPlayAreaInfo.isClean() != null) {
+				stmt.setBoolean(2, newPlayAreaInfo.isClean());
+			} else {
+				stmt.setNull(2, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(3, newPlayAreaInfo.isInside());
 			stmt.setBoolean(4, newPlayAreaInfo.isOutside());
-			stmt.setBoolean(5, newPlayAreaInfo.isGated());
-			stmt.setBoolean(6, newPlayAreaInfo.isFun());
+			if (newPlayAreaInfo.isGated() != null) {
+				stmt.setBoolean(5, newPlayAreaInfo.isGated());
+			} else {
+				stmt.setNull(5, java.sql.Types.TINYINT);
+			}
+			if (newPlayAreaInfo.isFun() != null) {
+				stmt.setBoolean(6, newPlayAreaInfo.isFun());
+			} else {
+				stmt.setNull(6, java.sql.Types.TINYINT);
+			}
 			
 			// execute INSERT
 			stmt.execute();
@@ -167,11 +179,23 @@ public class PlayAreaInfoDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			stmt.setBoolean(1, updatedPlayAreaInfo.isClean());
+			if (updatedPlayAreaInfo.isClean() != null){
+				stmt.setBoolean(1, updatedPlayAreaInfo.isClean());
+			} else {
+				stmt.setNull(1, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(2, updatedPlayAreaInfo.isInside());
 			stmt.setBoolean(3, updatedPlayAreaInfo.isOutside());
-			stmt.setBoolean(4, updatedPlayAreaInfo.isGated());
-			stmt.setBoolean(5, updatedPlayAreaInfo.isFun());
+			if (updatedPlayAreaInfo.isGated() != null){
+				stmt.setBoolean(4, updatedPlayAreaInfo.isGated());
+			} else {
+				stmt.setNull(4, java.sql.Types.TINYINT);
+			}
+			if (updatedPlayAreaInfo.isFun() != null){
+				stmt.setBoolean(5, updatedPlayAreaInfo.isFun());
+			} else {
+				stmt.setNull(5, java.sql.Types.TINYINT);
+			}
 			stmt.setInt(6, updatedPlayAreaInfo.getBusinessID());
 			
 			// execute UPDATE

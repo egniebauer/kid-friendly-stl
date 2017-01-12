@@ -135,9 +135,21 @@ public class RestroomInfoDAO {
 			
 			// set param values
 			stmt.setInt(1, newRestroomInfo.getBusinessID());
-			stmt.setBoolean(2, newRestroomInfo.isClean());
-			stmt.setBoolean(3, newRestroomInfo.isToddlerSeat());
-			stmt.setBoolean(4, newRestroomInfo.isHandDryer());
+			if (newRestroomInfo.isClean() != null) {
+				stmt.setBoolean(2, newRestroomInfo.isClean());
+			} else {
+				stmt.setNull(2, java.sql.Types.TINYINT);
+			}
+			if (newRestroomInfo.isToddlerSeat() != null) {
+				stmt.setBoolean(3, newRestroomInfo.isToddlerSeat());
+			} else {
+				stmt.setNull(3, java.sql.Types.TINYINT);
+			}
+			if (newRestroomInfo.isHandDryer() != null) {
+				stmt.setBoolean(4, newRestroomInfo.isHandDryer());
+			} else {
+				stmt.setNull(4, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(5, newRestroomInfo.isWomensRoom());
 			stmt.setBoolean(6, newRestroomInfo.isMensRoom());
 			stmt.setBoolean(7, newRestroomInfo.isFamilyRoom());
@@ -168,9 +180,21 @@ public class RestroomInfoDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			// set params values
-			stmt.setBoolean(1, updatedRestroomInfo.isClean());
-			stmt.setBoolean(2, updatedRestroomInfo.isToddlerSeat());
-			stmt.setBoolean(3, updatedRestroomInfo.isHandDryer());
+			if (updatedRestroomInfo.isClean() != null) {
+				stmt.setBoolean(1, updatedRestroomInfo.isClean());
+			} else {
+				stmt.setNull(1, java.sql.Types.TINYINT);
+			}
+			if (updatedRestroomInfo.isToddlerSeat() != null) {
+				stmt.setBoolean(2, updatedRestroomInfo.isToddlerSeat());
+			} else {
+				stmt.setNull(2, java.sql.Types.TINYINT);
+			}
+			if (updatedRestroomInfo.isHandDryer() != null) {
+				stmt.setBoolean(3, updatedRestroomInfo.isHandDryer());
+			} else {
+				stmt.setNull(3, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(4, updatedRestroomInfo.isWomensRoom());
 			stmt.setBoolean(5, updatedRestroomInfo.isMensRoom());
 			stmt.setBoolean(6, updatedRestroomInfo.isFamilyRoom());

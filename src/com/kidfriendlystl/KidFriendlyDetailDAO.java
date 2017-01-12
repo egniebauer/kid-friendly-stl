@@ -135,11 +135,19 @@ public class KidFriendlyDetailDAO {
 			
 			// set param values
 			stmt.setInt(1, newKidFriendlyDetail.getBusinessID());
-			stmt.setBoolean(2, newKidFriendlyDetail.isMultipleFamilies());
+			if (newKidFriendlyDetail.isMultipleFamilies() != null) {
+				stmt.setBoolean(2, newKidFriendlyDetail.isMultipleFamilies());
+			} else {
+				stmt.setNull(2, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(3, newKidFriendlyDetail.isMorning());
 			stmt.setBoolean(4, newKidFriendlyDetail.isAfternoon());
 			stmt.setBoolean(5, newKidFriendlyDetail.isEvening());
-			stmt.setBoolean(6, newKidFriendlyDetail.isKidsFreeDiscount());
+			if (newKidFriendlyDetail.isKidsFreeDiscount() != null) {
+				stmt.setBoolean(6, newKidFriendlyDetail.isKidsFreeDiscount());
+			} else {
+				stmt.setNull(6, java.sql.Types.TINYINT);
+			}
 			stmt.setString(7, newKidFriendlyDetail.getKidsFreeDiscountDetail());
 			
 			// execute SQL INSERT
@@ -171,11 +179,19 @@ public class KidFriendlyDetailDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			stmt.setBoolean(1, updatedKidFriendlyDetail.isMultipleFamilies());
+			if (updatedKidFriendlyDetail.isMultipleFamilies() != null) {
+				stmt.setBoolean(1, updatedKidFriendlyDetail.isMultipleFamilies());
+			} else {
+				stmt.setNull(1, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(2, updatedKidFriendlyDetail.isMorning());
 			stmt.setBoolean(3, updatedKidFriendlyDetail.isAfternoon());
 			stmt.setBoolean(4, updatedKidFriendlyDetail.isEvening());
-			stmt.setBoolean(5, updatedKidFriendlyDetail.isKidsFreeDiscount());
+			if (updatedKidFriendlyDetail.isKidsFreeDiscount() != null) {
+				stmt.setBoolean(5, updatedKidFriendlyDetail.isKidsFreeDiscount());
+			} else {
+				stmt.setNull(5, java.sql.Types.TINYINT);
+			}
 			stmt.setString(6, updatedKidFriendlyDetail.getKidsFreeDiscountDetail());
 			stmt.setInt(7, updatedKidFriendlyDetail.getBusinessID());
 			

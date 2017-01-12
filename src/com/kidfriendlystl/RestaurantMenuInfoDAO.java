@@ -147,7 +147,11 @@ public class RestaurantMenuInfoDAO {
 			stmt.setInt(1, newRestaurantMenuInfo.getBusinessID());
 			stmt.setBoolean(2, newRestaurantMenuInfo.isHighChair());
 			stmt.setBoolean(3, newRestaurantMenuInfo.isBooster());
-			stmt.setBoolean(4, newRestaurantMenuInfo.isActivities());
+			if (newRestaurantMenuInfo.isActivities() != null) {
+				stmt.setBoolean(4, newRestaurantMenuInfo.isActivities());
+			} else {
+				stmt.setNull(4, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(5, newRestaurantMenuInfo.isHealthy());
 			stmt.setBoolean(6, newRestaurantMenuInfo.isAllergyFriendly());
 			stmt.setBoolean(7, newRestaurantMenuInfo.isUnhealthy());
@@ -185,7 +189,11 @@ public class RestaurantMenuInfoDAO {
 			// set param values
 			stmt.setBoolean(1, updatedRestaurantMenuInfo.isHighChair());
 			stmt.setBoolean(2, updatedRestaurantMenuInfo.isBooster());
-			stmt.setBoolean(3, updatedRestaurantMenuInfo.isActivities());
+			if (updatedRestaurantMenuInfo.isActivities() != null) {
+				stmt.setBoolean(3, updatedRestaurantMenuInfo.isActivities());
+			} else {
+				stmt.setNull(3, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(4, updatedRestaurantMenuInfo.isHealthy());
 			stmt.setBoolean(5, updatedRestaurantMenuInfo.isAllergyFriendly());
 			stmt.setBoolean(6, updatedRestaurantMenuInfo.isUnhealthy());

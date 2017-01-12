@@ -143,9 +143,21 @@ public class BreastfeedingInfoDAO {
 			
 		//set parameters for PreparedStatment
 			stmt.setInt(1, newBreastfeedingInfo.getBusinessID());
-			stmt.setBoolean(2, newBreastfeedingInfo.isClean());
-			stmt.setBoolean(3, newBreastfeedingInfo.isComfortable());
-			stmt.setBoolean(4, newBreastfeedingInfo.isBottleWarmer());
+			if (newBreastfeedingInfo.isClean() != null) {
+				stmt.setBoolean(2, newBreastfeedingInfo.isClean());
+			} else {
+				stmt.setNull(2, java.sql.Types.TINYINT);
+			}
+			if (newBreastfeedingInfo.isComfortable() != null) {
+				stmt.setBoolean(3, newBreastfeedingInfo.isComfortable());
+			} else {
+				stmt.setNull(3, java.sql.Types.TINYINT);
+			}
+			if (newBreastfeedingInfo.isBottleWarmer() != null) {
+				stmt.setBoolean(4, newBreastfeedingInfo.isBottleWarmer());
+			} else {
+				stmt.setNull(4, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(5, newBreastfeedingInfo.isLactationRoom());
 			stmt.setBoolean(6, newBreastfeedingInfo.isQuietArea());
 			stmt.setBoolean(7, newBreastfeedingInfo.isGrossOpts());
@@ -178,9 +190,21 @@ public class BreastfeedingInfoDAO {
 			stmt = conn.prepareStatement(sql);
 			
 		//set parameters for PreparedStatment
-			stmt.setBoolean(1, updatedBreastfeedingInfo.isClean());
-			stmt.setBoolean(2, updatedBreastfeedingInfo.isComfortable());
-			stmt.setBoolean(3, updatedBreastfeedingInfo.isBottleWarmer());
+			if (updatedBreastfeedingInfo.isClean() != null) {
+				stmt.setBoolean(1, updatedBreastfeedingInfo.isClean());
+			} else {
+				stmt.setNull(1, java.sql.Types.TINYINT);
+			}
+			if (updatedBreastfeedingInfo.isComfortable() != null) {
+				stmt.setBoolean(2, updatedBreastfeedingInfo.isComfortable());
+			} else {
+				stmt.setNull(2, java.sql.Types.TINYINT);
+			}
+			if (updatedBreastfeedingInfo.isBottleWarmer() != null) {
+				stmt.setBoolean(3, updatedBreastfeedingInfo.isBottleWarmer());
+			} else {
+				stmt.setNull(3, java.sql.Types.TINYINT);
+			}
 			stmt.setBoolean(4, updatedBreastfeedingInfo.isLactationRoom());
 			stmt.setBoolean(5, updatedBreastfeedingInfo.isQuietArea());
 			stmt.setBoolean(6, updatedBreastfeedingInfo.isGrossOpts());
