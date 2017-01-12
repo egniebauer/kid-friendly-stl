@@ -77,7 +77,7 @@ public class KidFriendlyDetailDAO {
 				throw new Exception("Could not find kid friendly detail id: " + businessID);
 			}
 			
-			// return AgeRage
+			// return object
 			return theKidFriendlyDetail;
 		}
 		finally {

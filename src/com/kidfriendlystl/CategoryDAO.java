@@ -215,7 +215,7 @@ public class CategoryDAO {
 			myStmt.setBoolean(9, updatedCategory.isShopping());
 			myStmt.setInt(10, updatedCategory.getBusinessID());
 			
-			// execute SQL INSERT
+			// execute SQL UPDATE
 			myStmt.execute();			
 		}
 		finally {

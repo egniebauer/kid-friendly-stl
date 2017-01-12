@@ -6,26 +6,208 @@ public class CreateTable {
 	
 	public static BreastfeedingInfo breastfeedingInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
-		//TODO
-		return null;
+		
+		// create an empty Category object
+		BreastfeedingInfo newBreastfeedingInfo;
+				
+		// retrieve form data		
+		String breastfeedingCleanRadio = request.getParameter("breastfeedingClean");
+		String comfortableRadio = request.getParameter("comfortable");
+		String bottleWarmerRadio = request.getParameter("bottleWarmer");
+		String[] breastfeedingLocations = request.getParameterValues("poppingBoobs"); 
+
+		// assign data to parameters
+		boolean clean = breastfeedingCleanRadio.equals("1") ? true : false;
+		boolean comfortable = comfortableRadio.equals("1") ? true : false;
+		boolean bottleWarmer = bottleWarmerRadio.equals("1") ? true : false;
+		
+		boolean lactationRoom = false;
+		boolean quietArea = false;
+		boolean grossOpts = false;
+		boolean nonSpecificOpts = false;
+		if (breastfeedingLocations != null) {
+			for (String location : breastfeedingLocations) {
+				switch (location) {
+					case "lactationRoom":
+						lactationRoom = true;
+						break;
+					case "quietArea":
+						quietArea = true;
+						break;
+					case "grossOpts":
+						grossOpts = true;
+						break;
+					case "nonSpecificOpts":
+						nonSpecificOpts = true;
+						break;
+				}
+			}
+		}
+		
+		// pass parameters to object and return
+		newBreastfeedingInfo = new BreastfeedingInfo (businessID, clean, comfortable, bottleWarmer, lactationRoom, quietArea, grossOpts, nonSpecificOpts);
+		return newBreastfeedingInfo;
 	}
 	
 	public static PlayAreaInfo playAreaInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
-		//TODO
-		return null;
+		// create empty object
+		PlayAreaInfo newPlayAreaInfo;
+		
+		// retrieve data from form
+		String playAreaCleanRadio = request.getParameter("playAreaClean");
+		String gatedRadio = request.getParameter("gated");
+		String funRadio = request.getParameter("fun");
+		String[] locations = request.getParameterValues("location");
+
+		// set parameters 
+		boolean clean = playAreaCleanRadio.equals("1") ? true : false;
+		boolean gated = gatedRadio.equals("1") ? true : false;
+		boolean fun = funRadio.equals("1") ? true : false;
+		
+		boolean inside = false;
+		boolean outside = false;
+		if (locations != null) {
+			for (String location : locations) {
+				switch (location){
+					case "inside":
+						inside = true;
+						break;
+					case "outside":
+						outside = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newPlayAreaInfo = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun);
+		return newPlayAreaInfo;
 	}
 	
 	public static RestaurantMenuInfo restaurantMenuInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
-		//TODO
-		return null;
+		// create empty object
+		RestaurantMenuInfo newRestaurantMenuInfo;
+		
+		// retrieve data
+		String activitiesRadio = request.getParameter("activities");
+		String[] seatingOptions = request.getParameterValues("seating");
+		String[] kidsMenu = request.getParameterValues("kidsMenu");
+		String[] fullMenu = request.getParameterValues("fullMenu");
+		
+		// set data to params
+		boolean activities = activitiesRadio.equals("1") ? true : false;
+
+		boolean highChair = false;
+		boolean booster = false;
+		if (seatingOptions != null){
+			for (String option : seatingOptions) {
+				switch (option){
+					case "highChair" :
+						highChair = true;
+						break;
+					case "booster" :
+						booster = true;
+						break;
+				}
+			}
+		}
+		
+		boolean healthy = false;
+		boolean allergyFriendly = false;
+		boolean unhealthy = false;
+		boolean noKidsMenu = false;		
+		if (kidsMenu != null) {
+			for (String option : kidsMenu) {
+				switch (option){
+					case "healthy" :
+						healthy = true;
+						break;
+					case "allergyFriendly" :
+						allergyFriendly = true;
+						break;
+					case "unhealthy" :
+						unhealthy = true;
+						break;
+					case "noKidsMenu" :
+						noKidsMenu = true;
+						break;
+				}
+			}
+		}
+		
+		boolean manyOpts = false;
+		boolean someOpts = false;
+		boolean fewOpts = false;
+		boolean noOpts = false;	
+		if (fullMenu != null) {
+			for (String option : fullMenu) {
+				switch (option){
+					case "manyOpts" :
+						manyOpts = true;
+						break;
+					case "someOpts" :
+						someOpts = true;
+						break;
+					case "fewOpts" :
+						fewOpts = true;
+						break;
+					case "noOpts" :
+						noOpts = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newRestaurantMenuInfo = new RestaurantMenuInfo(businessID, highChair, booster, activities, healthy, allergyFriendly, unhealthy, noKidsMenu, manyOpts, someOpts, fewOpts, noOpts);
+		return newRestaurantMenuInfo;
 	}
 	
 	public static RestroomInfo restroomInfo(int businessID, HttpServletRequest request) 
 			throws Exception {
-		//TODO
-		return null;
+		
+		// create empty object
+		RestroomInfo newRestroomInfo;
+		
+		// retrieve data
+		String restroomCleanRadio = request.getParameter("restroomClean");
+		String toddlerSeatRadio = request.getParameter("toddlerSeat");
+		String handDryerRadio = request.getParameter("handDryer");
+		String[] changingTables = request.getParameterValues("changingTable");
+		
+		// set data to params
+		boolean clean = restroomCleanRadio.equals("1") ? true : false;
+		boolean toddlerSeat = toddlerSeatRadio.equals("1") ? true : false;
+		boolean handDryer = handDryerRadio.equals("1") ? true : false;
+
+		boolean womensRoom = false;
+		boolean mensRoom = false;
+		boolean familyRoom = false;
+		boolean noChangingTable = false;
+		if (changingTables != null){
+			for (String table : changingTables) {
+				switch (table){
+					case "womensRoom" :
+						womensRoom = true;
+						break;
+					case "mensRoom" :
+						mensRoom = true;
+						break;
+					case "familyRoom" :
+						familyRoom = true;
+						break;
+					case "noChangingTable" :
+						noChangingTable = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newRestroomInfo = new RestroomInfo(businessID, clean, toddlerSeat, handDryer, womensRoom, mensRoom, familyRoom, noChangingTable);
+		return newRestroomInfo;
 	}
 	
 	public static Category category(int businessID, HttpServletRequest request) 
@@ -34,7 +216,10 @@ public class CreateTable {
 		// create an empty Category object
 		Category newCategory;
 		
-		// set parameters to false
+		// retrieve form data
+		String[] categories = request.getParameterValues("category"); 
+		
+		// assign data to params
 		boolean activeLife = false;
 		boolean artsEntertainment = false;
 		boolean education = false;
@@ -45,11 +230,7 @@ public class CreateTable {
 		boolean religious = false;
 		boolean shopping = false;
 		
-		// retrieve form data
-		String[] categories = request.getParameterValues("category"); 
-		
-		if (categories.length > 0) {
-			
+		if (categories != null) {
 			for (String category : categories) {
 				switch (category) {
 					case "activeLife":
@@ -83,13 +264,9 @@ public class CreateTable {
 			}
 		}
 		
-		// assign data to newCategory and return
-		newCategory= new Category (businessID, activeLife, artsEntertainment, education, 
-				foodRestaurant, healthMedical, hotelTravel, publicServiceGovernment, 
-				religious, shopping);
-		
+		// pass params to object and return
+		newCategory= new Category (businessID, activeLife, artsEntertainment, education, foodRestaurant, healthMedical, hotelTravel, publicServiceGovernment, religious, shopping);
 		return newCategory;
-		
 	}
 
 	public static AgeRange ageRange(int businessID, HttpServletRequest request) 
@@ -98,17 +275,17 @@ public class CreateTable {
 		// create an empty AgeRange object
 		AgeRange newAgeRange;
 		
-		// set parameters to false
+		// retrieve data from the form
+		String[] ages = request.getParameterValues("ageRange");
+		
+		//set params
 		boolean baby = false;
 		boolean toddler = false;
 		boolean preschooler = false;
 		boolean gradeSchooler = false;
 		boolean teen = false;
-		
-		// retrieve data from the form
-		String[] ages = request.getParameterValues("ageRange");
-		
-		if (ages.length > 0){
+
+		if (ages != null){
 			for (String age: ages){
 				switch (age) {
 					case "baby":
@@ -130,12 +307,9 @@ public class CreateTable {
 			}
 		}
 		
-		// assign to object and return
-		newAgeRange = new AgeRange(businessID, baby, toddler, preschooler,
-				gradeSchooler, teen);
-		
+		// pass params to object and return
+		newAgeRange = new AgeRange(businessID, baby, toddler, preschooler, gradeSchooler, teen);
 		return newAgeRange;
-		
 	}
 
 	public static KidFriendlyDetail kidFriendlyDetail(int businessID, HttpServletRequest request) 
@@ -145,52 +319,39 @@ public class CreateTable {
 		KidFriendlyDetail newKidFriendlyDetail;
 		
 		// set params to false
-		boolean multipleFamilies = false;
+		
+		// retrieve data from form
+		String multipleFamiliesRadio = request.getParameter("multipleFamilies");
+		String kidsFreeDiscountRadio = request.getParameter("kidsFreeDiscount");
+		String kidsFreeDiscountDetail = request.getParameter("kidsFreeDiscountDetail");
+		String[] bestTimes = request.getParameterValues("bestTimes");
+
+		// set params
+		boolean multipleFamilies = multipleFamiliesRadio.equals("1") ? true : false;
+		boolean kidsFreeDiscount = kidsFreeDiscountRadio.equals("1") ? true : false;
+		
 		boolean morning = false;
 		boolean afternoon = false;
 		boolean evening = false;
-		boolean kidsFreeDiscount = false;
-		
-		// retrieve data from form
-		String[] bestTimes = request.getParameterValues("bestTimes");
-		for (String time : bestTimes) {
-			switch (time) {
-				case "morning":
-					morning = true;
-					break;
-				case "afternoon":
-					afternoon = true;
-					break;
-				case "evening":
-					evening = true;
-					break;
+		if (bestTimes != null) {
+			for (String time : bestTimes) {
+				switch (time) {
+					case "morning":
+						morning = true;
+						break;
+					case "afternoon":
+						afternoon = true;
+						break;
+					case "evening":
+						evening = true;
+						break;
+				}
 			}
 		}
 		
-		String multipleFamiliesRadio = request.getParameter("multipleFamilies");
-		
-		if (multipleFamiliesRadio.equals("1")) {
-			multipleFamilies = true;
-		} else if (multipleFamiliesRadio.equals("0")) {
-			multipleFamilies = false;
-		}
-		
-		String kidsFreeDiscountRadio = request.getParameter("kidsFreeDiscount");
-		
-		if (kidsFreeDiscountRadio.equals("1")) {
-			kidsFreeDiscount = true;
-		} else if (kidsFreeDiscountRadio.equals("0")) {
-			kidsFreeDiscount = false;
-		}
-		
-		String kidsFreeDiscountDetail = request.getParameter("kidsFreeDiscountDetail");
-		
-		// assign to object and return
-		newKidFriendlyDetail = new KidFriendlyDetail(businessID, multipleFamilies, morning,
-				afternoon, evening, kidsFreeDiscount, kidsFreeDiscountDetail);
-		
+		// pass params to object and return
+		newKidFriendlyDetail = new KidFriendlyDetail(businessID, multipleFamilies, morning, afternoon, evening, kidsFreeDiscount, kidsFreeDiscountDetail);
 		return newKidFriendlyDetail;
-		
 	}
 
 	public static Business newBusiness(HttpServletRequest request) {
@@ -232,7 +393,6 @@ public class CreateTable {
 			case 5:	rating5 = 1;
 					break;
 		}
-		
 
 		// create new business object (without existing id)
 		Business newBusiness =  new Business(name, address, city, state, zip,
@@ -240,7 +400,6 @@ public class CreateTable {
 		
 		// return business
 		return newBusiness;
-		
 	}
 
 	public static Business existingBusiness(HttpServletRequest request) {
@@ -291,7 +450,6 @@ public class CreateTable {
 		
 		// return business
 		return newBusiness;
-
 	}
 
 }

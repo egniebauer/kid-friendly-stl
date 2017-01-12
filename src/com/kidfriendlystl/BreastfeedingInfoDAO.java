@@ -40,7 +40,7 @@ public class BreastfeedingInfoDAO {
 			throws Exception {
 		
 		// create empty list
-		List<BreastfeedingInfo> breastfeedingInfo = new ArrayList<>();
+		List<BreastfeedingInfo> theList = new ArrayList<>();
 		
 		// create JDBC objects
 		Connection myConn = null;
@@ -71,14 +71,14 @@ public class BreastfeedingInfoDAO {
 				boolean nonSpecificOpts = myRS.getBoolean("non_specific_opts");
 				
 				//create my BreastfeedingInfo object
-				BreastfeedingInfo currentBreastfeedingInfo = new BreastfeedingInfo(businessID, clean, comfortable, bottleWarmer,
+				BreastfeedingInfo currentRow = new BreastfeedingInfo(businessID, clean, comfortable, bottleWarmer,
 						lactationRoom, quietArea, grossOpts, nonSpecificOpts);
 				
 				//add BreastfeedingInfo object to list
-				breastfeedingInfo.add(currentBreastfeedingInfo);
+				theList.add(currentRow);
 			}
 			// return list
-			return breastfeedingInfo;
+			return theList;
 		}
 		finally {
 			// close JDBC objects
@@ -90,7 +90,7 @@ public class BreastfeedingInfoDAO {
 			throws Exception {
 		
 		// create empty BreastfeedingInfo and int businessID
-		BreastfeedingInfo theBreastfeedingInfo = null;
+		BreastfeedingInfo selectedRow = null;
 		int businessID;
 		
 		// create JDBC objects
@@ -115,6 +115,7 @@ public class BreastfeedingInfoDAO {
 			
 			// process the ResultSet
 			if (myRS.next()){
+				//retrieve data and assign to object params
 				boolean clean = myRS.getBoolean("clean");
 				boolean comfortable = myRS.getBoolean("comfortable");
 				boolean bottleWarmer = myRS.getBoolean("bottle_warmer");
@@ -123,26 +124,91 @@ public class BreastfeedingInfoDAO {
 				boolean grossOpts = myRS.getBoolean("gross_opts");
 				boolean nonSpecificOpts = myRS.getBoolean("non_specific_opts");
 				
-				// assign to empty BreastfeedingInfo object
-				theBreastfeedingInfo = new BreastfeedingInfo(businessID, clean, comfortable, bottleWarmer,
+				// pass params to empty BreastfeedingInfo object
+				selectedRow = new BreastfeedingInfo(businessID, clean, comfortable, bottleWarmer,
 						lactationRoom, quietArea, grossOpts, nonSpecificOpts);
 			}
 			else {
 				throw new Exception("Could not find breastfeeding info id: " + businessID);
 			}
 			// return the BreastfeedingInfo object
-			return theBreastfeedingInfo;
+			return selectedRow;
 		}
 		finally {
 			// close our JDBC objects
 		}
 	}
 	
-	public void add(BreastfeedingInfo newBreastfeedingInfo) {
-		//TODO
+	public void add(BreastfeedingInfo newBreastfeedingInfo) 
+			throws Exception {
+		
+		//create JDBC objects
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		
+		try {
+		//get connection
+			myConn = dataSource.getConnection();
+			
+		//create PreparedStatement for INSERT
+			String sql = "INSERT INTO kid_friendly_stl.breastfeeding_information "
+					+ "(business_id, clean, comfortable, bottle_warmer, lactation_room, quiet_area, gross_opts, non_specific_opts) " 
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+			myStmt = myConn.prepareStatement(sql);
+			
+		//set parameters for PreparedStatment
+			myStmt.setInt(1, newBreastfeedingInfo.getBusinessID());
+			myStmt.setBoolean(2, newBreastfeedingInfo.isClean());
+			myStmt.setBoolean(3, newBreastfeedingInfo.isComfortable());
+			myStmt.setBoolean(4, newBreastfeedingInfo.isBottleWarmer());
+			myStmt.setBoolean(5, newBreastfeedingInfo.isLactationRoom());
+			myStmt.setBoolean(6, newBreastfeedingInfo.isQuietArea());
+			myStmt.setBoolean(7, newBreastfeedingInfo.isGrossOpts());
+			myStmt.setBoolean(8, newBreastfeedingInfo.isNonSpecificOpts());
+			
+		//execute query
+			myStmt.execute();
+		}
+		finally {
+		//close JDBC objects
+			close(myConn, myStmt, null);
+		}
 	}
 	
-	public void update(BreastfeedingInfo updatedBreastfeedingInfo) {
-		//TODO
+	public void update(BreastfeedingInfo updatedBreastfeedingInfo) throws Exception {
+		
+		//create JDBC objects
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		
+		try {
+		//get connection
+			myConn = dataSource.getConnection();
+			
+		//create PreparedStatement for UPDATE
+			String sql = "UPDATE kid_friendly_stl.breastfeeding_information "
+					+ "SET clean=?, comfortable=?, bottle_warmer=?, lactation_room=?, quiet_area=?, gross_opts=?, non_specific_opts=? " 
+					+ "WHERE business_id=?";
+
+			myStmt = myConn.prepareStatement(sql);
+			
+		//set parameters for PreparedStatment
+			myStmt.setBoolean(1, updatedBreastfeedingInfo.isClean());
+			myStmt.setBoolean(2, updatedBreastfeedingInfo.isComfortable());
+			myStmt.setBoolean(3, updatedBreastfeedingInfo.isBottleWarmer());
+			myStmt.setBoolean(4, updatedBreastfeedingInfo.isLactationRoom());
+			myStmt.setBoolean(5, updatedBreastfeedingInfo.isQuietArea());
+			myStmt.setBoolean(6, updatedBreastfeedingInfo.isGrossOpts());
+			myStmt.setBoolean(7, updatedBreastfeedingInfo.isNonSpecificOpts());
+			myStmt.setInt(8, updatedBreastfeedingInfo.getBusinessID());
+			
+		//execute query
+			myStmt.execute();
+		}
+		finally {
+		//close JDBC objects
+			close(myConn, myStmt, null);
+		}
 	}
 }

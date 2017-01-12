@@ -234,7 +234,7 @@ public class BusinessDAO {
 			myStmt.setInt(12, updatedBusiness.getRating5());
 			myStmt.setInt(13, updatedBusiness.getId());
 			
-			// execute SQL INSERT
+			// execute SQL UPDATE
 			myStmt.execute();
 
 		}
@@ -255,7 +255,7 @@ public class BusinessDAO {
 			// get connection
 			myConn = dataSource.getConnection();
 			
-			// create SQL and PreparedStatement to DELETE student
+			// create SQL and PreparedStatement to DELETE business
 			String sql = "DELETE FROM kid_friendly_stl.business WHERE id=?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setInt(1, id);
@@ -281,7 +281,7 @@ public class BusinessDAO {
 			// get connection
 			myConn = dataSource.getConnection();
 			
-			// create SQL and PreparedStatement to DELETE student
+			// create SQL and PreparedStatement to SELECT buisness if name matches
 			String sql = "SELECT * FROM kid_friendly_stl.business WHERE name=?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, name);
