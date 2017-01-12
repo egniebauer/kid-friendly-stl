@@ -3,15 +3,15 @@ package com.kidfriendlystl;
 public class RestroomInfo {
 	
 	private int businessID;
-	private boolean clean;
-	private boolean toddlerSeat;
-	private boolean handDryer;
+	private Boolean clean;
+	private Boolean toddlerSeat;
+	private Boolean handDryer;
 	private boolean womensRoom;
 	private boolean mensRoom;
 	private boolean familyRoom;
 	private boolean noChangingTable;
 	
-	public RestroomInfo(int businessID, boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom,
+	public RestroomInfo(int businessID, Boolean clean, Boolean toddlerSeat, Boolean handDryer, boolean womensRoom,
 			boolean mensRoom, boolean familyRoom, boolean noChangingTable) {
 		this.businessID = businessID;
 		this.clean = clean;
@@ -23,11 +23,34 @@ public class RestroomInfo {
 		this.noChangingTable = noChangingTable;
 	}
 
-	public RestroomInfo(boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom, boolean mensRoom,
+	public RestroomInfo(Boolean clean, Boolean toddlerSeat, Boolean handDryer, boolean womensRoom, boolean mensRoom,
 			boolean familyRoom, boolean noChangingTable) {
 		this.clean = clean;
 		this.toddlerSeat = toddlerSeat;
 		this.handDryer = handDryer;
+		this.womensRoom = womensRoom;
+		this.mensRoom = mensRoom;
+		this.familyRoom = familyRoom;
+		this.noChangingTable = noChangingTable;
+	}
+	
+	public RestroomInfo(int businessID, boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom,
+			boolean mensRoom, boolean familyRoom, boolean noChangingTable) {
+		this.businessID = businessID;
+		this.clean = new Boolean(clean);
+		this.toddlerSeat = new Boolean(toddlerSeat);
+		this.handDryer = new Boolean(handDryer);
+		this.womensRoom = womensRoom;
+		this.mensRoom = mensRoom;
+		this.familyRoom = familyRoom;
+		this.noChangingTable = noChangingTable;
+	}
+
+	public RestroomInfo(boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom, boolean mensRoom,
+			boolean familyRoom, boolean noChangingTable) {
+		this.clean = new Boolean(clean);
+		this.toddlerSeat = new Boolean(toddlerSeat);
+		this.handDryer = new Boolean(handDryer);
 		this.womensRoom = womensRoom;
 		this.mensRoom = mensRoom;
 		this.familyRoom = familyRoom;
@@ -38,15 +61,15 @@ public class RestroomInfo {
 		return businessID;
 	}
 
-	public boolean isClean() {
+	public Boolean isClean() {
 		return clean;
 	}
 
-	public boolean isToddlerSeat() {
+	public Boolean isToddlerSeat() {
 		return toddlerSeat;
 	}
 
-	public boolean isHandDryer() {
+	public Boolean isHandDryer() {
 		return handDryer;
 	}
 
@@ -70,16 +93,25 @@ public class RestroomInfo {
 		this.businessID = businessID;
 	}
 
-	public void setClean(boolean clean) {
+	public void setClean(Boolean clean) {
 		this.clean = clean;
 	}
-
-	public void setToddlerSeat(boolean toddlerSeat) {
-		this.toddlerSeat = toddlerSeat;
+	public void setClean(boolean clean) {
+		this.clean = Boolean.valueOf(clean);
 	}
 
-	public void setHandDryer(boolean handDryer) {
+	public void setToddlerSeat(Boolean toddlerSeat) {
+		this.toddlerSeat = toddlerSeat;
+	}
+	public void setToddlerSeat(boolean toddlerSeat) {
+		this.toddlerSeat = Boolean.valueOf(toddlerSeat);
+	}
+
+	public void setHandDryer(Boolean handDryer) {
 		this.handDryer = handDryer;
+	}
+	public void setHandDryer(boolean handDryer) {
+		this.handDryer = Boolean.valueOf(handDryer);
 	}
 
 	public void setWomensRoom(boolean womensRoom) {

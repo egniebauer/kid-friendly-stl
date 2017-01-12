@@ -342,7 +342,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");
-		String rating = request.getParameter("businessRating");
+//		String rating = request.getParameter("businessRating");
 		
 		// format parameters (strip non-digits, leading whitespace, etc.)
 		name = name.replaceFirst("^\\s+", "");
@@ -360,16 +360,35 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		// read parameters - KidFriendlyDetail
 		String[] bestTimes = request.getParameterValues("bestTimes");
-		String multipleFamiliesRadio = request.getParameter("multipleFamilies");
-		String kidsFreeDiscountRadio = request.getParameter("kidsFreeDiscount");
+//		String multipleFamiliesRadio = request.getParameter("multipleFamilies");
+//		String kidsFreeDiscountRadio = request.getParameter("kidsFreeDiscount");
 		String kidsFreeDiscountDetail = request.getParameter("kidsFreeDiscountDetail");
 		
 		//TODO - read parameters from supplemental tables
 		
 		// read parameters - BreastfeedingInfo
+//		String breastfeedingCleanRadio = request.getParameter("breastfeedingClean");
+//		String comfortableRadio = request.getParameter("comfortable");
+//		String bottleWarmerRadio = request.getParameter("bottleWarmer");
+//		String[] breastfeedingLocations = request.getParameterValues("poppingBoobs"); 
+
 		// read parameters - PlayAreaInfo
+//		String playAreaCleanRadio = request.getParameter("playAreaClean");
+//		String gatedRadio = request.getParameter("gated");
+//		String funRadio = request.getParameter("fun");
+//		String[] locations = request.getParameterValues("location");
+		
 		// read parameters - RestaurantMenuInfo
+//		String activitiesRadio = request.getParameter("activities");
+//		String[] seatingOptions = request.getParameterValues("seating");
+//		String[] kidsMenu = request.getParameterValues("kidsMenu");
+//		String[] fullMenu = request.getParameterValues("fullMenu");
+		
 		// read parameters - RestroomInfo
+//		String restroomCleanRadio = request.getParameter("restroomClean");
+//		String toddlerSeatRadio = request.getParameter("toddlerSeat");
+//		String handDryerRadio = request.getParameter("handDryer");
+//		String[] changingTables = request.getParameterValues("changingTable");
 		
 		// check form data
 		if (name == null || name.isEmpty() || name.length() > 45)
@@ -407,11 +426,6 @@ public class FriendlyControllerServlet extends HttpServlet {
 			errorMessage = "Error with the website field.";
 			return errorMessage;
 		}
-		else if (rating == null) 
-		{
-			errorMessage = "Error with the rating selection.";
-			return errorMessage;
-		}
 		else if (categories == null || categories.length < 1) 
 		{
 			errorMessage = "Error with the categories selection.";
@@ -425,16 +439,6 @@ public class FriendlyControllerServlet extends HttpServlet {
 		else if (bestTimes == null || bestTimes.length < 1) 
 		{
 			errorMessage = "Error with the best time selection.";
-			return errorMessage;
-		}
-		else if (multipleFamiliesRadio == null) 
-		{
-			errorMessage = "Error with the kid friendly details selection.";
-			return errorMessage;
-		}
-		else if (kidsFreeDiscountRadio == null) 
-		{
-			errorMessage = "Error with the kid friendly details selection.";
 			return errorMessage;
 		}
 		else if (kidsFreeDiscountDetail.length() > 255)

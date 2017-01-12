@@ -24,10 +24,6 @@ $('#kidFriendlyListing').validate({
         businessPhone: {
         	phoneUS: true,
         },
-        businessRating: {
-            required: true,
-            minlength: 1
-        },
         businessWebsite: {
         	url: true
         },
@@ -40,14 +36,6 @@ $('#kidFriendlyListing').validate({
             minlength: 1
         },
         bestTimes: {
-            required: true,
-            minlength: 1
-        },
-        multipleFamilies: {
-            required: true,
-            minlength: 1
-        },
-        kidsFreeDiscount: {
             required: true,
             minlength: 1
         },
@@ -77,10 +65,6 @@ $('#kidFriendlyListing').validate({
         businessWebsite: {
         	url: "Please enter a valid url (remember: http://)."
         },
-        businessRating: {
-            required: "Please a star rating.",
-            minlength: "Please a star rating."
-        },
         category: {
             required: "Please select at least one category.",
             minlength: "Please select at least one category."
@@ -92,14 +76,6 @@ $('#kidFriendlyListing').validate({
         bestTimes: {
             required: "Please select at least one time of day.",
             minlength: "Please select at least one time of day."
-        },
-        multipleFamilies: {
-            required: "Please choose true or false.",
-            minlength: "Please choose true or false."
-        },
-        kidsFreeDiscount: {
-            required: "Please choose true or false.",
-            minlength: "Please choose true or false."
         },
         kidsFreeDiscountDetail: {
     		maxlength: "The detail section can't exceed 255 characters."

@@ -3,15 +3,15 @@ package com.kidfriendlystl;
 public class BreastfeedingInfo {
 	
 	private int businessID;
-	private boolean clean;
-	private boolean comfortable;
-	private boolean bottleWarmer;
+	private Boolean clean;
+	private Boolean comfortable;
+	private Boolean bottleWarmer;
 	private boolean lactationRoom;
 	private boolean quietArea;
 	private boolean grossOpts;
 	private boolean nonSpecificOpts;
 	
-	public BreastfeedingInfo(int businessID, boolean clean, boolean comfortable, boolean bottleWarmer,
+	public BreastfeedingInfo(int businessID, Boolean clean, Boolean comfortable, Boolean bottleWarmer,
 			boolean lactationRoom, boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
 		this.businessID = businessID;
 		this.clean = clean;
@@ -23,11 +23,34 @@ public class BreastfeedingInfo {
 		this.nonSpecificOpts = nonSpecificOpts;
 	}
 
-	public BreastfeedingInfo(boolean clean, boolean comfortable, boolean bottleWarmer, boolean lactationRoom,
+	public BreastfeedingInfo(int businessID, boolean clean, boolean comfortable, boolean bottleWarmer,
+			boolean lactationRoom, boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
+		this.businessID = businessID;
+		this.clean = new Boolean(clean);
+		this.comfortable = new Boolean(comfortable);
+		this.bottleWarmer = new Boolean(bottleWarmer);
+		this.lactationRoom = lactationRoom;
+		this.quietArea = quietArea;
+		this.grossOpts = grossOpts;
+		this.nonSpecificOpts = nonSpecificOpts;
+	}
+
+	public BreastfeedingInfo(Boolean clean, Boolean comfortable, Boolean bottleWarmer, boolean lactationRoom,
 			boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
 		this.clean = clean;
 		this.comfortable = comfortable;
 		this.bottleWarmer = bottleWarmer;
+		this.lactationRoom = lactationRoom;
+		this.quietArea = quietArea;
+		this.grossOpts = grossOpts;
+		this.nonSpecificOpts = nonSpecificOpts;
+	}
+	
+	public BreastfeedingInfo(boolean clean, boolean comfortable, boolean bottleWarmer, boolean lactationRoom,
+			boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
+		this.clean = new Boolean(clean);
+		this.comfortable = new Boolean(comfortable);
+		this.bottleWarmer = new Boolean(bottleWarmer);
 		this.lactationRoom = lactationRoom;
 		this.quietArea = quietArea;
 		this.grossOpts = grossOpts;
@@ -38,15 +61,15 @@ public class BreastfeedingInfo {
 		return businessID;
 	}
 
-	public boolean isClean() {
+	public Boolean isClean() {
 		return clean;
 	}
 
-	public boolean isComfortable() {
+	public Boolean isComfortable() {
 		return comfortable;
 	}
 
-	public boolean isBottleWarmer() {
+	public Boolean isBottleWarmer() {
 		return bottleWarmer;
 	}
 
@@ -71,14 +94,23 @@ public class BreastfeedingInfo {
 	}
 
 	public void setClean(boolean clean) {
+		this.clean = Boolean.valueOf(clean);
+	}
+	public void setClean(Boolean clean) {
 		this.clean = clean;
 	}
 
 	public void setComfortable(boolean comfortable) {
+		this.comfortable = Boolean.valueOf(comfortable);
+	}
+	public void setComfortable(Boolean comfortable) {
 		this.comfortable = comfortable;
 	}
 
 	public void setBottleWarmer(boolean bottleWarmer) {
+		this.bottleWarmer = Boolean.valueOf(bottleWarmer);
+	}
+	public void setBottleWarmer(Boolean bottleWarmer) {
 		this.bottleWarmer = bottleWarmer;
 	}
 

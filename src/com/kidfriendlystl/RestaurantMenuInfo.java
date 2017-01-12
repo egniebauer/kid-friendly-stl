@@ -3,9 +3,9 @@ package com.kidfriendlystl;
 public class RestaurantMenuInfo {
 	
 	private int businessID;
-	private boolean highChair;
-	private boolean booster;
-	private boolean activities;
+	private Boolean highChair;
+	private Boolean booster;
+	private Boolean activities;
 	
 	// kidsMenu
 	private boolean healthy;
@@ -19,7 +19,7 @@ public class RestaurantMenuInfo {
 	private boolean fewOpts;
 	private boolean noOpts;
 	
-	public RestaurantMenuInfo(int businessID, boolean highChair, boolean booster, boolean activities, boolean healthy,
+	public RestaurantMenuInfo(int businessID, boolean highChair, boolean booster, Boolean activities, boolean healthy,
 			boolean allergyFriendly, boolean unhealthy, boolean noKidsMenu, boolean manyOpts, boolean someOpts, boolean fewOpts,
 			boolean noOpts) {
 		this.businessID = businessID;
@@ -36,11 +36,43 @@ public class RestaurantMenuInfo {
 		this.noOpts = noOpts;
 	}
 
-	public RestaurantMenuInfo(boolean highChair, boolean booster, boolean activities, boolean healthy, boolean allergyFriendly,
+	public RestaurantMenuInfo(boolean highChair, boolean booster, Boolean activities, boolean healthy, boolean allergyFriendly,
 			boolean unhealthy, boolean noKidsMenu, boolean manyOpts, boolean someOpts, boolean fewOpts, boolean noOpts) {
 		this.highChair = highChair;
 		this.booster = booster;
 		this.activities = activities;
+		this.healthy = healthy;
+		this.allergyFriendly = allergyFriendly;
+		this.unhealthy = unhealthy;
+		this.noKidsMenu = noKidsMenu;
+		this.manyOpts = manyOpts;
+		this.someOpts = someOpts;
+		this.fewOpts = fewOpts;
+		this.noOpts = noOpts;
+	}
+	
+	public RestaurantMenuInfo(int businessID, boolean highChair, boolean booster, boolean activities, boolean healthy,
+			boolean allergyFriendly, boolean unhealthy, boolean noKidsMenu, boolean manyOpts, boolean someOpts, boolean fewOpts,
+			boolean noOpts) {
+		this.businessID = businessID;
+		this.highChair = highChair;
+		this.booster = booster;
+		this.activities = new Boolean(activities);
+		this.healthy = healthy;
+		this.allergyFriendly = allergyFriendly;
+		this.unhealthy = unhealthy;
+		this.noKidsMenu = noKidsMenu;
+		this.manyOpts = manyOpts;
+		this.someOpts = someOpts;
+		this.fewOpts = fewOpts;
+		this.noOpts = noOpts;
+	}
+
+	public RestaurantMenuInfo(boolean highChair, boolean booster, boolean activities, boolean healthy, boolean allergyFriendly,
+			boolean unhealthy, boolean noKidsMenu, boolean manyOpts, boolean someOpts, boolean fewOpts, boolean noOpts) {
+		this.highChair = highChair;
+		this.booster = booster;
+		this.activities = new Boolean(activities);
 		this.healthy = healthy;
 		this.allergyFriendly = allergyFriendly;
 		this.unhealthy = unhealthy;
@@ -63,7 +95,7 @@ public class RestaurantMenuInfo {
 		return booster;
 	}
 
-	public boolean isActivities() {
+	public Boolean isActivities() {
 		return activities;
 	}
 
@@ -111,8 +143,12 @@ public class RestaurantMenuInfo {
 		this.booster = booster;
 	}
 
-	public void setActivities(boolean activities) {
+	public void setActivities(Boolean activities) {
 		this.activities = activities;
+	}
+
+	public void setActivities(boolean activities) {
+		this.activities = Boolean.valueOf(activities);
 	}
 
 	public void setHealthy(boolean healthy) {

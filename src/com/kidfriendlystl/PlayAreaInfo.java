@@ -3,13 +3,13 @@ package com.kidfriendlystl;
 public class PlayAreaInfo {
 	
 	private int businessID;
-	private boolean clean;
+	private Boolean clean;
 	private boolean inside;
 	private boolean outside;
-	private boolean gated;
-	private boolean fun;
+	private Boolean gated;
+	private Boolean fun;
 	
-	public PlayAreaInfo(int businessID, boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
+	public PlayAreaInfo(int businessID, Boolean clean, boolean inside, boolean outside, Boolean gated, Boolean fun) {
 		this.businessID = businessID;
 		this.clean = clean;
 		this.inside = inside;
@@ -18,7 +18,7 @@ public class PlayAreaInfo {
 		this.fun = fun;
 	}
 
-	public PlayAreaInfo(boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
+	public PlayAreaInfo(Boolean clean, boolean inside, boolean outside, Boolean gated, Boolean fun) {
 		this.clean = clean;
 		this.inside = inside;
 		this.outside = outside;
@@ -26,11 +26,28 @@ public class PlayAreaInfo {
 		this.fun = fun;
 	}
 
+	public PlayAreaInfo(int businessID, boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
+		this.businessID = businessID;
+		this.clean = new Boolean(clean);
+		this.inside = inside;
+		this.outside = outside;
+		this.gated = new Boolean(gated);
+		this.fun = new Boolean(fun);
+	}
+
+	public PlayAreaInfo(boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
+		this.clean = new Boolean(clean);
+		this.inside = inside;
+		this.outside = outside;
+		this.gated = new Boolean(gated);
+		this.fun = new Boolean(fun);
+	}
+
 	public int getBusinessID() {
 		return businessID;
 	}
 
-	public boolean isClean() {
+	public Boolean isClean() {
 		return clean;
 	}
 
@@ -42,11 +59,11 @@ public class PlayAreaInfo {
 		return outside;
 	}
 
-	public boolean isGated() {
+	public Boolean isGated() {
 		return gated;
 	}
 
-	public boolean isFun() {
+	public Boolean isFun() {
 		return fun;
 	}
 
@@ -55,6 +72,9 @@ public class PlayAreaInfo {
 	}
 
 	public void setClean(boolean clean) {
+		this.clean = Boolean.valueOf(clean);
+	}
+	public void setClean(Boolean clean) {
 		this.clean = clean;
 	}
 
@@ -67,10 +87,16 @@ public class PlayAreaInfo {
 	}
 
 	public void setGated(boolean gated) {
+		this.gated = Boolean.valueOf(gated);
+	}
+	public void setGated(Boolean gated) {
 		this.gated = gated;
 	}
 
 	public void setFun(boolean fun) {
+		this.fun = Boolean.valueOf(fun);
+		}
+	public void setFun(Boolean fun) {
 		this.fun = fun;
 	}
 

@@ -1,16 +1,16 @@
 package com.kidfriendlystl;
 
 public class Business {
-
+		
 	private int id;				// *required
 	private String name;		// *required
-	private String address;	
+	private String address;		// *required
 	private String city;		// *required
 	private State state;		// *required
 	private String zip;
 	private String phone;
 	private String website;
-	private int rating;			// *required
+	private int rating;
 	
 	private int rating1;
 	private int rating2;
@@ -33,8 +33,9 @@ public class Business {
 		this.rating3 = rating3;
 		this.rating4 = rating4;
 		this.rating5 = rating5;
-		
-		this.rating = (rating1*1 + rating2*2 + rating3*3 + rating4*4 +rating5*5) / (rating1+rating2+rating3+rating4+rating5);
+		int NUMERATOR = (rating1*1 + rating2*2 + rating3*3 + rating4*4 +rating5*5);
+		int DENOMINATOR = (rating1+rating2+rating3+rating4+rating5);
+		this.rating = DENOMINATOR > 0 ? (NUMERATOR/DENOMINATOR) : 0;
 	}
 
 	public Business(String name, String address, String city, State state, String zip,
@@ -51,8 +52,9 @@ public class Business {
 		this.rating3 = rating3;
 		this.rating4 = rating4;
 		this.rating5 = rating5;
-		
-		this.rating = (rating1*1 + rating2*2 + rating3*3 + rating4*4 +rating5*5) / (rating1+rating2+rating3+rating4+rating5);
+		int NUMERATOR = (rating1*1 + rating2*2 + rating3*3 + rating4*4 +rating5*5);
+		int DENOMINATOR = (rating1+rating2+rating3+rating4+rating5);
+		this.rating = DENOMINATOR > 0 ? (NUMERATOR/DENOMINATOR) : 0;
 	}
 
 	public int getId() {

@@ -235,24 +235,23 @@
 			</div>
 <!-- KID FRIENDLY DETAILS - Details -->
 			<div class="col-sm-3">	
-				<h5>Kid Friendly Details</h5>
+				<h5>Lots of Families?</h5>
 				<div class="radio form-group">
-					<p>Lots of Families?*</p>
 					<label class="radio-inline" for="multipleFamiliesTrue">
 						<input type="radio" name="multipleFamilies" id="multipleFamiliesTrue" value=1 ${BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == true ? 'checked' : '' }> Yes!
 					</label>
 					<label class="radio-inline" for="multipleFamiliesFalse">
-						<input type="radio" name="multipleFamilies" id="multipleFamiliesFalse" value=0  ${empty BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies || BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == false ? 'checked' : '' }> No
+						<input type="radio" name="multipleFamilies" id="multipleFamiliesFalse" value=0  ${BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == false ? 'checked' : '' }> No
 					</label>
 				</div>
 				<br />
+				<h5>Kid's Discount Offered?</h5>
 				<div class="radio form-group">
-					<p>Kid's Discount Offered?*</p>
 					<label class="radio-inline" for="kidsFreeDiscountTrue">
 						<input type="radio" name="kidsFreeDiscount" id="kidsFreeDiscountTrue" value=1 ${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == true ? 'checked' : '' }> Yes!
 					</label>
 					<label class="radio-inline" for="kidsFreeDiscountFalse">
-						<input type="radio" name="kidsFreeDiscount" id="kidsFreeDiscountFalse" value=0   ${empty BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount || BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == false ? 'checked' : '' }> No
+						<input type="radio" name="kidsFreeDiscount" id="kidsFreeDiscountFalse" value=0   ${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == false ? 'checked' : '' }> No
 					</label>
 				</div>
 			</div>
@@ -286,7 +285,7 @@
 										<input type="radio" name="restroomClean" id="restroomCleanTrue" value=1 ${BUSINESS_RESTROOM.clean == true ? 'checked' : '' }> Yes!
 									</label>
 									<label class="radio-inline" for="restroomClean">
-										<input type="radio" name="restroomClean" id="restroomCleanFalse" value=0  ${empty BUSINESS_RESTROOM.clean || BUSINESS_RESTROOM.clean == false ? 'checked' : '' }> No
+										<input type="radio" name="restroomClean" id="restroomCleanFalse" value=0  ${BUSINESS_RESTROOM.clean == false ? 'checked' : '' }> No
 									</label>
 								</div>
 				      		</div>
@@ -297,7 +296,7 @@
 										<input type="radio" name="toddlerSeat" id="toddlerSeatTrue" value=1 ${BUSINESS_RESTROOM.toddlerSeat == true ? 'checked' : '' }> Yes!
 									</label>
 									<label class="radio-inline" for="toddlerSeat">
-										<input type="radio" name="toddlerSeat" id="toddlerSeatFalse" value=0  ${empty BUSINESS_RESTROOM.toddlerSeat || BUSINESS_RESTROOM.toddlerSeat == false ? 'checked' : '' }> No
+										<input type="radio" name="toddlerSeat" id="toddlerSeatFalse" value=0  ${BUSINESS_RESTROOM.toddlerSeat == false ? 'checked' : '' }> No
 									</label>
 								</div>
 				      		</div>
@@ -308,7 +307,7 @@
 										<input type="radio" name="handDryer" id="handDryerTrue" value=1 ${BUSINESS_RESTROOM.handDryer == true ? 'checked' : '' }> Yes
 									</label>
 									<label class="radio-inline" for="handDryer">
-										<input type="radio" name="handDryer" id="handDryerFalse" value=0  ${empty BUSINESS_RESTROOM.handDryer || BUSINESS_RESTROOM.handDryer == false ? 'checked' : '' }> No!
+										<input type="radio" name="handDryer" id="handDryerFalse" value=0  ${BUSINESS_RESTROOM.handDryer == false ? 'checked' : '' }> No!
 									</label>
 								</div>
 				      		</div>
@@ -354,7 +353,7 @@
 										<input type="radio" name="breastfeedingClean" id="breastfeedingCleanTrue" value=1 ${BUSINESS_BREASTFEEDING.clean == true ? 'checked' : '' }> Yes!
 									</label>
 									<label class="radio-inline" for="breastfeedingClean">
-										<input type="radio" name="breastfeedingClean" id="breastfeedingCleanFalse" value=0  ${empty BUSINESS_BREASTFEEDING.clean || BUSINESS_BREASTFEEDING.clean == false ? 'checked' : '' }> No
+										<input type="radio" name="breastfeedingClean" id="breastfeedingCleanFalse" value=0  ${BUSINESS_BREASTFEEDING.clean == false ? 'checked' : '' }> No
 									</label>
 								</div>
 				      		</div>
@@ -365,7 +364,7 @@
 										<input type="radio" name="comfortable" id="comfortableTrue" value=1 ${BUSINESS_BREASTFEEDING.comfortable == true ? 'checked' : '' }> Yes!
 									</label>
 									<label class="radio-inline" for="comfortable">
-										<input type="radio" name="comfortable" id="comfortableFalse" value=0  ${empty BUSINESS_BREASTFEEDING.comfortable || BUSINESS_BREASTFEEDING.comfortable == false ? 'checked' : '' }> No
+										<input type="radio" name="comfortable" id="comfortableFalse" value=0  ${BUSINESS_BREASTFEEDING.comfortable == false ? 'checked' : '' }> No
 									</label>
 								</div>
 				      		</div>
@@ -376,7 +375,7 @@
 										<input type="radio" name="bottleWarmer" id="bottleWarmerTrue" value=1 ${BUSINESS_BREASTFEEDING.bottleWarmer == true ? 'checked' : '' }> Yes
 									</label>
 									<label class="radio-inline" for="bottleWarmer">
-										<input type="radio" name="bottleWarmer" id="bottleWarmerFalse" value=0  ${empty BUSINESS_BREASTFEEDING.bottleWarmer || BUSINESS_BREASTFEEDING.bottleWarmer == false ? 'checked' : '' }> No!
+										<input type="radio" name="bottleWarmer" id="bottleWarmerFalse" value=0  ${BUSINESS_BREASTFEEDING.bottleWarmer == false ? 'checked' : '' }> No!
 									</label>
 								</div>
 				      		</div>
@@ -422,7 +421,7 @@
 										<input type="radio" name="playAreaClean" id="playAreaCleanTrue" value=1 ${BUSINESS_PLAY_AREA.clean == true ? 'checked' : '' }> Yes, mostly.
 									</label>
 									<label class="radio-inline" for="playAreaClean">
-										<input type="radio" name="playAreaClean" id="playAreaCleanFalse" value=0  ${empty BUSINESS_PLAY_AREA.clean || BUSINESS_PLAY_AREA.clean == false ? 'checked' : '' }> Nope.
+										<input type="radio" name="playAreaClean" id="playAreaCleanFalse" value=0  ${BUSINESS_PLAY_AREA.clean == false ? 'checked' : '' }> Nope.
 									</label>
 								</div>
 				      		</div>
@@ -444,7 +443,7 @@
 										<input type="radio" name="gated" id="gatedTrue" value=1 ${BUSINESS_PLAY_AREA.gated == true ? 'checked' : '' }> Yes.
 									</label>
 									<label class="radio-inline" for="gated">
-										<input type="radio" name="gated" id="gatedFalse" value=0  ${empty BUSINESS_PLAY_AREA.gated || BUSINESS_PLAY_AREA.gated == false ? 'checked' : '' }> Nope.
+										<input type="radio" name="gated" id="gatedFalse" value=0  ${BUSINESS_PLAY_AREA.gated == false ? 'checked' : '' }> Nope.
 									</label>
 								</div>
 				      		</div>
@@ -455,7 +454,7 @@
 										<input type="radio" name="fun" id="funTrue" value=1 ${BUSINESS_PLAY_AREA.fun == true ? 'checked' : '' }> Yes, mostly.
 									</label>
 									<label class="radio-inline" for="fun">
-										<input type="radio" name="fun" id="funFalse" value=0  ${empty BUSINESS_PLAY_AREA.fun || BUSINESS_PLAY_AREA.fun == false ? 'checked' : '' }> Not really.
+										<input type="radio" name="fun" id="funFalse" value=0  ${BUSINESS_PLAY_AREA.fun == false ? 'checked' : '' }> Not really.
 									</label>
 								</div>
 				      		</div>
@@ -493,7 +492,7 @@
 										<input type="radio" name="activities" id="activitiesTrue" value=1 ${BUSINESS_RESTAURANT_MENU.activities == true ? 'checked' : '' }> Crayons (or the like)
 									</label>
 									<label class="radio-inline" for="activities">
-										<input type="radio" name="activities" id="activitiesFalse" value=0  ${empty BUSINESS_RESTAURANT_MENU.activities || BUSINESS_RESTAURANT_MENU.activities == false ? 'checked' : '' }> Not provided
+										<input type="radio" name="activities" id="activitiesFalse" value=0  ${BUSINESS_RESTAURANT_MENU.activities == false ? 'checked' : '' }> Not provided
 									</label>
 								</div>
 				      		</div>

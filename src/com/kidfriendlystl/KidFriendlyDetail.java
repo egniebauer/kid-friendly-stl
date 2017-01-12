@@ -3,15 +3,15 @@ package com.kidfriendlystl;
 public class KidFriendlyDetail {
 	
 	private int businessID;
-	private boolean multipleFamilies;
+	private Boolean multipleFamilies;
 	private boolean morning;
 	private boolean afternoon;
 	private boolean evening;
-	private boolean kidsFreeDiscount;
+	private Boolean kidsFreeDiscount;
 	private String kidsFreeDiscountDetail;
 	
-	public KidFriendlyDetail(int businessID, boolean multipleFamilies, boolean morning,
-			boolean afternoon, boolean evening, boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
+	public KidFriendlyDetail(int businessID, Boolean multipleFamilies, boolean morning,
+			boolean afternoon, boolean evening, Boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
 		this.businessID = businessID;
 		this.multipleFamilies = multipleFamilies;
 		this.morning = morning;
@@ -21,8 +21,8 @@ public class KidFriendlyDetail {
 		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
 	}
 
-	public KidFriendlyDetail(boolean multipleFamilies, boolean morning,
-			boolean afternoon, boolean evening, boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
+	public KidFriendlyDetail(Boolean multipleFamilies, boolean morning,
+			boolean afternoon, boolean evening, Boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
 		this.multipleFamilies = multipleFamilies;
 		this.morning = morning;
 		this.afternoon = afternoon;
@@ -30,12 +30,33 @@ public class KidFriendlyDetail {
 		this.kidsFreeDiscount = kidsFreeDiscount;
 		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
 	}
+	
+	public KidFriendlyDetail(int businessID, boolean multipleFamilies, boolean morning,
+			boolean afternoon, boolean evening, boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
+		this.businessID = businessID;
+		this.multipleFamilies = new Boolean(multipleFamilies);
+		this.morning = morning;
+		this.afternoon = afternoon;
+		this.evening = evening;
+		this.kidsFreeDiscount = new Boolean (kidsFreeDiscount);
+		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
+	}
+
+	public KidFriendlyDetail(boolean multipleFamilies, boolean morning,
+			boolean afternoon, boolean evening, boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
+		this.multipleFamilies = new Boolean(multipleFamilies);
+		this.morning = morning;
+		this.afternoon = afternoon;
+		this.evening = evening;
+		this.kidsFreeDiscount = new Boolean (kidsFreeDiscount);
+		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
+	}
 
 	public int getBusinessID() {
 		return businessID;
 	}
 
-	public boolean isMultipleFamilies() {
+	public Boolean isMultipleFamilies() {
 		return multipleFamilies;
 	}
 
@@ -51,7 +72,7 @@ public class KidFriendlyDetail {
 		return evening;
 	}
 
-	public boolean isKidsFreeDiscount() {
+	public Boolean isKidsFreeDiscount() {
 		return kidsFreeDiscount;
 	}
 
@@ -64,6 +85,9 @@ public class KidFriendlyDetail {
 	}
 
 	public void setMultipleFamilies(boolean multipleFamilies) {
+		this.multipleFamilies = Boolean.valueOf(multipleFamilies);
+	}
+	public void setMultipleFamilies(Boolean multipleFamilies) {
 		this.multipleFamilies = multipleFamilies;
 	}
 
@@ -80,6 +104,9 @@ public class KidFriendlyDetail {
 	}
 
 	public void setKidsFreeDiscount(boolean kidsFreeDiscount) {
+		this.kidsFreeDiscount = Boolean.valueOf(kidsFreeDiscount);
+	}
+	public void setKidsFreeDiscount(Boolean kidsFreeDiscount) {
 		this.kidsFreeDiscount = kidsFreeDiscount;
 	}
 

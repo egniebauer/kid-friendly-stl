@@ -17,9 +17,18 @@ public class CreateTable {
 		String[] breastfeedingLocations = request.getParameterValues("poppingBoobs"); 
 
 		// assign data to parameters
-		boolean clean = breastfeedingCleanRadio.equals("1") ? true : false;
-		boolean comfortable = comfortableRadio.equals("1") ? true : false;
-		boolean bottleWarmer = bottleWarmerRadio.equals("1") ? true : false;
+		Boolean clean = null;
+		if (breastfeedingCleanRadio != null) {
+			clean = breastfeedingCleanRadio.equals("1") ? true : false;
+		}
+		Boolean comfortable = null;
+		if (comfortableRadio != null) {
+			comfortable = comfortableRadio.equals("1") ? true : false;
+		}
+		Boolean bottleWarmer = null;
+		if (bottleWarmerRadio != null) {
+			bottleWarmer = bottleWarmerRadio.equals("1") ? true : false;
+		}
 		
 		boolean lactationRoom = false;
 		boolean quietArea = false;
@@ -61,9 +70,18 @@ public class CreateTable {
 		String[] locations = request.getParameterValues("location");
 
 		// set parameters 
-		boolean clean = playAreaCleanRadio.equals("1") ? true : false;
-		boolean gated = gatedRadio.equals("1") ? true : false;
-		boolean fun = funRadio.equals("1") ? true : false;
+		Boolean clean = null;
+		if (playAreaCleanRadio != null) {
+			clean = playAreaCleanRadio.equals("1") ? true : false;
+		}
+		Boolean gated = null;
+		if (gatedRadio != null) {
+			gated = gatedRadio.equals("1") ? true : false;
+		}
+		Boolean fun = null;
+		if (funRadio != null) {
+			fun = funRadio.equals("1") ? true : false;
+		}
 		
 		boolean inside = false;
 		boolean outside = false;
@@ -97,7 +115,10 @@ public class CreateTable {
 		String[] fullMenu = request.getParameterValues("fullMenu");
 		
 		// set data to params
-		boolean activities = activitiesRadio.equals("1") ? true : false;
+		Boolean activities = null;
+		if (activitiesRadio != null) {
+			activities = activitiesRadio.equals("1") ? true : false;
+		}
 
 		boolean highChair = false;
 		boolean booster = false;
@@ -178,9 +199,18 @@ public class CreateTable {
 		String[] changingTables = request.getParameterValues("changingTable");
 		
 		// set data to params
-		boolean clean = restroomCleanRadio.equals("1") ? true : false;
-		boolean toddlerSeat = toddlerSeatRadio.equals("1") ? true : false;
-		boolean handDryer = handDryerRadio.equals("1") ? true : false;
+		Boolean clean = null;
+		if (restroomCleanRadio != null) {
+			clean = restroomCleanRadio.equals("1") ? true : false;
+		}
+		Boolean toddlerSeat = null;
+		if (toddlerSeatRadio != null) {
+			toddlerSeat = toddlerSeatRadio.equals("1") ? true : false;
+		}
+		Boolean handDryer = null;
+		if (handDryerRadio != null) {
+			handDryer = handDryerRadio.equals("1") ? true : false;
+		}
 
 		boolean womensRoom = false;
 		boolean mensRoom = false;
@@ -327,8 +357,14 @@ public class CreateTable {
 		String[] bestTimes = request.getParameterValues("bestTimes");
 
 		// set params
-		boolean multipleFamilies = multipleFamiliesRadio.equals("1") ? true : false;
-		boolean kidsFreeDiscount = kidsFreeDiscountRadio.equals("1") ? true : false;
+		Boolean multipleFamilies = null;
+		if (multipleFamiliesRadio != null) {
+			multipleFamilies = multipleFamiliesRadio.equals("1") ? true : false;
+		}
+		Boolean kidsFreeDiscount = null;
+		if (kidsFreeDiscountRadio !=null) {
+			kidsFreeDiscount = kidsFreeDiscountRadio.equals("1") ? true : false;
+		}
 		
 		boolean morning = false;
 		boolean afternoon = false;
@@ -364,7 +400,7 @@ public class CreateTable {
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");
-		int rating = Integer.parseInt(request.getParameter("businessRating"));
+		String businessRating = request.getParameter("businessRating");
 
 		// format parameters (strip non-digits, leading whitespace, etc.)
 		name = name.replaceFirst("^\\s+", "");
@@ -375,12 +411,14 @@ public class CreateTable {
 		phone = phone.replaceFirst("^1", "");
 				
 		// rating breakdown
+		int rating = businessRating != null ? Integer.parseInt(businessRating) : 0;
+		
 		int rating1 = 0;
 		int rating2 = 0;
 		int rating3 = 0;
 		int rating4 = 0;
 		int rating5 = 0;
-
+		
 		switch (rating) {
 			case 1:	rating1 = 1;
 					break;
@@ -414,7 +452,7 @@ public class CreateTable {
 		String zip = request.getParameter("businessZip");
 		String phone = request.getParameter("businessPhone");
 		String website = request.getParameter("businessWebsite");
-		int rating = Integer.parseInt(request.getParameter("businessRating"));
+		String businessRating = request.getParameter("businessRating");
 
 		// format parameters (strip non-digits, leading whitespace, etc.)
 		name = name.replaceFirst("^\\s+", "");
@@ -425,6 +463,8 @@ public class CreateTable {
 		phone = phone.replaceFirst("^1", "");
 
 		// rating breakdown
+		int rating = businessRating != null ? Integer.parseInt(businessRating) : 0;
+		
 		int rating1 = 0;
 		int rating2 = 0;
 		int rating3 = 0;
