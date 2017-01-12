@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import com.kidfriendlystl.DatabaseUtils;
 
 import javax.sql.DataSource;
 
@@ -18,24 +19,6 @@ public class AgeRangeDAO {
 		this.dataSource = theDataSource;
 	}
 	
-	private void close(Connection myConn, Statement myStmt, ResultSet myRS) {
-		try {
-			if (myRS != null) {
-				myRS.close();
-			}
-			
-			if (myStmt != null) {
-				myStmt.close();
-			}
-			
-			if (myConn != null) {
-				myConn.close();	// doesn't really close ... returns it to connection pool
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public List<AgeRange> getAll() 
 			throws Exception {
 		
@@ -43,30 +26,30 @@ public class AgeRangeDAO {
 		List<AgeRange> ages = new ArrayList<>();
 		
 		// create JDBC objects
-		Connection myConn = null;
-		Statement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create sql statement
 			String sql = "SELECT * FROM kid_friendly_stl.age_range";
-			myStmt = myConn.createStatement();
+			stmt = conn.createStatement();
 
 			// execute query
-			myRS = myStmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 
 			// process result set
-			while (myRS.next()){
+			while (rs.next()){
 				//retrieve data from ResultSet row
-				int businessID = myRS.getInt("business_id");
-				boolean baby = myRS.getBoolean("baby");
-				boolean gradeSchooler = myRS.getBoolean("grade_schooler");
-				boolean preschooler = myRS.getBoolean("preschooler");
-				boolean teen = myRS.getBoolean("teen");
-				boolean toddler = myRS.getBoolean("toddler");
+				int businessID = rs.getInt("business_id");
+				boolean baby = rs.getBoolean("baby");
+				boolean gradeSchooler = rs.getBoolean("grade_schooler");
+				boolean preschooler = rs.getBoolean("preschooler");
+				boolean teen = rs.getBoolean("teen");
+				boolean toddler = rs.getBoolean("toddler");
 				
 				// create new AgeRange object
 				AgeRange currentAgeRange = new AgeRange(businessID, baby, toddler, preschooler,
@@ -80,7 +63,7 @@ public class AgeRangeDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 
@@ -92,32 +75,32 @@ public class AgeRangeDAO {
 		int businessID;
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// convert theBusinesstID to int
 			businessID = Integer.parseInt(theBusinessID);
 			
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement SELECT theAgeRage
 			String sql = "SELECT * FROM kid_friendly_stl.age_range WHERE business_id=?";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1, businessID);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, businessID);
 			
 			// execute QUERY
-			myRS = myStmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			// retrieve data from ResultSet and assign to empty AgeRange
-			if (myRS.next()) {
-				boolean baby = myRS.getBoolean("baby");
-				boolean toddler = myRS.getBoolean("toddler");
-				boolean preschooler = myRS.getBoolean("preschooler");
-				boolean gradeSchooler = myRS.getBoolean("grade_schooler");
-				boolean teen = myRS.getBoolean("teen");
+			if (rs.next()) {
+				boolean baby = rs.getBoolean("baby");
+				boolean toddler = rs.getBoolean("toddler");
+				boolean preschooler = rs.getBoolean("preschooler");
+				boolean gradeSchooler = rs.getBoolean("grade_schooler");
+				boolean teen = rs.getBoolean("teen");
 				
 				theAgeRange = new AgeRange(businessID, baby, toddler, preschooler,
 						gradeSchooler, teen);
@@ -131,7 +114,7 @@ public class AgeRangeDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 
@@ -139,34 +122,34 @@ public class AgeRangeDAO {
 			throws Exception {
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for INSERT
 			String sql = "INSERT INTO kid_friendly_stl.age_range "
 					+ "(business_id, baby, toddler, preschooler, grade_schooler, teen) "
 					+ "values (?, ?, ?, ?, ?, ?)";
 			
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setInt(1, newAgeRange.getBusinessID());
-			myStmt.setBoolean(2, newAgeRange.isBaby());
-			myStmt.setBoolean(3, newAgeRange.isToddler());
-			myStmt.setBoolean(4, newAgeRange.isPreschooler());
-			myStmt.setBoolean(5, newAgeRange.isGradeSchooler());
-			myStmt.setBoolean(6, newAgeRange.isTeen());
+			stmt.setInt(1, newAgeRange.getBusinessID());
+			stmt.setBoolean(2, newAgeRange.isBaby());
+			stmt.setBoolean(3, newAgeRange.isToddler());
+			stmt.setBoolean(4, newAgeRange.isPreschooler());
+			stmt.setBoolean(5, newAgeRange.isGradeSchooler());
+			stmt.setBoolean(6, newAgeRange.isTeen());
 			
 			// execute SQL INSERT
-			myStmt.execute();			
+			stmt.execute();			
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);			
+			DatabaseUtils.close(conn, stmt, null);			
 		}
 		
 	}
@@ -175,37 +158,34 @@ public class AgeRangeDAO {
 			throws Exception {
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for UPDATE
 			String sql = "UPDATE kid_friendly_stl.age_range "
 					+ "SET baby=?, toddler=?, preschooler=?, grade_schooler=?, teen=? "
 					+ "WHERE business_id=?";
 			
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setBoolean(1, updatedAgeRange.isBaby());
-			myStmt.setBoolean(2, updatedAgeRange.isToddler());
-			myStmt.setBoolean(3, updatedAgeRange.isPreschooler());
-			myStmt.setBoolean(4, updatedAgeRange.isGradeSchooler());
-			myStmt.setBoolean(5, updatedAgeRange.isTeen());
-			myStmt.setInt(6, updatedAgeRange.getBusinessID());
+			stmt.setBoolean(1, updatedAgeRange.isBaby());
+			stmt.setBoolean(2, updatedAgeRange.isToddler());
+			stmt.setBoolean(3, updatedAgeRange.isPreschooler());
+			stmt.setBoolean(4, updatedAgeRange.isGradeSchooler());
+			stmt.setBoolean(5, updatedAgeRange.isTeen());
+			stmt.setInt(6, updatedAgeRange.getBusinessID());
 			
 			// execute SQL INSERT
-			myStmt.execute();			
+			stmt.execute();			
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);			
+			DatabaseUtils.close(conn, stmt, null);			
 		}
-		
 	}
-
-
 }

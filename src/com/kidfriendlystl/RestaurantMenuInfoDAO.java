@@ -17,24 +17,6 @@ public class RestaurantMenuInfoDAO {
 	public RestaurantMenuInfoDAO(DataSource theDataSource) {
 		this.dataSource = theDataSource;
 	}
-	
-	private void close(Connection myConn, Statement myStmt, ResultSet myRS) {
-		try {
-			if (myRS != null) {
-				myRS.close();
-			}
-			
-			if (myStmt != null) {
-				myStmt.close();
-			}
-			
-			if (myConn != null) {
-				myConn.close();	// doesn't really close ... returns it to connection pool
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public List<RestaurantMenuInfo> getAll() throws Exception {
 		
@@ -42,37 +24,37 @@ public class RestaurantMenuInfoDAO {
 		List<RestaurantMenuInfo> theList = new ArrayList<>();
 		
 		// create JDBC objects
-		Connection myConn = null;
-		Statement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 					
 			// create a sql statement
 			String sql = "SELECT * FROM kid_friendly_stl.restaurant_menu_information";
-			myStmt = myConn.createStatement();
+			stmt = conn.createStatement();
 			
 			// execute the query
-			myRS = myStmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			
 			// process the ResultSet
-			while (myRS.next()) {
+			while (rs.next()) {
 				
 				// retrieve data and set params
-				int businessID = myRS.getInt("business_id");
-				boolean highChair = myRS.getBoolean("high_chair");
-				boolean booster = myRS.getBoolean("booster");
-				boolean activities = myRS.getBoolean("activities");
-				boolean healthy = myRS.getBoolean("healthy");
-				boolean allergyFriendly = myRS.getBoolean("allergy_friendly");
-				boolean unhealthy = myRS.getBoolean("unhealthy");
-				boolean noKidsMenu = myRS.getBoolean("no_kids_menu");
-				boolean manyOpts = myRS.getBoolean("many_opts");
-				boolean someOpts = myRS.getBoolean("some_opts");
-				boolean fewOpts = myRS.getBoolean("few_opts");
-				boolean noOpts = myRS.getBoolean("no_opts");
+				int businessID = rs.getInt("business_id");
+				boolean highChair = rs.getBoolean("high_chair");
+				boolean booster = rs.getBoolean("booster");
+				boolean activities = rs.getBoolean("activities");
+				boolean healthy = rs.getBoolean("healthy");
+				boolean allergyFriendly = rs.getBoolean("allergy_friendly");
+				boolean unhealthy = rs.getBoolean("unhealthy");
+				boolean noKidsMenu = rs.getBoolean("no_kids_menu");
+				boolean manyOpts = rs.getBoolean("many_opts");
+				boolean someOpts = rs.getBoolean("some_opts");
+				boolean fewOpts = rs.getBoolean("few_opts");
+				boolean noOpts = rs.getBoolean("no_opts");
 				
 				// pass params to new object
 				RestaurantMenuInfo currentRow = new RestaurantMenuInfo(businessID, highChair, booster, activities, healthy, allergyFriendly, unhealthy, noKidsMenu, manyOpts, someOpts, fewOpts, noOpts);
@@ -85,7 +67,7 @@ public class RestaurantMenuInfoDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 	
@@ -96,40 +78,40 @@ public class RestaurantMenuInfoDAO {
 		int businessID;
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// convert string to int for business id
 			businessID = Integer.parseInt(theBusinessID);
 			
 			// get a connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create a PreparedStatement
 			String sql = "SELECT * FROM kid_friendly_stl.restaurant_menu_information "
 					+ "WHERE business_id=?";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1, businessID);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, businessID);
 			
 			// execute the query
-			myRS = myStmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			//process the results
-			if (myRS.next()) {
+			if (rs.next()) {
 				//retrieve data and assign to variables
-				boolean highChair = myRS.getBoolean("high_chair");
-				boolean booster = myRS.getBoolean("booster");
-				boolean activities = myRS.getBoolean("activities");
-				boolean healthy = myRS.getBoolean("healthy");
-				boolean allergyFriendly = myRS.getBoolean("allergy_friendly");
-				boolean unhealthy = myRS.getBoolean("unhealthy");
-				boolean noKidsMenu = myRS.getBoolean("no_kids_menu");
-				boolean manyOpts = myRS.getBoolean("many_opts");
-				boolean someOpts = myRS.getBoolean("some_opts");
-				boolean fewOpts = myRS.getBoolean("few_opts");
-				boolean noOpts = myRS.getBoolean("no_opts");
+				boolean highChair = rs.getBoolean("high_chair");
+				boolean booster = rs.getBoolean("booster");
+				boolean activities = rs.getBoolean("activities");
+				boolean healthy = rs.getBoolean("healthy");
+				boolean allergyFriendly = rs.getBoolean("allergy_friendly");
+				boolean unhealthy = rs.getBoolean("unhealthy");
+				boolean noKidsMenu = rs.getBoolean("no_kids_menu");
+				boolean manyOpts = rs.getBoolean("many_opts");
+				boolean someOpts = rs.getBoolean("some_opts");
+				boolean fewOpts = rs.getBoolean("few_opts");
+				boolean noOpts = rs.getBoolean("no_opts");
 				
 				//pass parameters to empty object
 				selectedRow = new RestaurantMenuInfo(businessID, highChair, booster, activities, healthy, allergyFriendly, unhealthy, noKidsMenu, manyOpts, someOpts, fewOpts, noOpts);
@@ -142,84 +124,84 @@ public class RestaurantMenuInfoDAO {
 		}
 		finally{
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 	
 	public void add(RestaurantMenuInfo newRestaurantMenuInfo) throws Exception {
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 					
 			// create PreparedStatement for INSERT
 			String sql = "INSERT INTO kid_friendly_stl.restaurant_menu_information "
 					+ "(business_id, high_chair, booster, activities, healthy, allergy_friendly, unhealthy, no_kids_menu, many_opts, some_opts, few_opts, no_opts) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-			myStmt = myConn.prepareStatement(sql);
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setInt(1, newRestaurantMenuInfo.getBusinessID());
-			myStmt.setBoolean(2, newRestaurantMenuInfo.isHighChair());
-			myStmt.setBoolean(3, newRestaurantMenuInfo.isBooster());
-			myStmt.setBoolean(4, newRestaurantMenuInfo.isActivities());
-			myStmt.setBoolean(5, newRestaurantMenuInfo.isHealthy());
-			myStmt.setBoolean(6, newRestaurantMenuInfo.isAllergyFriendly());
-			myStmt.setBoolean(7, newRestaurantMenuInfo.isUnhealthy());
-			myStmt.setBoolean(8, newRestaurantMenuInfo.isNoKidsMenu());
-			myStmt.setBoolean(9, newRestaurantMenuInfo.isManyOpts());
-			myStmt.setBoolean(10, newRestaurantMenuInfo.isSomeOpts());
-			myStmt.setBoolean(11, newRestaurantMenuInfo.isFewOpts());
-			myStmt.setBoolean(12, newRestaurantMenuInfo.isNoOpts());
+			stmt.setInt(1, newRestaurantMenuInfo.getBusinessID());
+			stmt.setBoolean(2, newRestaurantMenuInfo.isHighChair());
+			stmt.setBoolean(3, newRestaurantMenuInfo.isBooster());
+			stmt.setBoolean(4, newRestaurantMenuInfo.isActivities());
+			stmt.setBoolean(5, newRestaurantMenuInfo.isHealthy());
+			stmt.setBoolean(6, newRestaurantMenuInfo.isAllergyFriendly());
+			stmt.setBoolean(7, newRestaurantMenuInfo.isUnhealthy());
+			stmt.setBoolean(8, newRestaurantMenuInfo.isNoKidsMenu());
+			stmt.setBoolean(9, newRestaurantMenuInfo.isManyOpts());
+			stmt.setBoolean(10, newRestaurantMenuInfo.isSomeOpts());
+			stmt.setBoolean(11, newRestaurantMenuInfo.isFewOpts());
+			stmt.setBoolean(12, newRestaurantMenuInfo.isNoOpts());
 			
 			// execute INSERT
-			myStmt.execute();
+			stmt.execute();
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 	}
 	
 	public void update(RestaurantMenuInfo updatedRestaurantMenuInfo) throws Exception {
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for UPDATE
 			String sql = "UPDATE kid_friendly_stl.restaurant_menu_information "
 					+ "SET high_chair=?, booster=?, activities=?, healthy=?, allergy_friendly=?, unhealthy=?, no_kids_menu=?, many_opts=?, some_opts=?, few_opts=?, no_opts=? "
 					+ "WHERE business_id=?";
 			
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setBoolean(1, updatedRestaurantMenuInfo.isHighChair());
-			myStmt.setBoolean(2, updatedRestaurantMenuInfo.isBooster());
-			myStmt.setBoolean(3, updatedRestaurantMenuInfo.isActivities());
-			myStmt.setBoolean(4, updatedRestaurantMenuInfo.isHealthy());
-			myStmt.setBoolean(5, updatedRestaurantMenuInfo.isAllergyFriendly());
-			myStmt.setBoolean(6, updatedRestaurantMenuInfo.isUnhealthy());
-			myStmt.setBoolean(7, updatedRestaurantMenuInfo.isNoKidsMenu());
-			myStmt.setBoolean(8, updatedRestaurantMenuInfo.isManyOpts());
-			myStmt.setBoolean(9, updatedRestaurantMenuInfo.isSomeOpts());
-			myStmt.setBoolean(10, updatedRestaurantMenuInfo.isFewOpts());
-			myStmt.setBoolean(11, updatedRestaurantMenuInfo.isNoOpts());
-			myStmt.setInt(12, updatedRestaurantMenuInfo.getBusinessID());
+			stmt.setBoolean(1, updatedRestaurantMenuInfo.isHighChair());
+			stmt.setBoolean(2, updatedRestaurantMenuInfo.isBooster());
+			stmt.setBoolean(3, updatedRestaurantMenuInfo.isActivities());
+			stmt.setBoolean(4, updatedRestaurantMenuInfo.isHealthy());
+			stmt.setBoolean(5, updatedRestaurantMenuInfo.isAllergyFriendly());
+			stmt.setBoolean(6, updatedRestaurantMenuInfo.isUnhealthy());
+			stmt.setBoolean(7, updatedRestaurantMenuInfo.isNoKidsMenu());
+			stmt.setBoolean(8, updatedRestaurantMenuInfo.isManyOpts());
+			stmt.setBoolean(9, updatedRestaurantMenuInfo.isSomeOpts());
+			stmt.setBoolean(10, updatedRestaurantMenuInfo.isFewOpts());
+			stmt.setBoolean(11, updatedRestaurantMenuInfo.isNoOpts());
+			stmt.setInt(12, updatedRestaurantMenuInfo.getBusinessID());
 
 			// execute UPDATE
-			myStmt.execute();
+			stmt.execute();
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 	}
 }

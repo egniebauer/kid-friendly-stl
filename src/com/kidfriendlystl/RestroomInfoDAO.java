@@ -18,55 +18,37 @@ public class RestroomInfoDAO {
 		this.dataSource = theDataSource;
 	}
 	
-	private void close(Connection myConn, Statement myStmt, ResultSet myRS) {
-		try {
-			if (myRS != null) {
-				myRS.close();
-			}
-			
-			if (myStmt != null) {
-				myStmt.close();
-			}
-			
-			if (myConn != null) {
-				myConn.close();	// doesn't really close ... returns it to connection pool
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public List<RestroomInfo> getAll() throws Exception {
 		// create empty list
 		List<RestroomInfo> theList = new ArrayList<>();
 		
 		// create JDBC objects
-		Connection myConn = null;
-		Statement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 					
 			// create a sql statement
 			String sql = "SELECT * FROM kid_friendly_stl.restroom_information";
-			myStmt = myConn.createStatement();
+			stmt = conn.createStatement();
 			
 			// execute the query
-			myRS = myStmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			
 			// process the ResultSet
-			while (myRS.next()) {
+			while (rs.next()) {
 				// retrieve data and set params
-				int businessID = myRS.getInt("business_id");
-				boolean clean = myRS.getBoolean("clean");
-				boolean toddlerSeat = myRS.getBoolean("toddler_seat");
-				boolean handDryer = myRS.getBoolean("hand_dryer");
-				boolean womensRoom = myRS.getBoolean("womens_room");
-				boolean mensRoom = myRS.getBoolean("mens_room");
-				boolean familyRoom = myRS.getBoolean("family_room");
-				boolean noChangingTable = myRS.getBoolean("no_changing_table");
+				int businessID = rs.getInt("business_id");
+				boolean clean = rs.getBoolean("clean");
+				boolean toddlerSeat = rs.getBoolean("toddler_seat");
+				boolean handDryer = rs.getBoolean("hand_dryer");
+				boolean womensRoom = rs.getBoolean("womens_room");
+				boolean mensRoom = rs.getBoolean("mens_room");
+				boolean familyRoom = rs.getBoolean("family_room");
+				boolean noChangingTable = rs.getBoolean("no_changing_table");
 				
 				// pass params to new object
 				RestroomInfo currentRow = new RestroomInfo(businessID, clean, toddlerSeat, handDryer, womensRoom, mensRoom, familyRoom, noChangingTable);
@@ -79,7 +61,7 @@ public class RestroomInfoDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 	
@@ -89,36 +71,36 @@ public class RestroomInfoDAO {
 		int businessID;
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// convert string to int for business id
 			businessID = Integer.parseInt(theBusinessID);
 			
 			// get a connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create a PreparedStatement
 			String sql = "SELECT * FROM kid_friendly_stl.restroom_information WHERE business_id=?";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1, businessID);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, businessID);
 			
 			// execute the query
-			myRS = myStmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			//process the results
-			if (myRS.next()) {
+			if (rs.next()) {
 				//retrieve data and assign to variables
-				businessID = myRS.getInt("business_id");
-				boolean clean = myRS.getBoolean("clean");
-				boolean toddlerSeat = myRS.getBoolean("toddler_seat");
-				boolean handDryer = myRS.getBoolean("hand_dryer");
-				boolean womensRoom = myRS.getBoolean("womens_room");
-				boolean mensRoom = myRS.getBoolean("mens_room");
-				boolean familyRoom = myRS.getBoolean("family_room");
-				boolean noChangingTable = myRS.getBoolean("no_changing_table");
+				businessID = rs.getInt("business_id");
+				boolean clean = rs.getBoolean("clean");
+				boolean toddlerSeat = rs.getBoolean("toddler_seat");
+				boolean handDryer = rs.getBoolean("hand_dryer");
+				boolean womensRoom = rs.getBoolean("womens_room");
+				boolean mensRoom = rs.getBoolean("mens_room");
+				boolean familyRoom = rs.getBoolean("family_room");
+				boolean noChangingTable = rs.getBoolean("no_changing_table");
 				
 				// pass to empty object
 				selectedRow = new RestroomInfo(businessID, clean, toddlerSeat, handDryer, womensRoom, mensRoom, familyRoom, noChangingTable);
@@ -131,76 +113,76 @@ public class RestroomInfoDAO {
 		}
 		finally{
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 	
 	public void add(RestroomInfo newRestroomInfo) throws Exception {
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for INSERT
 			String sql = "INSERT INTO kid_friendly_stl.restroom_information "
 					+ "(business_id, clean, toddler_seat, hand_dryer, womens_room, mens_room, family_room, no_changing_table) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setInt(1, newRestroomInfo.getBusinessID());
-			myStmt.setBoolean(2, newRestroomInfo.isClean());
-			myStmt.setBoolean(3, newRestroomInfo.isToddlerSeat());
-			myStmt.setBoolean(4, newRestroomInfo.isHandDryer());
-			myStmt.setBoolean(5, newRestroomInfo.isWomensRoom());
-			myStmt.setBoolean(6, newRestroomInfo.isMensRoom());
-			myStmt.setBoolean(7, newRestroomInfo.isFamilyRoom());
-			myStmt.setBoolean(8, newRestroomInfo.isNoChangingTable());
+			stmt.setInt(1, newRestroomInfo.getBusinessID());
+			stmt.setBoolean(2, newRestroomInfo.isClean());
+			stmt.setBoolean(3, newRestroomInfo.isToddlerSeat());
+			stmt.setBoolean(4, newRestroomInfo.isHandDryer());
+			stmt.setBoolean(5, newRestroomInfo.isWomensRoom());
+			stmt.setBoolean(6, newRestroomInfo.isMensRoom());
+			stmt.setBoolean(7, newRestroomInfo.isFamilyRoom());
+			stmt.setBoolean(8, newRestroomInfo.isNoChangingTable());
 
 			// execute INSERT
-			myStmt.execute();
+			stmt.execute();
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 	}
 	
 	public void update(RestroomInfo updatedRestroomInfo) throws Exception {
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for UPDATE
 			String sql = "UPDATE kid_friendly_stl.restroom_information "
 					+ "SET clean=?, toddler_seat=?, hand_dryer=?, womens_room=?, mens_room=?, family_room=?, no_changing_table=? "
 					+ "WHERE business_id=?";
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set params values
-			myStmt.setBoolean(1, updatedRestroomInfo.isClean());
-			myStmt.setBoolean(2, updatedRestroomInfo.isToddlerSeat());
-			myStmt.setBoolean(3, updatedRestroomInfo.isHandDryer());
-			myStmt.setBoolean(4, updatedRestroomInfo.isWomensRoom());
-			myStmt.setBoolean(5, updatedRestroomInfo.isMensRoom());
-			myStmt.setBoolean(6, updatedRestroomInfo.isFamilyRoom());
-			myStmt.setBoolean(7, updatedRestroomInfo.isNoChangingTable());
-			myStmt.setInt(8, updatedRestroomInfo.getBusinessID());
+			stmt.setBoolean(1, updatedRestroomInfo.isClean());
+			stmt.setBoolean(2, updatedRestroomInfo.isToddlerSeat());
+			stmt.setBoolean(3, updatedRestroomInfo.isHandDryer());
+			stmt.setBoolean(4, updatedRestroomInfo.isWomensRoom());
+			stmt.setBoolean(5, updatedRestroomInfo.isMensRoom());
+			stmt.setBoolean(6, updatedRestroomInfo.isFamilyRoom());
+			stmt.setBoolean(7, updatedRestroomInfo.isNoChangingTable());
+			stmt.setInt(8, updatedRestroomInfo.getBusinessID());
 
 			// execute UPDATE
-			myStmt.execute();
+			stmt.execute();
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 	}
 }

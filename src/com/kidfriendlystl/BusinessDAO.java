@@ -17,24 +17,6 @@ public class BusinessDAO {
 	public BusinessDAO(DataSource theDataSource) {
 		this.dataSource = theDataSource;
 	}
-	
-	private void close(Connection myConn, Statement myStmt, ResultSet myRS) {
-		try {
-			if (myRS != null) {
-				myRS.close();
-			}
-			
-			if (myStmt != null) {
-				myStmt.close();
-			}
-			
-			if (myConn != null) {
-				myConn.close();	// doesn't really close ... returns it to connection pool
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public List<Business> getAll() 
 			throws Exception {
@@ -43,37 +25,37 @@ public class BusinessDAO {
 		List<Business> businesses = new ArrayList<>();
 		
 		// create JDBC objects
-		Connection myConn = null;
-		Statement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create sql statement
 			String sql = "SELECT * FROM kid_friendly_stl.business";
-			myStmt = myConn.createStatement();
+			stmt = conn.createStatement();
 
 			// execute query
-			myRS = myStmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 
 			// process result set
-			while (myRS.next()){
+			while (rs.next()){
 				//retrieve data from ResultSet row
-				int id = myRS.getInt("id");
-				String name = myRS.getString("name");
-				String address = myRS.getString("address");
-				String city = myRS.getString("city");
-				State state = State.valueOf(myRS.getString("state"));
-				String zip = myRS.getString("zip");
-				String phone = myRS.getString("phone");
-				String website = myRS.getString("website");
-				int rating1 = myRS.getInt("rating1");
-				int rating2 = myRS.getInt("rating2");
-				int rating3 = myRS.getInt("rating3");
-				int rating4 = myRS.getInt("rating4");
-				int rating5 = myRS.getInt("rating5");
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String address = rs.getString("address");
+				String city = rs.getString("city");
+				State state = State.valueOf(rs.getString("state"));
+				String zip = rs.getString("zip");
+				String phone = rs.getString("phone");
+				String website = rs.getString("website");
+				int rating1 = rs.getInt("rating1");
+				int rating2 = rs.getInt("rating2");
+				int rating3 = rs.getInt("rating3");
+				int rating4 = rs.getInt("rating4");
+				int rating5 = rs.getInt("rating5");
 				
 				// create new Business object
 				Business currentBusiness = new Business(id, name, address, city, state, zip, 
@@ -87,7 +69,7 @@ public class BusinessDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 
@@ -99,39 +81,39 @@ public class BusinessDAO {
 		int businessID;
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// convert theBusinessID to int
 			businessID = Integer.parseInt(theBusinessID);
 			
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement SELECT theBusiness
 			String sql = "SELECT * FROM kid_friendly_stl.business WHERE id=?";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1, businessID);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, businessID);
 			
 			// execute QUERY
-			myRS = myStmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			// retrieve data from ResultSet and assign to empty Business
-			if (myRS.next()) {
-				String name = myRS.getString("name"); 
-				String address = myRS.getString("address"); 
-				String city = myRS.getString("city"); 
-				State state = State.valueOf(myRS.getString("state")); 
-				String zip = myRS.getString("zip");
-				String phone = myRS.getString("phone"); 
-				String website = myRS.getString("website");
-				int rating1 = myRS.getInt("rating1");
-				int rating2 = myRS.getInt("rating2");
-				int rating3 = myRS.getInt("rating3");
-				int rating4 = myRS.getInt("rating4");
-				int rating5 = myRS.getInt("rating5");
+			if (rs.next()) {
+				String name = rs.getString("name"); 
+				String address = rs.getString("address"); 
+				String city = rs.getString("city"); 
+				State state = State.valueOf(rs.getString("state")); 
+				String zip = rs.getString("zip");
+				String phone = rs.getString("phone"); 
+				String website = rs.getString("website");
+				int rating1 = rs.getInt("rating1");
+				int rating2 = rs.getInt("rating2");
+				int rating3 = rs.getInt("rating3");
+				int rating4 = rs.getInt("rating4");
+				int rating5 = rs.getInt("rating5");
 				
 				theBusiness = new Business(businessID, name, address, city, state, zip,
 						phone, website, rating1, rating2, rating3, rating4, rating5);
@@ -145,7 +127,7 @@ public class BusinessDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 
@@ -155,48 +137,48 @@ public class BusinessDAO {
 		int businessID = 0;
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for INSERT
 			String sql = "INSERT INTO kid_friendly_stl.business "
 					+ "(name, address, city, state, zip, phone, website, rating1, rating2, rating3, rating4, rating5) "
 					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
-			myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
 			// set param values
-			myStmt.setString(1, newBusiness.getName());
-			myStmt.setString(2, newBusiness.getAddress());
-			myStmt.setString(3, newBusiness.getCity());
-			myStmt.setString(4, newBusiness.getState().toString());
-			myStmt.setString(5, newBusiness.getZip());
-			myStmt.setString(6, newBusiness.getPhone());
-			myStmt.setString(7, newBusiness.getWebsite());
-			myStmt.setInt(8, newBusiness.getRating1());
-			myStmt.setInt(9, newBusiness.getRating2());
-			myStmt.setInt(10, newBusiness.getRating3());
-			myStmt.setInt(11, newBusiness.getRating4());
-			myStmt.setInt(12, newBusiness.getRating5());
+			stmt.setString(1, newBusiness.getName());
+			stmt.setString(2, newBusiness.getAddress());
+			stmt.setString(3, newBusiness.getCity());
+			stmt.setString(4, newBusiness.getState().toString());
+			stmt.setString(5, newBusiness.getZip());
+			stmt.setString(6, newBusiness.getPhone());
+			stmt.setString(7, newBusiness.getWebsite());
+			stmt.setInt(8, newBusiness.getRating1());
+			stmt.setInt(9, newBusiness.getRating2());
+			stmt.setInt(10, newBusiness.getRating3());
+			stmt.setInt(11, newBusiness.getRating4());
+			stmt.setInt(12, newBusiness.getRating5());
 			
 			// execute SQL INSERT
-			myStmt.execute();
-			myRS = myStmt.getGeneratedKeys();
+			stmt.execute();
+			rs = stmt.getGeneratedKeys();
 
 			// create int for business id
-			if(myRS.next()) {
-				   businessID = myRS.getInt(1);
+			if(rs.next()) {
+				   businessID = rs.getInt(1);
 				}			
 			return businessID;
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 
 	}
@@ -205,42 +187,42 @@ public class BusinessDAO {
 			throws Exception {
 				
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for UPDATE
 			String sql = "UPDATE kid_friendly_stl.business "
 					+ "SET name=?, address=?, city=?, state=?, zip=?, phone=?, website=?, rating1=rating1+?, rating2=rating2+?, rating3=rating3+?, rating4=rating4+?, rating5=rating5+? "
 					+ "WHERE id=?";
 			
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setString(1, updatedBusiness.getName());
-			myStmt.setString(2, updatedBusiness.getAddress());
-			myStmt.setString(3, updatedBusiness.getCity());
-			myStmt.setString(4, updatedBusiness.getState().toString());
-			myStmt.setString(5, updatedBusiness.getZip());
-			myStmt.setString(6, updatedBusiness.getPhone());
-			myStmt.setString(7, updatedBusiness.getWebsite());
-			myStmt.setInt(8, updatedBusiness.getRating1());
-			myStmt.setInt(9, updatedBusiness.getRating2());
-			myStmt.setInt(10, updatedBusiness.getRating3());
-			myStmt.setInt(11, updatedBusiness.getRating4());
-			myStmt.setInt(12, updatedBusiness.getRating5());
-			myStmt.setInt(13, updatedBusiness.getId());
+			stmt.setString(1, updatedBusiness.getName());
+			stmt.setString(2, updatedBusiness.getAddress());
+			stmt.setString(3, updatedBusiness.getCity());
+			stmt.setString(4, updatedBusiness.getState().toString());
+			stmt.setString(5, updatedBusiness.getZip());
+			stmt.setString(6, updatedBusiness.getPhone());
+			stmt.setString(7, updatedBusiness.getWebsite());
+			stmt.setInt(8, updatedBusiness.getRating1());
+			stmt.setInt(9, updatedBusiness.getRating2());
+			stmt.setInt(10, updatedBusiness.getRating3());
+			stmt.setInt(11, updatedBusiness.getRating4());
+			stmt.setInt(12, updatedBusiness.getRating5());
+			stmt.setInt(13, updatedBusiness.getId());
 			
 			// execute SQL UPDATE
-			myStmt.execute();
+			stmt.execute();
 
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 		
 	}
@@ -248,24 +230,24 @@ public class BusinessDAO {
 	public void delete(int id) throws Exception {
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create SQL and PreparedStatement to DELETE business
 			String sql = "DELETE FROM kid_friendly_stl.business WHERE id=?";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1, id);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
 			
 			// execute SQL statement
-			myStmt.execute();
+			stmt.execute();
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 	}
 
@@ -273,24 +255,24 @@ public class BusinessDAO {
 			throws Exception {
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create SQL and PreparedStatement to SELECT buisness if name matches
 			String sql = "SELECT * FROM kid_friendly_stl.business WHERE name=?";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setString(1, name);
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, name);
 			
 			// execute SQL statement
-			myRS = myStmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			// return boolean
-			if (myRS.next()){
+			if (rs.next()){
 				return true;
 			} else {
 				return false;
@@ -298,7 +280,7 @@ public class BusinessDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 

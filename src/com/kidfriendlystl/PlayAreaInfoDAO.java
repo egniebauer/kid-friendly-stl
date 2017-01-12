@@ -18,24 +18,6 @@ public class PlayAreaInfoDAO {
 		this.dataSource = theDataSource;
 	}
 	
-	private void close(Connection myConn, Statement myStmt, ResultSet myRS) {
-		try {
-			if (myRS != null) {
-				myRS.close();
-			}
-			
-			if (myStmt != null) {
-				myStmt.close();
-			}
-			
-			if (myConn != null) {
-				myConn.close();	// doesn't really close ... returns it to connection pool
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public List<PlayAreaInfo> getAll() 
 			throws Exception {
 		
@@ -43,30 +25,30 @@ public class PlayAreaInfoDAO {
 		List<PlayAreaInfo> theList = new ArrayList<>();
 		
 		// create JDBC objects
-		Connection myConn = null;
-		Statement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 					
 			// create a sql statement
 			String sql = "SELECT * FROM kid_friendly_stl.play_area_information";
-			myStmt = myConn.createStatement();
+			stmt = conn.createStatement();
 			
 			// execute the query
-			myRS = myStmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			
 			// process the ResultSet
-			while (myRS.next()) {
+			while (rs.next()) {
 				// retrieve data and set params
-				int businessID = myRS.getInt("business_id");
-				boolean clean = myRS.getBoolean("clean");
-				boolean inside = myRS.getBoolean("inside");
-				boolean outside = myRS.getBoolean("outside");
-				boolean gated = myRS.getBoolean("gated");
-				boolean fun = myRS.getBoolean("fun");
+				int businessID = rs.getInt("business_id");
+				boolean clean = rs.getBoolean("clean");
+				boolean inside = rs.getBoolean("inside");
+				boolean outside = rs.getBoolean("outside");
+				boolean gated = rs.getBoolean("gated");
+				boolean fun = rs.getBoolean("fun");
 				
 				// pass params to new object
 				PlayAreaInfo currentRow = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun);
@@ -79,7 +61,7 @@ public class PlayAreaInfoDAO {
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 	
@@ -91,33 +73,33 @@ public class PlayAreaInfoDAO {
 		int businessID;
 		
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		ResultSet myRS = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			// convert string to int for business id
 			businessID = Integer.parseInt(theBusinessID);
 			
 			// get a connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create a PreparedStatement and set params
 			String sql = "SELECT * FROM kid_friendly_stl.play_area_information WHERE business_id=?";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1, businessID);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, businessID);
 			
 			// execute the query
-			myRS = myStmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			//process the results
-			if (myRS.next()) {
+			if (rs.next()) {
 				//retrieve data and assign to object params
-				boolean clean = myRS.getBoolean("clean");
-				boolean inside = myRS.getBoolean("inside");
-				boolean outside = myRS.getBoolean("outside");
-				boolean gated = myRS.getBoolean("gated");
-				boolean fun = myRS.getBoolean("fun");
+				boolean clean = rs.getBoolean("clean");
+				boolean inside = rs.getBoolean("inside");
+				boolean outside = rs.getBoolean("outside");
+				boolean gated = rs.getBoolean("gated");
+				boolean fun = rs.getBoolean("fun");
 				
 				// pass params to empty object
 				selectedRow = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun); 
@@ -131,73 +113,73 @@ public class PlayAreaInfoDAO {
 		}
 		finally{
 			// close JDBC objects
-			close(myConn, myStmt, myRS);
+			DatabaseUtils.close(conn, stmt, rs);
 		}
 	}
 	
 	public void add(PlayAreaInfo newPlayAreaInfo) throws Exception {
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for INSERT
 			String sql = "INSERT INTO kid_friendly_stl.play_area_information "
 					+ "(business_id, clean, inside, outside, gated, fun) "
 					+ "VALUES (?, ?, ?, ?, ?, ?)";
 			
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setInt(1, newPlayAreaInfo.getBusinessID());
-			myStmt.setBoolean(2, newPlayAreaInfo.isClean());
-			myStmt.setBoolean(3, newPlayAreaInfo.isInside());
-			myStmt.setBoolean(4, newPlayAreaInfo.isOutside());
-			myStmt.setBoolean(5, newPlayAreaInfo.isGated());
-			myStmt.setBoolean(6, newPlayAreaInfo.isFun());
+			stmt.setInt(1, newPlayAreaInfo.getBusinessID());
+			stmt.setBoolean(2, newPlayAreaInfo.isClean());
+			stmt.setBoolean(3, newPlayAreaInfo.isInside());
+			stmt.setBoolean(4, newPlayAreaInfo.isOutside());
+			stmt.setBoolean(5, newPlayAreaInfo.isGated());
+			stmt.setBoolean(6, newPlayAreaInfo.isFun());
 			
 			// execute INSERT
-			myStmt.execute();
+			stmt.execute();
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 	}
 	
 	public void update(PlayAreaInfo updatedPlayAreaInfo) throws Exception {
 		// create JDBC objects
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			// get connection
-			myConn = dataSource.getConnection();
+			conn = dataSource.getConnection();
 			
 			// create PreparedStatement for UPDATE
 			String sql = "UPDATE kid_friendly_stl.play_area_information "
 					+ "SET clean=?, inside=?, outside=?, gated=?, fun=? "
 					+ "WHERE business_id=?";
 			
-			myStmt = myConn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			myStmt.setBoolean(1, updatedPlayAreaInfo.isClean());
-			myStmt.setBoolean(2, updatedPlayAreaInfo.isInside());
-			myStmt.setBoolean(3, updatedPlayAreaInfo.isOutside());
-			myStmt.setBoolean(4, updatedPlayAreaInfo.isGated());
-			myStmt.setBoolean(5, updatedPlayAreaInfo.isFun());
-			myStmt.setInt(6, updatedPlayAreaInfo.getBusinessID());
+			stmt.setBoolean(1, updatedPlayAreaInfo.isClean());
+			stmt.setBoolean(2, updatedPlayAreaInfo.isInside());
+			stmt.setBoolean(3, updatedPlayAreaInfo.isOutside());
+			stmt.setBoolean(4, updatedPlayAreaInfo.isGated());
+			stmt.setBoolean(5, updatedPlayAreaInfo.isFun());
+			stmt.setInt(6, updatedPlayAreaInfo.getBusinessID());
 			
 			// execute UPDATE
-			myStmt.execute();
+			stmt.execute();
 		}
 		finally {
 			// close JDBC objects
-			close(myConn, myStmt, null);
+			DatabaseUtils.close(conn, stmt, null);
 		}
 	}
 }
