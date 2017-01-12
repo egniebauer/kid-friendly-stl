@@ -61,15 +61,15 @@ public class RestroomInfo {
 		return businessID;
 	}
 
-	public Boolean isClean() {
+	public Boolean getClean() {
 		return clean;
 	}
 
-	public Boolean isToddlerSeat() {
+	public Boolean getToddlerSeat() {
 		return toddlerSeat;
 	}
 
-	public Boolean isHandDryer() {
+	public Boolean getHandDryer() {
 		return handDryer;
 	}
 

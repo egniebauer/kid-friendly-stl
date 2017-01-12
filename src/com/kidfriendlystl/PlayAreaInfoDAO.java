@@ -135,20 +135,20 @@ public class PlayAreaInfoDAO {
 			
 			// set param values
 			stmt.setInt(1, newPlayAreaInfo.getBusinessID());
-			if (newPlayAreaInfo.isClean() != null) {
-				stmt.setBoolean(2, newPlayAreaInfo.isClean());
+			if (newPlayAreaInfo.getClean() != null) {
+				stmt.setBoolean(2, newPlayAreaInfo.getClean());
 			} else {
 				stmt.setNull(2, java.sql.Types.TINYINT);
 			}
 			stmt.setBoolean(3, newPlayAreaInfo.isInside());
 			stmt.setBoolean(4, newPlayAreaInfo.isOutside());
-			if (newPlayAreaInfo.isGated() != null) {
-				stmt.setBoolean(5, newPlayAreaInfo.isGated());
+			if (newPlayAreaInfo.getGated() != null) {
+				stmt.setBoolean(5, newPlayAreaInfo.getGated());
 			} else {
 				stmt.setNull(5, java.sql.Types.TINYINT);
 			}
-			if (newPlayAreaInfo.isFun() != null) {
-				stmt.setBoolean(6, newPlayAreaInfo.isFun());
+			if (newPlayAreaInfo.getFun() != null) {
+				stmt.setBoolean(6, newPlayAreaInfo.getFun());
 			} else {
 				stmt.setNull(6, java.sql.Types.TINYINT);
 			}
@@ -179,20 +179,20 @@ public class PlayAreaInfoDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			// set param values
-			if (updatedPlayAreaInfo.isClean() != null){
-				stmt.setBoolean(1, updatedPlayAreaInfo.isClean());
+			if (updatedPlayAreaInfo.getClean() != null){
+				stmt.setBoolean(1, updatedPlayAreaInfo.getClean());
 			} else {
 				stmt.setNull(1, java.sql.Types.TINYINT);
 			}
 			stmt.setBoolean(2, updatedPlayAreaInfo.isInside());
 			stmt.setBoolean(3, updatedPlayAreaInfo.isOutside());
-			if (updatedPlayAreaInfo.isGated() != null){
-				stmt.setBoolean(4, updatedPlayAreaInfo.isGated());
+			if (updatedPlayAreaInfo.getGated() != null){
+				stmt.setBoolean(4, updatedPlayAreaInfo.getGated());
 			} else {
 				stmt.setNull(4, java.sql.Types.TINYINT);
 			}
-			if (updatedPlayAreaInfo.isFun() != null){
-				stmt.setBoolean(5, updatedPlayAreaInfo.isFun());
+			if (updatedPlayAreaInfo.getFun() != null){
+				stmt.setBoolean(5, updatedPlayAreaInfo.getFun());
 			} else {
 				stmt.setNull(5, java.sql.Types.TINYINT);
 			}

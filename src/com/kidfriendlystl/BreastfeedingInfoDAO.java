@@ -143,18 +143,18 @@ public class BreastfeedingInfoDAO {
 			
 		//set parameters for PreparedStatment
 			stmt.setInt(1, newBreastfeedingInfo.getBusinessID());
-			if (newBreastfeedingInfo.isClean() != null) {
-				stmt.setBoolean(2, newBreastfeedingInfo.isClean());
+			if (newBreastfeedingInfo.getClean() != null) {
+				stmt.setBoolean(2, newBreastfeedingInfo.getClean());
 			} else {
 				stmt.setNull(2, java.sql.Types.TINYINT);
 			}
-			if (newBreastfeedingInfo.isComfortable() != null) {
-				stmt.setBoolean(3, newBreastfeedingInfo.isComfortable());
+			if (newBreastfeedingInfo.getComfortable() != null) {
+				stmt.setBoolean(3, newBreastfeedingInfo.getComfortable());
 			} else {
 				stmt.setNull(3, java.sql.Types.TINYINT);
 			}
-			if (newBreastfeedingInfo.isBottleWarmer() != null) {
-				stmt.setBoolean(4, newBreastfeedingInfo.isBottleWarmer());
+			if (newBreastfeedingInfo.getBottleWarmer() != null) {
+				stmt.setBoolean(4, newBreastfeedingInfo.getBottleWarmer());
 			} else {
 				stmt.setNull(4, java.sql.Types.TINYINT);
 			}
@@ -190,18 +190,18 @@ public class BreastfeedingInfoDAO {
 			stmt = conn.prepareStatement(sql);
 			
 		//set parameters for PreparedStatment
-			if (updatedBreastfeedingInfo.isClean() != null) {
-				stmt.setBoolean(1, updatedBreastfeedingInfo.isClean());
+			if (updatedBreastfeedingInfo.getClean() != null) {
+				stmt.setBoolean(1, updatedBreastfeedingInfo.getClean());
 			} else {
 				stmt.setNull(1, java.sql.Types.TINYINT);
 			}
-			if (updatedBreastfeedingInfo.isComfortable() != null) {
-				stmt.setBoolean(2, updatedBreastfeedingInfo.isComfortable());
+			if (updatedBreastfeedingInfo.getComfortable() != null) {
+				stmt.setBoolean(2, updatedBreastfeedingInfo.getComfortable());
 			} else {
 				stmt.setNull(2, java.sql.Types.TINYINT);
 			}
-			if (updatedBreastfeedingInfo.isBottleWarmer() != null) {
-				stmt.setBoolean(3, updatedBreastfeedingInfo.isBottleWarmer());
+			if (updatedBreastfeedingInfo.getBottleWarmer() != null) {
+				stmt.setBoolean(3, updatedBreastfeedingInfo.getBottleWarmer());
 			} else {
 				stmt.setNull(3, java.sql.Types.TINYINT);
 			}

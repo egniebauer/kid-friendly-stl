@@ -3,8 +3,8 @@ package com.kidfriendlystl;
 public class RestaurantMenuInfo {
 	
 	private int businessID;
-	private Boolean highChair;
-	private Boolean booster;
+	private boolean highChair;
+	private boolean booster;
 	private Boolean activities;
 	
 	// kidsMenu
@@ -95,7 +95,7 @@ public class RestaurantMenuInfo {
 		return booster;
 	}
 
-	public Boolean isActivities() {
+	public Boolean getActivities() {
 		return activities;
 	}
 

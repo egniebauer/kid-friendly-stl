@@ -16,7 +16,7 @@
 <div class="container">
 	<div class="row">
 <!-- HEADING -->
-  		<div class="col-md-12">
+  		<div class="col-sm-12">
 			<h1>Kid Friendly STL</h1>
 		</div>
 	</div>
@@ -41,23 +41,30 @@
 	</div>
 	<div class="row">
 <!-- SUBHEADING -->	
-		<div class="col-md-6">
+		<div class="col-sm-6">
 			<h3>${THE_BUSINESS.name}</h3>
 		</div>
-		<div class="col-md-6 text-center">
+		<div class="col-sm-6 text-center">
 			<h3>
-				<c:forEach begin="1" end="${THE_BUSINESS.rating}">
-	   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-				</c:forEach>
-				<c:forEach begin="1" end="${5 - THE_BUSINESS.rating}">
-	   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${THE_BUSINESS.rating == 0 }">
+						<small>NOT RATED</small>
+					</c:when>
+					<c:otherwise>
+						<c:forEach begin="1" end="${THE_BUSINESS.rating}">
+			   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+						</c:forEach>
+						<c:forEach begin="1" end="${5 - THE_BUSINESS.rating}">
+			   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</h3>
 		</div>
 	</div>
 	<div class="row">
 <!-- CONTACT INFORMATION -->
-		<div class="col-md-12">
+		<div class="col-sm-12">
 			<address>
 			${THE_BUSINESS.address}<br>
 			${THE_BUSINESS.city}, ${THE_BUSINESS.state} ${THE_BUSINESS.zip}<br>
@@ -69,202 +76,71 @@
 	</div>
 	<div class="row">
 <!-- BUSINESS_CATEGORY -->
-	 		<div class="col-md-4">
+	 		<div class="col-sm-3">
 				<h4>Categories</h4>
 				<ul class="list-unstyled">
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.activeLife == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Active Life</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Active Life</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.artsEntertainment == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Arts & Entertainment</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Arts & Entertainment</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.education == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Education</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Education</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.foodRestaurant == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Food & Restaurants</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Food & Restaurants</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.healthMedical == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Health/ Medical</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Health/ Medical</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.hotelTravel == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Hotels & Travel</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Hotels & Travel</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.publicServiceGovernment == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Public Services/ Government</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Public Services/ Government</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.religious == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Religious</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Religious</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_CATEGORY.shopping == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Shopping</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Shopping</li>
-						</c:otherwise>
-					</c:choose>
+					<li><span class="${BUSINESS_CATEGORY.activeLife == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Active Life</li>
+					<li><span class="${BUSINESS_CATEGORY.artsEntertainment == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Arts & Entertainment</li>
+					<li><span class="${BUSINESS_CATEGORY.education == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Education</li>
+					<li><span class="${BUSINESS_CATEGORY.foodRestaurant == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Food & Restaurants</li>
+					<li><span class="${BUSINESS_CATEGORY.healthMedical == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Health/ Medical</li>
+					<li><span class="${BUSINESS_CATEGORY.hotelTravel == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Hotels & Travel</li>
+					<li><span class="${BUSINESS_CATEGORY.publicServiceGovernment == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Public Services/ Government</li>
+					<li><span class="${BUSINESS_CATEGORY.religious == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Religious</li>
+					<li><span class="${BUSINESS_CATEGORY.shopping == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Shopping</li>
 				</ul>
 			</div>
 <!-- BUSINESS_AGE_RANGE -->
-  			<div class="col-md-4">
+  			<div class="col-sm-3">
 				<h4>Age Ranges</h4>
 				<ul class="list-unstyled">
-					<c:choose>
-						<c:when test="${BUSINESS_AGE_RANGE.baby == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Baby</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Baby</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_AGE_RANGE.toddler == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Toddler</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Toddler</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_AGE_RANGE.preschooler == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Preschooler</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Preschooler</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_AGE_RANGE.gradeSchooler == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Grade Schooler</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Grade Schooler</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_AGE_RANGE.teen == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Teen</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Teen</li>
-						</c:otherwise>
-					</c:choose>
+					<li><span class="${BUSINESS_AGE_RANGE.baby == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Baby</li>
+					<li><span class="${BUSINESS_AGE_RANGE.toddler == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Toddler</li>
+					<li><span class="${BUSINESS_AGE_RANGE.preschooler == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Preschooler</li>
+					<li><span class="${BUSINESS_AGE_RANGE.gradeSchooler == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Grade Schooler</li>
+					<li><span class="${BUSINESS_AGE_RANGE.teen == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Teen</li>
 				</ul>
 			</div>				
 <!-- KID_FRIENDLY_DETAIL - Best Times -->
-  			<div class="col-md-4">
+  			<div class="col-sm-3">
 				<h4>Best Times</h4>
 				<ul class="list-unstyled">
-					<c:choose>
-						<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.morning == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Morning</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Morning</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.afternoon == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Afternoon</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Afternoon</li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.evening == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Evening</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Evening</li>
-						</c:otherwise>
-					</c:choose>
+					<li><span class="${BUSINESS_KID_FRIENDLY_DETAIL.morning == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Morning</li>
+					<li><span class="${BUSINESS_KID_FRIENDLY_DETAIL.afternoon == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Afternoon</li>
+					<li><span class="${BUSINESS_KID_FRIENDLY_DETAIL.evening == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Evening</li>
 				</ul>
 			</div>
-		</div>
-		<br />
-		<div class="row">
 <!-- KID_FRIENDLY_DETAIL -->
-  			<div class="col-md-12">
-				<h4>Kid Friendly Details</h4>
-			</div>
-			<div class="col-md-6">
-				<ul class="list-unstyled">
-					<c:choose>
-						<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Lots of Families</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Lots of Families</li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</div>
-			<div class="col-md-6">
-				<ul class="list-unstyled">
-					<c:choose>
-						<c:when test="${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == true}">
-							<li><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <em>Kids Free/ Discount</em></li>
-						</c:when>
-						<c:otherwise>
-							<li><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Kids Free Discount</li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
+  			<div class="col-sm-3">
+  				<div class="row">
+					<h4>Lots of Families?</h4>
+					<ul class="list-unstyled">
+						<li><span class="${BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == true ?  'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Yes!</li>
+						<li><span class="${BUSINESS_KID_FRIENDLY_DETAIL.multipleFamilies == false ?  'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Nope</li>
+					</ul>
+				</div>
+				<br />
+  				<div class="row">
+					<h4>Kid's Free or Discount?</h4>
+					<ul class="list-unstyled">
+						<li><span class="${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == true ?  'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Yes!</li>
+						<li><span class="${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscount == false ?  'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> None</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<br />
 		<div class="row">
-			<div class="col-md-12">
-				<ul class="list-unstyled">
-					<dl>
-						<dt>Details</dt>
-						<dd>${BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}</dd>
-					</dl>
-				</ul>
+			<div class="col-sm-12">
+				<h4>Details</h4>
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				    ${empty BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail ? 'No further details listed' : BUSINESS_KID_FRIENDLY_DETAIL.kidsFreeDiscountDetail}
+				  </div>
+				</div>
   			</div>
-  		</div>	
+  		</div>
+  		<br /><br /><br />	
 	</div>
 </body>
 </html>

@@ -56,7 +56,7 @@ public class KidFriendlyDetail {
 		return businessID;
 	}
 
-	public Boolean isMultipleFamilies() {
+	public Boolean getMultipleFamilies() {
 		return multipleFamilies;
 	}
 
@@ -72,7 +72,7 @@ public class KidFriendlyDetail {
 		return evening;
 	}
 
-	public Boolean isKidsFreeDiscount() {
+	public Boolean getKidsFreeDiscount() {
 		return kidsFreeDiscount;
 	}
 

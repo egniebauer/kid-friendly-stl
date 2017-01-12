@@ -135,18 +135,18 @@ public class RestroomInfoDAO {
 			
 			// set param values
 			stmt.setInt(1, newRestroomInfo.getBusinessID());
-			if (newRestroomInfo.isClean() != null) {
-				stmt.setBoolean(2, newRestroomInfo.isClean());
+			if (newRestroomInfo.getClean() != null) {
+				stmt.setBoolean(2, newRestroomInfo.getClean());
 			} else {
 				stmt.setNull(2, java.sql.Types.TINYINT);
 			}
-			if (newRestroomInfo.isToddlerSeat() != null) {
-				stmt.setBoolean(3, newRestroomInfo.isToddlerSeat());
+			if (newRestroomInfo.getToddlerSeat() != null) {
+				stmt.setBoolean(3, newRestroomInfo.getToddlerSeat());
 			} else {
 				stmt.setNull(3, java.sql.Types.TINYINT);
 			}
-			if (newRestroomInfo.isHandDryer() != null) {
-				stmt.setBoolean(4, newRestroomInfo.isHandDryer());
+			if (newRestroomInfo.getHandDryer() != null) {
+				stmt.setBoolean(4, newRestroomInfo.getHandDryer());
 			} else {
 				stmt.setNull(4, java.sql.Types.TINYINT);
 			}
@@ -180,18 +180,18 @@ public class RestroomInfoDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			// set params values
-			if (updatedRestroomInfo.isClean() != null) {
-				stmt.setBoolean(1, updatedRestroomInfo.isClean());
+			if (updatedRestroomInfo.getClean() != null) {
+				stmt.setBoolean(1, updatedRestroomInfo.getClean());
 			} else {
 				stmt.setNull(1, java.sql.Types.TINYINT);
 			}
-			if (updatedRestroomInfo.isToddlerSeat() != null) {
-				stmt.setBoolean(2, updatedRestroomInfo.isToddlerSeat());
+			if (updatedRestroomInfo.getToddlerSeat() != null) {
+				stmt.setBoolean(2, updatedRestroomInfo.getToddlerSeat());
 			} else {
 				stmt.setNull(2, java.sql.Types.TINYINT);
 			}
-			if (updatedRestroomInfo.isHandDryer() != null) {
-				stmt.setBoolean(3, updatedRestroomInfo.isHandDryer());
+			if (updatedRestroomInfo.getHandDryer() != null) {
+				stmt.setBoolean(3, updatedRestroomInfo.getHandDryer());
 			} else {
 				stmt.setNull(3, java.sql.Types.TINYINT);
 			}

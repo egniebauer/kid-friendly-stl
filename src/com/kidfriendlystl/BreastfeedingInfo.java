@@ -61,15 +61,15 @@ public class BreastfeedingInfo {
 		return businessID;
 	}
 
-	public Boolean isClean() {
+	public Boolean getClean() {
 		return clean;
 	}
 
-	public Boolean isComfortable() {
+	public Boolean getComfortable() {
 		return comfortable;
 	}
 
-	public Boolean isBottleWarmer() {
+	public Boolean getBottleWarmer() {
 		return bottleWarmer;
 	}
 

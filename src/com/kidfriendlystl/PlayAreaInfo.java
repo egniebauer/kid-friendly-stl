@@ -47,7 +47,7 @@ public class PlayAreaInfo {
 		return businessID;
 	}
 
-	public Boolean isClean() {
+	public Boolean getClean() {
 		return clean;
 	}
 
@@ -59,11 +59,11 @@ public class PlayAreaInfo {
 		return outside;
 	}
 
-	public Boolean isGated() {
+	public Boolean getGated() {
 		return gated;
 	}
 
-	public Boolean isFun() {
+	public Boolean getFun() {
 		return fun;
 	}
 

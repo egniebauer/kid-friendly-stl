@@ -147,8 +147,8 @@ public class RestaurantMenuInfoDAO {
 			stmt.setInt(1, newRestaurantMenuInfo.getBusinessID());
 			stmt.setBoolean(2, newRestaurantMenuInfo.isHighChair());
 			stmt.setBoolean(3, newRestaurantMenuInfo.isBooster());
-			if (newRestaurantMenuInfo.isActivities() != null) {
-				stmt.setBoolean(4, newRestaurantMenuInfo.isActivities());
+			if (newRestaurantMenuInfo.getActivities() != null) {
+				stmt.setBoolean(4, newRestaurantMenuInfo.getActivities());
 			} else {
 				stmt.setNull(4, java.sql.Types.TINYINT);
 			}
@@ -189,8 +189,8 @@ public class RestaurantMenuInfoDAO {
 			// set param values
 			stmt.setBoolean(1, updatedRestaurantMenuInfo.isHighChair());
 			stmt.setBoolean(2, updatedRestaurantMenuInfo.isBooster());
-			if (updatedRestaurantMenuInfo.isActivities() != null) {
-				stmt.setBoolean(3, updatedRestaurantMenuInfo.isActivities());
+			if (updatedRestaurantMenuInfo.getActivities() != null) {
+				stmt.setBoolean(3, updatedRestaurantMenuInfo.getActivities());
 			} else {
 				stmt.setNull(3, java.sql.Types.TINYINT);
 			}
