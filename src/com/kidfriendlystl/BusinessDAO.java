@@ -57,6 +57,10 @@ public class BusinessDAO {
 				int rating4 = rs.getInt("rating4");
 				int rating5 = rs.getInt("rating5");
 				
+				// format parameters (strip non-digits, leading whitespace, etc.)
+				phone = phone != null ? phone.replaceFirst("^1", ""): phone;
+				phone = phone != null ? phone.replaceAll("[^\\d]", ""): phone;
+				
 				// create new Business object
 				Business currentBusiness = new Business(id, name, address, city, state, zip, 
 						phone, website, rating1, rating2, rating3, rating4, rating5);
@@ -114,6 +118,10 @@ public class BusinessDAO {
 				int rating3 = rs.getInt("rating3");
 				int rating4 = rs.getInt("rating4");
 				int rating5 = rs.getInt("rating5");
+				
+				// format parameters (strip non-digits, leading whitespace, etc.)
+				phone = phone != null ? phone.replaceFirst("^1\\-", ""): phone;
+				phone = phone != null ? phone.replaceAll("[^\\d]", ""): phone;
 				
 				theBusiness = new Business(businessID, name, address, city, state, zip,
 						phone, website, rating1, rating2, rating3, rating4, rating5);

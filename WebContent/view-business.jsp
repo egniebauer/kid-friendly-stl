@@ -44,21 +44,21 @@
 		<div class="col-sm-6">
 			<h2>${THE_BUSINESS.name}</h2>
 		</div>
-		<div class="col-sm-6 text-center">
+		<div class="col-sm-6 text-center"><h2>
 			<c:choose>
 				<c:when test="${THE_BUSINESS.rating == 0 }">
-					<h2><small>NOT RATED</small></h2>
+					<small>NOT RATED</small>
 				</c:when>
 				<c:otherwise>
 					<c:forEach begin="1" end="${THE_BUSINESS.rating}">
-		   				<h2><span class="glyphicon glyphicon-star" aria-hidden="true"></span></h2>
+		   				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					</c:forEach>
 					<c:forEach begin="1" end="${5 - THE_BUSINESS.rating}">
-		   				<h2><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></h2>
+		   				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-		</div>
+		</h2></div>
 	</div>
 <!-- CONTACT INFORMATION -->
 	<div class="row">
