@@ -1,6 +1,8 @@
 package com.kidfriendlystl;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -182,28 +184,38 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String theBusinessID = request.getParameter("businessID");
 		
 		// retrieve Business from database, create necessary objects
-		Business theBusiness = businessDAO.get(theBusinessID);
-		Category businessCategory = categoryDAO.get(theBusinessID);
-		AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
-		KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);
-		BreastfeedingInfo businessBreastfeedingInfo = breastfeedingInfoDAO.get(theBusinessID);
-		PlayAreaInfo businessPlayAreaInfo = playAreaInfoDAO.get(theBusinessID);
-		RestaurantMenuInfo businessRestaurantMenuInfo = restaurantMenuInfoDAO.get(theBusinessID);
-		RestroomInfo businessRestroomInfo = restroomInfoDAO.get(theBusinessID);
-		
-		// place Business objects in the request attribute
-		request.setAttribute("THE_BUSINESS", theBusiness);
-		request.setAttribute("BUSINESS_CATEGORY", businessCategory);
-		request.setAttribute("BUSINESS_AGE_RANGE", businessAgeRange);
-		request.setAttribute("BUSINESS_KID_FRIENDLY_DETAIL", businessKidFriendlyDetail);
-		request.setAttribute("BUSINESS_BREASTFEEDING", businessBreastfeedingInfo);
-		request.setAttribute("BUSINESS_PLAY_AREA", businessPlayAreaInfo);
-		request.setAttribute("BUSINESS_RESTAURANT_MENU", businessRestaurantMenuInfo);
-		request.setAttribute("BUSINESS_RESTROOM", businessRestroomInfo);
-		
-		// send to .jsp page: view-business.jsp
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/view-business.jsp");
-		dispatcher.forward(request, response);
+		try {
+			Business theBusiness = businessDAO.get(theBusinessID);
+			Category businessCategory = categoryDAO.get(theBusinessID);
+			AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
+			KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);
+			BreastfeedingInfo businessBreastfeedingInfo = breastfeedingInfoDAO.get(theBusinessID);
+			PlayAreaInfo businessPlayAreaInfo = playAreaInfoDAO.get(theBusinessID);
+			RestaurantMenuInfo businessRestaurantMenuInfo = restaurantMenuInfoDAO.get(theBusinessID);
+			RestroomInfo businessRestroomInfo = restroomInfoDAO.get(theBusinessID);
+			
+			// place Business objects in the request attributes
+			request.setAttribute("THE_BUSINESS", theBusiness);
+			request.setAttribute("BUSINESS_CATEGORY", businessCategory);
+			request.setAttribute("BUSINESS_AGE_RANGE", businessAgeRange);
+			request.setAttribute("BUSINESS_KID_FRIENDLY_DETAIL", businessKidFriendlyDetail);
+			request.setAttribute("BUSINESS_BREASTFEEDING", businessBreastfeedingInfo);
+			request.setAttribute("BUSINESS_PLAY_AREA", businessPlayAreaInfo);
+			request.setAttribute("BUSINESS_RESTAURANT_MENU", businessRestaurantMenuInfo);
+			request.setAttribute("BUSINESS_RESTROOM", businessRestroomInfo);
+			
+			// send to .jsp page: view-business.jsp
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/view-business.jsp");
+			dispatcher.forward(request, response);
+		}
+		catch (Exception e) {			
+			// place error message
+			request.setAttribute("ERROR_MESSAGE", e);
+			
+			// send to .jsp page: view-business.jsp
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 	}
 

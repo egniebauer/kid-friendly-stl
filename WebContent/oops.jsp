@@ -23,7 +23,7 @@
 	</c:url>
 <!-- BUTTONS -->
 	<div>
-		<a class="btn btn-default" href="${homeLink}" role="button" >home</a> 
+		<a class="btn btn-default" href="${pageContext.request.contextPath}/" role="button" >home</a> 
 		<a class="btn btn-default" href="form.jsp" role="button" >add</a> 
 	</div>
 	<br /><br />
