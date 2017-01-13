@@ -562,7 +562,8 @@
 			</c:url>
 		</c:if>
 			<input class="btn btn-default" type="submit" value="${empty THE_BUSINESS.id ? 'Submit': 'Update'}">
-			<a class="btn btn-danger" href="${empty cancelLink ? 'FriendlyControllerServlet' : cancelLink}" role="button">Cancel</a>
+			<button class="btn btn-default"  type="button" name="back" onclick="history.back()">Back</button>
+			<a class="btn btn-danger" href="${empty cancelLink ? pageContext.request.contextPath : cancelLink}" role="button">Cancel</a>
 		<br /><br />
 	</form>
 	<br />	  

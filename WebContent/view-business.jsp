@@ -21,9 +21,6 @@
 		</div>
 	</div>
 <!-- Generate Links -->
-	<c:url var="homeLink" value="FriendlyControllerServlet">
-		<c:param name="command" value="LIST" />
-	</c:url>
 	<c:url var="updateLink" value="FriendlyControllerServlet">
 		<c:param name="command" value="LOAD" />
 		<c:param name="businessID" value="${THE_BUSINESS.id}" />
@@ -34,10 +31,13 @@
 	</c:url>
 <!-- BUTTONS -->
 	<div class="row">
-		<a class="btn btn-default" href="${homeLink}" role="button" >home</a> 
-		<a class="btn btn-default" href="${updateLink}" role="button">update</a>
-		<a class="btn btn-danger" href="${deleteLink}" role="button" 
-		onclick="if (!(confirm('Are you sure you want to delete this business?'))) return false">DELETE</a>
+		<div class="col-sm-12">
+			<a class="btn btn-default" href="${pageContext.request.contextPath}/" role="button" >home</a> 
+			<button class="btn btn-default"  type="button" name="back" onclick="history.back()">back</button>
+			<a class="btn btn-default" href="${updateLink}" role="button">update</a>
+			<a class="btn btn-danger" href="${deleteLink}" role="button" 
+			onclick="if (!(confirm('Are you sure you want to delete this business?'))) return false">DELETE</a>
+		</div>
 	</div>
 	<div class="row">
 <!-- SUBHEADING -->	
