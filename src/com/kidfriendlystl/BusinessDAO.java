@@ -263,8 +263,8 @@ public class BusinessDAO {
 			// get connection
 			conn = dataSource.getConnection();
 			
-			// create SQL and PreparedStatement to SELECT buisness if name matches
-			String sql = "SELECT * FROM kid_friendly_stl.business WHERE name=?";
+			// create SQL String and PreparedStatement to SELECT business if name matches
+			String sql = "SELECT * FROM kid_friendly_stl.business WHERE name LIKE ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, name);
 			
@@ -277,6 +277,60 @@ public class BusinessDAO {
 			} else {
 				return false;
 			}
+		}
+		finally {
+			// close JDBC objects
+			DatabaseUtils.close(conn, stmt, rs);
+		}
+	}
+
+	public List<Business> getDuplicates(String searchName) throws Exception {
+		// create empty list
+		List<Business> duplicates = new ArrayList<>();
+		
+		// create JDBC objects
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// get connection
+			conn = dataSource.getConnection();
+			
+			// create SQL String and PreparedStatement to SELECT business if name matches
+			String sql = "SELECT * FROM kid_friendly_stl.business WHERE name LIKE ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + searchName.substring(0, 3) + "%");
+			
+			// execute SQL statement
+			rs = stmt.executeQuery();
+			
+			// process result set
+			while (rs.next()){
+				//retrieve data from ResultSet row
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String address = rs.getString("address");
+				String city = rs.getString("city");
+				State state = State.valueOf(rs.getString("state"));
+				String zip = rs.getString("zip");
+				String phone = rs.getString("phone");
+				String website = rs.getString("website");
+				int rating1 = rs.getInt("rating1");
+				int rating2 = rs.getInt("rating2");
+				int rating3 = rs.getInt("rating3");
+				int rating4 = rs.getInt("rating4");
+				int rating5 = rs.getInt("rating5");
+				
+				// create new Business object
+				Business currentBusiness = new Business(id, name, address, city, state, zip, 
+						phone, website, rating1, rating2, rating3, rating4, rating5);
+				
+				// add Student object to list
+				duplicates.add(currentBusiness);
+			}
+			// return list
+			return duplicates;
 		}
 		finally {
 			// close JDBC objects

@@ -27,12 +27,12 @@
 	<table class="table table-hover table-striped">
 		<tbody>
 		<c:forEach var="currentBusiness" items="${BUSINESS_LIST}" >
-	<!-- Generate viewLink for each business -->
+<!-- Generate viewLink for each business -->
 			<c:url var="viewLink" value="FriendlyControllerServlet">
 				<c:param name="command" value="VIEW" />
 				<c:param name="businessID" value="${currentBusiness.id}" />
 			</c:url>
-	<!-- Generate row for each business -->
+<!-- Generate row for each business -->
 			<tr>
 				<td>
 					<h4>${currentBusiness.name}</h4>

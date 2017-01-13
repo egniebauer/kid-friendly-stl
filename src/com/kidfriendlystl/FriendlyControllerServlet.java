@@ -1,8 +1,6 @@
 package com.kidfriendlystl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -227,7 +225,6 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		if (errorMessage.equals("PASS"))
 		{
-			
 			// create a new Business object
 			Business newBusiness = CreateTable.newBusiness(request);
 			
@@ -262,11 +259,14 @@ public class FriendlyControllerServlet extends HttpServlet {
 			
 			}
 			else {
-			
-				request.setAttribute("ERROR_MESSAGE", "Duplicate name; please verify this business is not already listed.");
+				// get duplicates from DAO
+				List<Business> dupes = businessDAO.getDuplicates(newBusiness.getName());
+
+				request.setAttribute("DUPLICATE_LIST", dupes);
+				request.setAttribute("ERROR_MESSAGE", "Possible duplicate listing. Please see businesses below or click back and correct listing.");
 				
 				// send to .jsp page: oops.jsp
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp"); 
 				dispatcher.forward(request, response);
 			
 			}
