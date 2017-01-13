@@ -17,14 +17,10 @@
 <!-- PAGE HEADING -->
 	<h1>OOPS...</h1>
 	<br />
-<!-- Generate Links -->
-	<c:url var="homeLink" value="FriendlyControllerServlet">
-		<c:param name="command" value="LIST" />
-	</c:url>
 <!-- BUTTONS -->
 	<div>
 		<a class="btn btn-default" href="${pageContext.request.contextPath}/" role="button" >home</a> 
-		<a class="btn btn-default" href="form.jsp" role="button" >add</a> 
+		<button class="btn btn-default"  type="button" name="back" onclick="history.back()">back</button>
 	</div>
 	<br /><br />
 	<div>
