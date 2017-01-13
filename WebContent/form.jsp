@@ -429,21 +429,21 @@
 								<div class="checkbox form-group">
 									<h5>Location</h5>
 									<label class="checkbox-inline" for="inside">
-										<input type="checkbox" name="location" id="inside" value="inside" ${BUSINESS_PLAY_AREA.inside == true ? 'checked' : '' }> It's Indoors
+										<input type="checkbox" name="location" id="inside" value="inside" ${BUSINESS_PLAY_AREA.inside == true ? 'checked' : '' }> Indoors
 									</label>
 									<label class="checkbox-inline" for="outside">
-										<input type="checkbox" name="location" id="outside" value="outside" ${BUSINESS_PLAY_AREA.outside == true ? 'checked' : '' }> It's Outside
+										<input type="checkbox" name="location" id="outside" value="outside" ${BUSINESS_PLAY_AREA.outside == true ? 'checked' : '' }> Outside
 									</label>
 								</div>
 				      		</div>
 				      		<div class="col-sm-3">
 								<div class="radio form-group">
-									<h5>Clean?</h5>
+									<h5>Gated?</h5>
 									<label class="radio-inline" for="gated">
-										<input type="radio" name="gated" id="gatedTrue" value=1 ${BUSINESS_PLAY_AREA.gated == true ? 'checked' : '' }> Yes.
+										<input type="radio" name="gated" id="gatedTrue" value=1 ${BUSINESS_PLAY_AREA.gated == true ? 'checked' : '' }> Yes
 									</label>
 									<label class="radio-inline" for="gated">
-										<input type="radio" name="gated" id="gatedFalse" value=0  ${BUSINESS_PLAY_AREA.gated == false ? 'checked' : '' }> Nope.
+										<input type="radio" name="gated" id="gatedFalse" value=0  ${BUSINESS_PLAY_AREA.gated == false ? 'checked' : '' }> No
 									</label>
 								</div>
 				      		</div>

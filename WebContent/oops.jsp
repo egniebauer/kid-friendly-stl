@@ -47,12 +47,10 @@
 							<th>View more</th>
 						</tr>
 						<c:forEach var="dupeListing" items="${DUPLICATE_LIST}">
-<!-- Generate viewLink for each business -->
 							<c:url var="viewLink" value="FriendlyControllerServlet">
 								<c:param name="command" value="VIEW" />
 								<c:param name="businessID" value="${dupeListing.id}" />
 							</c:url>
-<!-- Generate row for each business -->
 							<tr>
 								<td>
 									<h4>${dupeListing.name}</h4>
