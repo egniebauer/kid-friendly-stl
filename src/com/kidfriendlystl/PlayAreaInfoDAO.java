@@ -44,11 +44,20 @@ public class PlayAreaInfoDAO {
 			while (rs.next()) {
 				// retrieve data and set params
 				int businessID = rs.getInt("business_id");
-				boolean clean = rs.getBoolean("clean");
+				Boolean clean = rs.getBoolean("clean");
+				if (rs.wasNull()) {
+					clean = null;
+				}
 				boolean inside = rs.getBoolean("inside");
 				boolean outside = rs.getBoolean("outside");
-				boolean gated = rs.getBoolean("gated");
-				boolean fun = rs.getBoolean("fun");
+				Boolean gated = rs.getBoolean("gated");
+				if (rs.wasNull()) {
+					gated = null;
+				}
+				Boolean fun = rs.getBoolean("fun");
+				if (rs.wasNull()) {
+					fun = null;
+				}
 				
 				// pass params to new object
 				PlayAreaInfo currentRow = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun);
@@ -95,11 +104,20 @@ public class PlayAreaInfoDAO {
 			//process the results
 			if (rs.next()) {
 				//retrieve data and assign to object params
-				boolean clean = rs.getBoolean("clean");
+				Boolean clean = rs.getBoolean("clean");
+				if (rs.wasNull()) {
+					clean = null;
+				}
 				boolean inside = rs.getBoolean("inside");
 				boolean outside = rs.getBoolean("outside");
-				boolean gated = rs.getBoolean("gated");
-				boolean fun = rs.getBoolean("fun");
+				Boolean gated = rs.getBoolean("gated");
+				if (rs.wasNull()) {
+					gated = null;
+				}
+				Boolean fun = rs.getBoolean("fun");
+				if (rs.wasNull()) {
+					fun = null;
+				}
 				
 				// pass params to empty object
 				selectedRow = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun); 

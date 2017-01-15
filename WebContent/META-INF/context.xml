@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
 
 <Context>
@@ -9,5 +9,9 @@
                username="friendlyuser" password="friendlyuser" 
                driverClassName="com.mysql.jdbc.Driver"
                url="jdbc:mysql://localhost:3306/kid_friendly_stl?useSSL=false&amp;useUnicode=yes&amp;characterEncoding=UTF8"/>
+
+  <Valve 
+    className="org.apache.catalina.valves.StuckThreadDetectionValve"
+    threshold="90" />
 
 </Context>

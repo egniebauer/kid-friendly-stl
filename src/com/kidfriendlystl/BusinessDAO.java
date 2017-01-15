@@ -18,9 +18,7 @@ public class BusinessDAO {
 		this.dataSource = theDataSource;
 	}
 
-	public List<Business> getAll() 
-			throws Exception {
-		
+	public List<Business> getAll() throws Exception {
 		// create empty list
 		List<Business> businesses = new ArrayList<>();
 		

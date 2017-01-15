@@ -42,12 +42,18 @@ public class RestroomInfoDAO {
 			while (rs.next()) {
 				// retrieve data and set params
 				int businessID = rs.getInt("business_id");
-				Boolean clean = null;
-				if (rs.getBoolean("clean") == true || rs.getBoolean("clean") == false) {
-					clean = rs.getBoolean("clean");
+				Boolean clean = rs.getBoolean("clean");
+				if (rs.wasNull()) {
+					clean = null;
 				}
 				Boolean toddlerSeat = rs.getBoolean("toddler_seat");
+				if (rs.wasNull()) {
+					toddlerSeat = null;
+				}
 				Boolean handDryer = rs.getBoolean("hand_dryer");
+				if (rs.wasNull()) {
+					handDryer = null;
+				}
 				boolean womensRoom = rs.getBoolean("womens_room");
 				boolean mensRoom = rs.getBoolean("mens_room");
 				boolean familyRoom = rs.getBoolean("family_room");
@@ -98,8 +104,17 @@ public class RestroomInfoDAO {
 				//retrieve data and assign to variables
 				businessID = rs.getInt("business_id");
 				Boolean clean = rs.getBoolean("clean");
+				if (rs.wasNull()) {
+					clean = null;
+				}
 				Boolean toddlerSeat = rs.getBoolean("toddler_seat");
+				if (rs.wasNull()) {
+					toddlerSeat = null;
+				}
 				Boolean handDryer = rs.getBoolean("hand_dryer");
+				if (rs.wasNull()) {
+					handDryer = null;
+				}
 				boolean womensRoom = rs.getBoolean("womens_room");
 				boolean mensRoom = rs.getBoolean("mens_room");
 				boolean familyRoom = rs.getBoolean("family_room");
