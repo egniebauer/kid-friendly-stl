@@ -343,7 +343,6 @@
 			</div>
 		</div>
 	</div>
-
 <!-- Section Heading - MORE DETAILS -->
 	<div class="row">
 		<div class="col-sm-12">

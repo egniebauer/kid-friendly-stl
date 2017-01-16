@@ -306,7 +306,11 @@ public class BusinessDAO {
 			// create SQL String and PreparedStatement to SELECT business if name matches
 			String sql = "SELECT * FROM kid_friendly_stl.business WHERE name LIKE ?";
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, "%" + searchName.substring(0, 3) + "%");
+			if (searchName.length() >= 3) {
+				stmt.setString(1, "%" + searchName.substring(0, 3) + "%");
+			} else {
+				stmt.setString(1, "%" + searchName + "%");
+			}
 			
 			// execute SQL statement
 			rs = stmt.executeQuery();
