@@ -292,29 +292,44 @@ public class FriendlyControllerServlet extends HttpServlet {
 			
 			Business updatedBusiness = CreateTable.existingBusiness(request);
 			
-			// add the business to the database and retrieve its businessID
-			businessDAO.update(updatedBusiness);		
+			// check if duplicate 
+			boolean dup = businessDAO.isDuplicate(updatedBusiness.getName());
 			
-			// create other objects with businessID
-			Category updatedCategory = CreateTable.category(updatedBusiness.getId(), request);
-			AgeRange updatedAgeRange = CreateTable.ageRange(updatedBusiness.getId(), request);
-			KidFriendlyDetail updatedKidFriendlyDetail = CreateTable.kidFriendlyDetail(updatedBusiness.getId(), request);
-			BreastfeedingInfo updatedBreastfeedingInfo = CreateTable.breastfeedingInfo(updatedBusiness.getId(), request);
-			PlayAreaInfo updatedPlayAreaInfo = CreateTable.playAreaInfo(updatedBusiness.getId(), request);
-			RestaurantMenuInfo updatedRestaurantMenuInfo = CreateTable.restaurantMenuInfo(updatedBusiness.getId(), request);
-			RestroomInfo updatedRestroomInfo = CreateTable.restroomInfo(updatedBusiness.getId(), request);				
-			
-			// add objects to database
-			categoryDAO.update(updatedCategory);
-			ageRangeDAO.update(updatedAgeRange);
-			kidFriendlyDetailDAO.update(updatedKidFriendlyDetail);
-			breastfeedingInfoDAO.update(updatedBreastfeedingInfo);
-			playAreaInfoDAO.update(updatedPlayAreaInfo);
-			restaurantMenuInfoDAO.update(updatedRestaurantMenuInfo);
-			restroomInfoDAO.update(updatedRestroomInfo);
-			
-	        // SEND AS REDIRECT to avoid multiple-browser reload issue
-	        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + updatedBusiness.getId());
+			if (dup) {
+				// get duplicates from DAO
+				List<Business> dupes = businessDAO.getDuplicates(updatedBusiness.getName());
+
+				request.setAttribute("DUPLICATE_LIST", dupes);
+				request.setAttribute("ERROR_MESSAGE", "Possible duplicate listing. Please see businesses below or click back and correct listing.");
+				
+				// send to .jsp page: oops.jsp
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp"); 
+				dispatcher.forward(request, response);
+			} else {
+				// add the business to the database and retrieve its businessID
+				businessDAO.update(updatedBusiness);		
+				
+				// create other objects with businessID
+				Category updatedCategory = CreateTable.category(updatedBusiness.getId(), request);
+				AgeRange updatedAgeRange = CreateTable.ageRange(updatedBusiness.getId(), request);
+				KidFriendlyDetail updatedKidFriendlyDetail = CreateTable.kidFriendlyDetail(updatedBusiness.getId(), request);
+				BreastfeedingInfo updatedBreastfeedingInfo = CreateTable.breastfeedingInfo(updatedBusiness.getId(), request);
+				PlayAreaInfo updatedPlayAreaInfo = CreateTable.playAreaInfo(updatedBusiness.getId(), request);
+				RestaurantMenuInfo updatedRestaurantMenuInfo = CreateTable.restaurantMenuInfo(updatedBusiness.getId(), request);
+				RestroomInfo updatedRestroomInfo = CreateTable.restroomInfo(updatedBusiness.getId(), request);				
+				
+				// add objects to database
+				categoryDAO.update(updatedCategory);
+				ageRangeDAO.update(updatedAgeRange);
+				kidFriendlyDetailDAO.update(updatedKidFriendlyDetail);
+				breastfeedingInfoDAO.update(updatedBreastfeedingInfo);
+				playAreaInfoDAO.update(updatedPlayAreaInfo);
+				restaurantMenuInfoDAO.update(updatedRestaurantMenuInfo);
+				restroomInfoDAO.update(updatedRestroomInfo);
+				
+		        // SEND AS REDIRECT to avoid multiple-browser reload issue
+		        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + updatedBusiness.getId());
+			}
 		}
 		else {			
 			request.setAttribute("ERROR_MESSAGE", errorMessage);
