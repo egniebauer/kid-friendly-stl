@@ -19,9 +19,7 @@ public class AgeRangeDAO {
 		this.dataSource = theDataSource;
 	}
 	
-	public List<AgeRange> getAll() 
-			throws Exception {
-		
+	public List<AgeRange> getAll() throws Exception {
 		// create empty list
 		List<AgeRange> ages = new ArrayList<>();
 		

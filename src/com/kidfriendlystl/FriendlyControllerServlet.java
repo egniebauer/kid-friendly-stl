@@ -133,9 +133,13 @@ public class FriendlyControllerServlet extends HttpServlet {
 			
 		// get businesses from DAO
 		List<Business> businesses = businessDAO.getAll();
+		List<Category> categories = categoryDAO.getAll();
+		List<AgeRange> ageRanges = ageRangeDAO.getAll();
 		
 		// add businesses to the request
 		request.setAttribute("BUSINESS_LIST", businesses);
+		request.setAttribute("CATEGORY_LIST", categories);
+		request.setAttribute("AGE_RANGE_LIST", ageRanges);
 		
 		//send to JSP page (view)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-businesses.jsp");
