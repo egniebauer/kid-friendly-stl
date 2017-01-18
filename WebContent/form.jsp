@@ -88,7 +88,7 @@
 				<label for="businessState">State*</label>
 				<select class="form-control" name="businessState" id="businessState">
 					<c:forEach items="<%=State.values()%>" var="state">
-						<option value="${state.abbreviation}" ${THE_BUSINESS.state == state.abbreviation ? 'selected' : ''}>${state.name}</option>
+						<option value="${state.abbreviation}" ${THE_BUSINESS.state == state.abbreviation or (empty THE_BUSINESS.state and state.abbreviation == "MO") ? 'selected' : ''}>${state.name}</option>
 					</c:forEach>
 				</select>
 			</div>
