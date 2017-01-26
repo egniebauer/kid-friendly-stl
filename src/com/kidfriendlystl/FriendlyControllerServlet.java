@@ -296,8 +296,10 @@ public class FriendlyControllerServlet extends HttpServlet {
 			
 			Business updatedBusiness = CreateTable.existingBusiness(request);
 			
+			String originalName = businessDAO.isDifferentName(updatedBusiness.getId());
+			
 			// if name changed - check if dup 
-			if (!updatedBusiness.getName().equals(businessDAO.isDifferentName(updatedBusiness.getId()))) {
+			if (!updatedBusiness.getName().equals(originalName)) {
 				
 				boolean dup = businessDAO.isDuplicate(updatedBusiness.getName());
 				
@@ -311,9 +313,35 @@ public class FriendlyControllerServlet extends HttpServlet {
 					// send to .jsp page: oops.jsp
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp"); 
 					dispatcher.forward(request, response);
-				}
-
 				} else {
+					
+					// add the business to the database and retrieve its businessID
+					businessDAO.update(updatedBusiness);		
+					
+					// create other objects with businessID
+					Category updatedCategory = CreateTable.category(updatedBusiness.getId(), request);
+					AgeRange updatedAgeRange = CreateTable.ageRange(updatedBusiness.getId(), request);
+					KidFriendlyDetail updatedKidFriendlyDetail = CreateTable.kidFriendlyDetail(updatedBusiness.getId(), request);
+					BreastfeedingInfo updatedBreastfeedingInfo = CreateTable.breastfeedingInfo(updatedBusiness.getId(), request);
+					PlayAreaInfo updatedPlayAreaInfo = CreateTable.playAreaInfo(updatedBusiness.getId(), request);
+					RestaurantMenuInfo updatedRestaurantMenuInfo = CreateTable.restaurantMenuInfo(updatedBusiness.getId(), request);
+					RestroomInfo updatedRestroomInfo = CreateTable.restroomInfo(updatedBusiness.getId(), request);				
+					
+					// add objects to database
+					categoryDAO.update(updatedCategory);
+					ageRangeDAO.update(updatedAgeRange);
+					kidFriendlyDetailDAO.update(updatedKidFriendlyDetail);
+					breastfeedingInfoDAO.update(updatedBreastfeedingInfo);
+					playAreaInfoDAO.update(updatedPlayAreaInfo);
+					restaurantMenuInfoDAO.update(updatedRestaurantMenuInfo);
+					restroomInfoDAO.update(updatedRestroomInfo);
+					
+			        // SEND AS REDIRECT to avoid multiple-browser reload issue
+			        response.sendRedirect(request.getContextPath() + "/FriendlyControllerServlet?command=VIEW&businessID=" + updatedBusiness.getId());
+				}
+				
+			} else {
+				
 				// add the business to the database and retrieve its businessID
 				businessDAO.update(updatedBusiness);		
 				
