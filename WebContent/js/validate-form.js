@@ -25,7 +25,8 @@ $('#kidFriendlyListing').validate({
         	phoneUS: true,
         },
         businessWebsite: {
-        	url: true
+        	url: true,
+    		maxlength: 2083
         },
         category: {
             required: true,
@@ -63,7 +64,8 @@ $('#kidFriendlyListing').validate({
     		maxlength: "The zip must be 5 digits."
         },
         businessWebsite: {
-        	url: "Please enter a valid url (remember: http://)."
+        	url: "Please enter a valid url (remember: http://).",
+        	maxlength: "Please enter a shorter website address."
         },
         category: {
             required: "Please select at least one category.",
