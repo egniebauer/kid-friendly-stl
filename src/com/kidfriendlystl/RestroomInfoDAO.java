@@ -42,18 +42,9 @@ public class RestroomInfoDAO {
 			while (rs.next()) {
 				// retrieve data and set params
 				int businessID = rs.getInt("business_id");
-				Boolean clean = rs.getBoolean("clean");
-				if (rs.wasNull()) {
-					clean = null;
-				}
-				Boolean toddlerSeat = rs.getBoolean("toddler_seat");
-				if (rs.wasNull()) {
-					toddlerSeat = null;
-				}
-				Boolean handDryer = rs.getBoolean("hand_dryer");
-				if (rs.wasNull()) {
-					handDryer = null;
-				}
+				Boolean clean = DatabaseUtils.getNull(rs, "clean");
+				Boolean toddlerSeat = DatabaseUtils.getNull(rs, "toddler_seat");
+				Boolean handDryer = DatabaseUtils.getNull(rs, "hand_dryer");
 				boolean womensRoom = rs.getBoolean("womens_room");
 				boolean mensRoom = rs.getBoolean("mens_room");
 				boolean familyRoom = rs.getBoolean("family_room");
@@ -103,18 +94,9 @@ public class RestroomInfoDAO {
 			if (rs.next()) {
 				//retrieve data and assign to variables
 				businessID = rs.getInt("business_id");
-				Boolean clean = rs.getBoolean("clean");
-				if (rs.wasNull()) {
-					clean = null;
-				}
-				Boolean toddlerSeat = rs.getBoolean("toddler_seat");
-				if (rs.wasNull()) {
-					toddlerSeat = null;
-				}
-				Boolean handDryer = rs.getBoolean("hand_dryer");
-				if (rs.wasNull()) {
-					handDryer = null;
-				}
+				Boolean clean = DatabaseUtils.getNull(rs, "clean");
+				Boolean toddlerSeat = DatabaseUtils.getNull(rs, "toddler_seat");
+				Boolean handDryer = DatabaseUtils.getNull(rs, "hand_dryer");
 				boolean womensRoom = rs.getBoolean("womens_room");
 				boolean mensRoom = rs.getBoolean("mens_room");
 				boolean familyRoom = rs.getBoolean("family_room");

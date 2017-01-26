@@ -44,20 +44,11 @@ public class PlayAreaInfoDAO {
 			while (rs.next()) {
 				// retrieve data and set params
 				int businessID = rs.getInt("business_id");
-				Boolean clean = rs.getBoolean("clean");
-				if (rs.wasNull()) {
-					clean = null;
-				}
+				Boolean clean = DatabaseUtils.getNull(rs, "clean");
 				boolean inside = rs.getBoolean("inside");
 				boolean outside = rs.getBoolean("outside");
-				Boolean gated = rs.getBoolean("gated");
-				if (rs.wasNull()) {
-					gated = null;
-				}
-				Boolean fun = rs.getBoolean("fun");
-				if (rs.wasNull()) {
-					fun = null;
-				}
+				Boolean gated = DatabaseUtils.getNull(rs, "gated");
+				Boolean fun = DatabaseUtils.getNull(rs, "fun");
 				
 				// pass params to new object
 				PlayAreaInfo currentRow = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun);
@@ -104,20 +95,11 @@ public class PlayAreaInfoDAO {
 			//process the results
 			if (rs.next()) {
 				//retrieve data and assign to object params
-				Boolean clean = rs.getBoolean("clean");
-				if (rs.wasNull()) {
-					clean = null;
-				}
+				Boolean clean = DatabaseUtils.getNull(rs, "clean");
 				boolean inside = rs.getBoolean("inside");
 				boolean outside = rs.getBoolean("outside");
-				Boolean gated = rs.getBoolean("gated");
-				if (rs.wasNull()) {
-					gated = null;
-				}
-				Boolean fun = rs.getBoolean("fun");
-				if (rs.wasNull()) {
-					fun = null;
-				}
+				Boolean gated = DatabaseUtils.getNull(rs, "gated");
+				Boolean fun = DatabaseUtils.getNull(rs, "fun");
 				
 				// pass params to empty object
 				selectedRow = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun); 

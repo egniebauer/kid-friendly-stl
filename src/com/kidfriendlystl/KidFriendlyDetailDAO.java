@@ -44,17 +44,11 @@ public class KidFriendlyDetailDAO {
 			while(rs.next()) {
 				//retrieve data from each row
 				int businessID = rs.getInt("business_id");
-				Boolean multipleFamilies = rs.getBoolean("multiple_families");
-				if (rs.wasNull()){
-					multipleFamilies = null;
-				}
+				Boolean multipleFamilies = DatabaseUtils.getNull(rs, "multiple_families");
 				boolean morning = rs.getBoolean("morning");
 				boolean afternoon = rs.getBoolean("afternoon");
 				boolean evening = rs.getBoolean("evening");
-				Boolean kidsFreeDiscount = rs.getBoolean("kids_free_discount");
-				if (rs.wasNull()){
-					kidsFreeDiscount = null;
-				}
+				Boolean kidsFreeDiscount = DatabaseUtils.getNull(rs, "kids_free_discount");
 				String kidsFreeDiscountDetail = rs.getString("kids_free_discount_detail");
 				 
 				//pass to new object & add to list
@@ -98,17 +92,11 @@ public class KidFriendlyDetailDAO {
 			
 			// retrieve data from ResultSet and assign to empty AgeRange
 			if (rs.next()) {
-				Boolean multipleFamilies = rs.getBoolean("multiple_families");
-				if (rs.wasNull()){
-					multipleFamilies = null;
-				}
+				Boolean multipleFamilies = DatabaseUtils.getNull(rs, "multiple_families");
 				boolean morning = rs.getBoolean("morning");
 				boolean afternoon = rs.getBoolean("afternoon"); 
 				boolean evening = rs.getBoolean("evening"); 
-				Boolean kidsFreeDiscount = rs.getBoolean("kids_free_discount");
-				if (rs.wasNull()){
-					kidsFreeDiscount = null;
-				}
+				Boolean kidsFreeDiscount = DatabaseUtils.getNull(rs, "kids_free_discount");
 				String kidsFreeDiscountDetail = rs.getString("kids_free_discount_detail");
 				
 				theKidFriendlyDetail = new KidFriendlyDetail(businessID, multipleFamilies, morning,

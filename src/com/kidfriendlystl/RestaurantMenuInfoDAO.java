@@ -46,10 +46,7 @@ public class RestaurantMenuInfoDAO {
 				int businessID = rs.getInt("business_id");
 				boolean highChair = rs.getBoolean("high_chair");
 				boolean booster = rs.getBoolean("booster");
-				Boolean activities = rs.getBoolean("activities");
-				if (rs.wasNull()) {
-					activities = null;
-				}
+				Boolean activities = DatabaseUtils.getNull(rs, "activities");
 				boolean healthy = rs.getBoolean("healthy");
 				boolean allergyFriendly = rs.getBoolean("allergy_friendly");
 				boolean unhealthy = rs.getBoolean("unhealthy");
@@ -106,10 +103,7 @@ public class RestaurantMenuInfoDAO {
 				//retrieve data and assign to variables
 				boolean highChair = rs.getBoolean("high_chair");
 				boolean booster = rs.getBoolean("booster");
-				Boolean activities = rs.getBoolean("activities");
-				if (rs.wasNull()) {
-					activities = null;
-				}
+				Boolean activities = DatabaseUtils.getNull(rs, "activities");
 				boolean healthy = rs.getBoolean("healthy");
 				boolean allergyFriendly = rs.getBoolean("allergy_friendly");
 				boolean unhealthy = rs.getBoolean("unhealthy");

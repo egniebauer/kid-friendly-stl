@@ -45,18 +45,9 @@ public class BreastfeedingInfoDAO {
 			while (rs.next()){
 				//retrieve data from ResultSet row
 				int businessID = rs.getInt("business_id");
-				Boolean clean = rs.getBoolean("clean");
-				if (rs.wasNull()){
-					clean = null;
-				}
-				Boolean comfortable = rs.getBoolean("comfortable");
-				if (rs.wasNull()){
-					comfortable = null;
-				}
-				Boolean bottleWarmer = rs.getBoolean("bottle_warmer");
-				if (rs.wasNull()){
-					comfortable = null;
-				}
+				Boolean clean = DatabaseUtils.getNull(rs, "clean");
+				Boolean comfortable = DatabaseUtils.getNull(rs, "comfortable");
+				Boolean bottleWarmer = DatabaseUtils.getNull(rs, "bottle_warmer");
 				boolean lactationRoom = rs.getBoolean("lactation_room");
 				boolean quietArea = rs.getBoolean("quiet_area");
 				boolean grossOpts = rs.getBoolean("gross_opts");
@@ -108,18 +99,9 @@ public class BreastfeedingInfoDAO {
 			// process the ResultSet
 			if (rs.next()){
 				//retrieve data and assign to object params
-				Boolean clean = rs.getBoolean("clean");
-				if (rs.wasNull()){
-					clean = null;
-				}
-				Boolean comfortable = rs.getBoolean("comfortable");
-				if (rs.wasNull()){
-					comfortable = null;
-				}
-				Boolean bottleWarmer = rs.getBoolean("bottle_warmer");
-				if (rs.wasNull()){
-					comfortable = null;
-				}
+				Boolean clean = DatabaseUtils.getNull(rs, "clean");
+				Boolean comfortable = DatabaseUtils.getNull(rs, "comfortable");
+				Boolean bottleWarmer = DatabaseUtils.getNull(rs, "bottle_warmer");
 				boolean lactationRoom = rs.getBoolean("lactation_room");
 				boolean quietArea = rs.getBoolean("quiet_area");
 				boolean grossOpts = rs.getBoolean("gross_opts");
