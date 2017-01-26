@@ -296,20 +296,24 @@ public class FriendlyControllerServlet extends HttpServlet {
 			
 			Business updatedBusiness = CreateTable.existingBusiness(request);
 			
-			// check if duplicate 
-			boolean dup = businessDAO.isDuplicate(updatedBusiness.getName());
-			
-			if (dup) {
-				// get duplicates from DAO
-				List<Business> dupes = businessDAO.getDuplicates(updatedBusiness.getName());
-
-				request.setAttribute("DUPLICATE_LIST", dupes);
-				request.setAttribute("ERROR_MESSAGE", "Possible duplicate listing. Please see businesses below or click back and correct listing.");
+			// if name changed - check if dup 
+			if (!updatedBusiness.getName().equals(businessDAO.isDifferentName(updatedBusiness.getId()))) {
 				
-				// send to .jsp page: oops.jsp
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp"); 
-				dispatcher.forward(request, response);
-			} else {
+				boolean dup = businessDAO.isDuplicate(updatedBusiness.getName());
+				
+				if (dup) {
+					// get duplicates from DAO
+					List<Business> dupes = businessDAO.getDuplicates(updatedBusiness.getName());
+
+					request.setAttribute("DUPLICATE_LIST", dupes);
+					request.setAttribute("ERROR_MESSAGE", "Possible duplicate listing. Please see businesses below or click back and correct listing.");
+					
+					// send to .jsp page: oops.jsp
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp"); 
+					dispatcher.forward(request, response);
+				}
+
+				} else {
 				// add the business to the database and retrieve its businessID
 				businessDAO.update(updatedBusiness);		
 				

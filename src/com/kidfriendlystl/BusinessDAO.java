@@ -290,6 +290,40 @@ public class BusinessDAO {
 		}
 	}
 
+	public String isDifferentName(int id) 
+			throws Exception {
+		
+		// create JDBC objects
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// get connection
+			conn = dataSource.getConnection();
+			
+			// create SQL String and PreparedStatement to SELECT business if name matches
+			String sql = "SELECT name FROM kid_friendly_stl.business WHERE id LIKE ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			
+			// execute SQL statement
+			rs = stmt.executeQuery();
+			String name = "";
+			
+			// return name
+			while (rs.next()) {
+				name = rs.getString("name");
+			}
+			
+			return name;
+		}
+		finally {
+			// close JDBC objects
+			DatabaseUtils.close(conn, stmt, rs);
+		}
+	}
+
 	public List<Business> getDuplicates(String searchName) throws Exception {
 		// create empty list
 		List<Business> duplicates = new ArrayList<>();
