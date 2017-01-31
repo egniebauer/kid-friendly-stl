@@ -141,7 +141,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		request.setAttribute("CATEGORY_LIST", categories);
 		request.setAttribute("AGE_RANGE_LIST", ageRanges);
 		
-		//send to JSP page (view)
+		//send to JSP page (list)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-businesses.jsp");
 		dispatcher.forward(request, response);
 		
@@ -173,7 +173,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		request.setAttribute("BUSINESS_RESTAURANT_MENU", businessRestaurantMenuInfo);
 		request.setAttribute("BUSINESS_RESTROOM", businessRestroomInfo);
 		
-		// send to .jsp page: view-business.jsp
+		// send to .jsp page: form.jsp
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/form.jsp");
 		dispatcher.forward(request, response);
 		
@@ -214,7 +214,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 			// place error message
 			request.setAttribute("ERROR_MESSAGE", e);
 			
-			// send to .jsp page: view-business.jsp
+			// send to .jsp page: oops.jsp
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -398,9 +398,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 //		String multipleFamiliesRadio = request.getParameter("multipleFamilies");
 //		String kidsFreeDiscountRadio = request.getParameter("kidsFreeDiscount");
 		String kidsFreeDiscountDetail = request.getParameter("kidsFreeDiscountDetail");
-		
-		//TODO - read parameters from supplemental tables
-		
+				
 		// read parameters - BreastfeedingInfo
 //		String breastfeedingCleanRadio = request.getParameter("breastfeedingClean");
 //		String comfortableRadio = request.getParameter("comfortable");

@@ -484,12 +484,12 @@ public class CreateTable {
 					break;
 		}
 
-		// create new business object (with existing id)
-		Business newBusiness = new Business(id, name, address, city, state, zip,
+		// create business object (with existing id)
+		Business existingBusiness = new Business(id, name, address, city, state, zip,
 						phone, website, rating1, rating2, rating3, rating4, rating5);
 		
 		// return business
-		return newBusiness;
+		return existingBusiness;
 	}
 
 }
