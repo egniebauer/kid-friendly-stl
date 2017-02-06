@@ -297,7 +297,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 			Business updatedBusiness = CreateTable.existingBusiness(request);
 			
 			// if name changed - check if dup 
-			String originalName = businessDAO.isDifferentName(updatedBusiness.getId());
+			String originalName = businessDAO.getPreviousName(updatedBusiness.getId());
 			boolean dup = businessDAO.isDuplicate(updatedBusiness.getName());
 			
 			if (!updatedBusiness.getName().equals(originalName) && dup) {

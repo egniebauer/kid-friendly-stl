@@ -286,7 +286,7 @@ public class BusinessDAO {
 		}
 	}
 
-	public String isDifferentName(int id) 
+	public String getPreviousName(int id) 
 			throws Exception {
 		
 		// create JDBC objects
