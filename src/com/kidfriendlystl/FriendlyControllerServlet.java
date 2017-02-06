@@ -154,7 +154,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		String theBusinessID = request.getParameter("businessID");
 		
 		// retrieve Business from database, create necessary objects
-		Business theBusiness = businessDAO.get(theBusinessID);
+		Business theBusiness = businessDAO.get(Integer.parseInt(theBusinessID));
 		Category businessCategory = categoryDAO.get(theBusinessID);
 		AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
 		KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);
@@ -187,7 +187,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		// retrieve Business from database, create necessary objects
 		try {
-			Business theBusiness = businessDAO.get(theBusinessID);
+			Business theBusiness = businessDAO.get(Integer.parseInt(theBusinessID));
 			Category businessCategory = categoryDAO.get(theBusinessID);
 			AgeRange businessAgeRange = ageRangeDAO.get(theBusinessID);
 			KidFriendlyDetail businessKidFriendlyDetail = kidFriendlyDetailDAO.get(theBusinessID);

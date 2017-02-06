@@ -75,12 +75,11 @@ public class BusinessDAO {
 		}
 	}
 
-	public Business get(String theBusinessID) 
+	public Business get(int theBusinessID) 
 			throws Exception{
 		
 		// create empty Business and int businessID
 		Business theBusiness = null;
-		int businessID;
 		
 		// create JDBC objects
 		Connection conn = null;
@@ -88,16 +87,13 @@ public class BusinessDAO {
 		ResultSet rs = null;
 		
 		try {
-			// convert theBusinessID to int
-			businessID = Integer.parseInt(theBusinessID);
-			
 			// get connection
 			conn = dataSource.getConnection();
 			
 			// create PreparedStatement SELECT theBusiness
 			String sql = "SELECT * FROM kid_friendly_stl.business WHERE id=?";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, businessID);
+			stmt.setInt(1, theBusinessID);
 			
 			// execute QUERY
 			rs = stmt.executeQuery();
@@ -121,11 +117,11 @@ public class BusinessDAO {
 				phone = phone != null ? phone.replaceFirst("^1\\-", ""): phone;
 				phone = phone != null ? phone.replaceAll("[^\\d]", ""): phone;
 				
-				theBusiness = new Business(businessID, name, address, city, state, zip,
+				theBusiness = new Business(theBusinessID, name, address, city, state, zip,
 						phone, website, rating1, rating2, rating3, rating4, rating5);
 			}
 			else {
-				throw new Exception("Could not find business id: " + businessID);
+				throw new Exception("Could not find business id: " + theBusinessID);
 			}
 			
 			// return Business
