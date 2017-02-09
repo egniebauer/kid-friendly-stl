@@ -10,11 +10,8 @@ public class PlayAreaInfo {
 	private Boolean fun;
 	
 	public PlayAreaInfo(int businessID, Boolean clean, boolean inside, boolean outside, Boolean gated, Boolean fun) {
+		this(clean, inside, outside, gated, fun);
 		this.businessID = businessID;
-		this.clean = clean;
-		this.inside = inside;
-		this.outside = outside;
-		this.gated = gated;
 		this.fun = fun;
 	}
 
@@ -27,12 +24,8 @@ public class PlayAreaInfo {
 	}
 
 	public PlayAreaInfo(int businessID, boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {
+		this(clean, inside, outside, gated, fun);
 		this.businessID = businessID;
-		this.clean = new Boolean(clean);
-		this.inside = inside;
-		this.outside = outside;
-		this.gated = new Boolean(gated);
-		this.fun = new Boolean(fun);
 	}
 
 	public PlayAreaInfo(boolean clean, boolean inside, boolean outside, boolean gated, boolean fun) {

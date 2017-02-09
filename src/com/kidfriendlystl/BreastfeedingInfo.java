@@ -13,26 +13,14 @@ public class BreastfeedingInfo {
 	
 	public BreastfeedingInfo(int businessID, Boolean clean, Boolean comfortable, Boolean bottleWarmer,
 			boolean lactationRoom, boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
+		this(clean, comfortable, bottleWarmer, lactationRoom, quietArea, grossOpts, nonSpecificOpts);
 		this.businessID = businessID;
-		this.clean = clean;
-		this.comfortable = comfortable;
-		this.bottleWarmer = bottleWarmer;
-		this.lactationRoom = lactationRoom;
-		this.quietArea = quietArea;
-		this.grossOpts = grossOpts;
-		this.nonSpecificOpts = nonSpecificOpts;
 	}
 
 	public BreastfeedingInfo(int businessID, boolean clean, boolean comfortable, boolean bottleWarmer,
 			boolean lactationRoom, boolean quietArea, boolean grossOpts, boolean nonSpecificOpts) {
+		this(clean, comfortable, bottleWarmer, lactationRoom, quietArea, grossOpts, nonSpecificOpts);
 		this.businessID = businessID;
-		this.clean = new Boolean(clean);
-		this.comfortable = new Boolean(comfortable);
-		this.bottleWarmer = new Boolean(bottleWarmer);
-		this.lactationRoom = lactationRoom;
-		this.quietArea = quietArea;
-		this.grossOpts = grossOpts;
-		this.nonSpecificOpts = nonSpecificOpts;
 	}
 
 	public BreastfeedingInfo(Boolean clean, Boolean comfortable, Boolean bottleWarmer, boolean lactationRoom,

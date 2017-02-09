@@ -11,12 +11,8 @@ public class AgeRange {
 	
 	public AgeRange(int businessID, boolean baby, boolean toddler, boolean preschooler,
 			boolean gradeSchooler, boolean teen) {
+		this(baby, toddler, preschooler, gradeSchooler, teen);
 		this.businessID = businessID;
-		this.baby = baby;
-		this.toddler = toddler;
-		this.preschooler = preschooler;
-		this.gradeSchooler = gradeSchooler;
-		this.teen = teen;
 	}
 	
 	public AgeRange(boolean baby, boolean toddler, boolean preschooler,

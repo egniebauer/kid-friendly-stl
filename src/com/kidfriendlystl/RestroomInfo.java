@@ -13,14 +13,8 @@ public class RestroomInfo {
 	
 	public RestroomInfo(int businessID, Boolean clean, Boolean toddlerSeat, Boolean handDryer, boolean womensRoom,
 			boolean mensRoom, boolean familyRoom, boolean noChangingTable) {
+		this(clean, toddlerSeat, handDryer, womensRoom, mensRoom, familyRoom, noChangingTable);
 		this.businessID = businessID;
-		this.clean = clean;
-		this.toddlerSeat = toddlerSeat;
-		this.handDryer = handDryer;
-		this.womensRoom = womensRoom;
-		this.mensRoom = mensRoom;
-		this.familyRoom = familyRoom;
-		this.noChangingTable = noChangingTable;
 	}
 
 	public RestroomInfo(Boolean clean, Boolean toddlerSeat, Boolean handDryer, boolean womensRoom, boolean mensRoom,
@@ -36,14 +30,8 @@ public class RestroomInfo {
 	
 	public RestroomInfo(int businessID, boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom,
 			boolean mensRoom, boolean familyRoom, boolean noChangingTable) {
+		this(clean, toddlerSeat, handDryer, womensRoom, mensRoom, familyRoom, noChangingTable);
 		this.businessID = businessID;
-		this.clean = new Boolean(clean);
-		this.toddlerSeat = new Boolean(toddlerSeat);
-		this.handDryer = new Boolean(handDryer);
-		this.womensRoom = womensRoom;
-		this.mensRoom = mensRoom;
-		this.familyRoom = familyRoom;
-		this.noChangingTable = noChangingTable;
 	}
 
 	public RestroomInfo(boolean clean, boolean toddlerSeat, boolean handDryer, boolean womensRoom, boolean mensRoom,

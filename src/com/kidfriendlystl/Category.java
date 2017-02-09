@@ -16,16 +16,8 @@ public class Category {
 	public Category(int businessID, boolean activeLife, boolean artsEntertainment, boolean education,
 			boolean foodRestaurant, boolean healthMedical, boolean hotelTravel, boolean publicServiceGovernment,
 			boolean religious, boolean shopping) {
+		this(activeLife, artsEntertainment, education, foodRestaurant, healthMedical, hotelTravel, publicServiceGovernment, religious, shopping);
 		this.businessID = businessID;
-		this.activeLife = activeLife;
-		this.artsEntertainment = artsEntertainment;
-		this.education = education;
-		this.foodRestaurant = foodRestaurant;
-		this.healthMedical = healthMedical;
-		this.hotelTravel = hotelTravel;
-		this.publicServiceGovernment = publicServiceGovernment;
-		this.religious = religious;
-		this.shopping = shopping;
 	}
 
 	public Category(boolean activeLife, boolean artsEntertainment, boolean education,

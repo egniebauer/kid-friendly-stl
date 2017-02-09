@@ -12,13 +12,8 @@ public class KidFriendlyDetail {
 	
 	public KidFriendlyDetail(int businessID, Boolean multipleFamilies, boolean morning,
 			boolean afternoon, boolean evening, Boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
+		this(multipleFamilies, morning, afternoon, evening, kidsFreeDiscount, kidsFreeDiscountDetail);
 		this.businessID = businessID;
-		this.multipleFamilies = multipleFamilies;
-		this.morning = morning;
-		this.afternoon = afternoon;
-		this.evening = evening;
-		this.kidsFreeDiscount = kidsFreeDiscount;
-		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
 	}
 
 	public KidFriendlyDetail(Boolean multipleFamilies, boolean morning,
@@ -33,13 +28,8 @@ public class KidFriendlyDetail {
 	
 	public KidFriendlyDetail(int businessID, boolean multipleFamilies, boolean morning,
 			boolean afternoon, boolean evening, boolean kidsFreeDiscount, String kidsFreeDiscountDetail) {
+		this(multipleFamilies, morning, afternoon, evening, kidsFreeDiscount, kidsFreeDiscountDetail);
 		this.businessID = businessID;
-		this.multipleFamilies = new Boolean(multipleFamilies);
-		this.morning = morning;
-		this.afternoon = afternoon;
-		this.evening = evening;
-		this.kidsFreeDiscount = new Boolean (kidsFreeDiscount);
-		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
 	}
 
 	public KidFriendlyDetail(boolean multipleFamilies, boolean morning,
