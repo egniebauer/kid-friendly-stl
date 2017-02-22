@@ -87,11 +87,11 @@
 						<h5>Categories</h5>
 						<ul class="list-unstyled">
 							<li><span class="${BUSINESS_CATEGORY.activeLife == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Active Life</li>
-							<li><span class="${BUSINESS_CATEGORY.artsEntertainment == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Arts & Entertainment</li>
+							<li><span class="${BUSINESS_CATEGORY.artsEntertainment == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Arts &amp; Entertainment</li>
 							<li><span class="${BUSINESS_CATEGORY.education == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Education</li>
-							<li><span class="${BUSINESS_CATEGORY.foodRestaurant == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Food & Restaurants</li>
+							<li><span class="${BUSINESS_CATEGORY.foodRestaurant == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Food &amp; Restaurants</li>
 							<li><span class="${BUSINESS_CATEGORY.healthMedical == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Health/ Medical</li>
-							<li><span class="${BUSINESS_CATEGORY.hotelTravel == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Hotels & Travel</li>
+							<li><span class="${BUSINESS_CATEGORY.hotelTravel == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Hotels &amp; Travel</li>
 							<li><span class="${BUSINESS_CATEGORY.publicServiceGovernment == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Public Services/ Government</li>
 							<li><span class="${BUSINESS_CATEGORY.religious == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Religious</li>
 							<li><span class="${BUSINESS_CATEGORY.shopping == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}" aria-hidden="true"></span> Shopping</li>
@@ -293,7 +293,7 @@
 					<div class="panel-heading" role="tab" id="restaurantMenuHeading">
 						<h3 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#restaurantMenu" aria-expanded="false" aria-controls="restaurantMenu">
-								Restaurants & Menus
+								Restaurants &amp; Menus
 					        </a>
 						</h3>
 					</div>

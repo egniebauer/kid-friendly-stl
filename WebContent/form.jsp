@@ -172,19 +172,19 @@
 						<input type="checkbox" name="category" id="activeLife" value="activeLife" ${BUSINESS_CATEGORY.activeLife == true ? 'checked' : '' }> Active Life
 					</label>
 					<label class="checkbox" for="artsEntertainment">
-						<input type="checkbox" name="category" id="artsEntertainment" value="artsEntertainment" ${BUSINESS_CATEGORY.artsEntertainment == true ? 'checked' : '' }> Arts & Entertainment
+						<input type="checkbox" name="category" id="artsEntertainment" value="artsEntertainment" ${BUSINESS_CATEGORY.artsEntertainment == true ? 'checked' : '' }> Arts &amp; Entertainment
 					</label>
 					<label class="checkbox" for="education">
 						<input type="checkbox" name="category" id="education" value="education" ${BUSINESS_CATEGORY.education == true ? 'checked' : '' }> Education
 					</label>
 					<label class="checkbox" for="foodRestaurant">
-						<input type="checkbox" name="category" id="foodRestaurant" value="foodRestaurant" ${BUSINESS_CATEGORY.foodRestaurant == true ? 'checked' : '' }> Food & Restaurant
+						<input type="checkbox" name="category" id="foodRestaurant" value="foodRestaurant" ${BUSINESS_CATEGORY.foodRestaurant == true ? 'checked' : '' }> Food &amp; Restaurant
 					</label>
 					<label class="checkbox" for="healthMedical">
-						<input type="checkbox" name="category" id="healthMedical" value="healthMedical" ${BUSINESS_CATEGORY.healthMedical == true ? 'checked' : '' }> Health & Medical
+						<input type="checkbox" name="category" id="healthMedical" value="healthMedical" ${BUSINESS_CATEGORY.healthMedical == true ? 'checked' : '' }> Health &amp; Medical
 					</label>
 					<label class="checkbox" for="hotelTravel">
-						<input type="checkbox" name="category" id="hotelTravel" value="hotelTravel" ${BUSINESS_CATEGORY.hotelTravel == true ? 'checked' : '' }> Hotels & Travel
+						<input type="checkbox" name="category" id="hotelTravel" value="hotelTravel" ${BUSINESS_CATEGORY.hotelTravel == true ? 'checked' : '' }> Hotels &amp; Travel
 					</label>
 					<label class="checkbox" for="publicServiceGovernment">
 						<input type="checkbox" name="category" id="publicServiceGovernment" value="publicServiceGovernment" ${BUSINESS_CATEGORY.publicServiceGovernment == true ? 'checked' : ' ' }> Public Services
@@ -467,7 +467,7 @@
 				    <div class="panel-heading" role="tab" id="restaurantMenuHeading">
 				      <h3 class="panel-title">
 				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#restaurantMenu" aria-expanded="false" aria-controls="restaurantMenu">
-				          Restaurants & Menus
+				          Restaurants &amp; Menus
 				        </a>
 				      </h3>
 				    </div>
