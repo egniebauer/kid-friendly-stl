@@ -230,7 +230,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		if (errorMessage.equals("PASS"))
 		{
 			// create a new Business object
-			Business newBusiness = CreateTable.newBusiness(request);
+			Business newBusiness = Business.createNewBusinessEntry(request);
 			
 			// check if duplicate 
 			boolean dup = businessDAO.isDuplicate(newBusiness.getName());
@@ -241,13 +241,13 @@ public class FriendlyControllerServlet extends HttpServlet {
 				int businessID = businessDAO.add(newBusiness);		
 				
 				// create other objects with businessID
-				Category newCategory = CreateTable.category(businessID, request);
-				AgeRange newAgeRange = CreateTable.ageRange(businessID, request);
-				KidFriendlyDetail newKidFriendlyDetail = CreateTable.kidFriendlyDetail(businessID, request);
-				BreastfeedingInfo newBreastfeedingInfo = CreateTable.breastfeedingInfo(businessID, request);
-				PlayAreaInfo newPlayAreaInfo = CreateTable.playAreaInfo(businessID, request);
-				RestaurantMenuInfo newRestaurantMenuInfo = CreateTable.restaurantMenuInfo(businessID, request);
-				RestroomInfo newRestroomInfo = CreateTable.restroomInfo(businessID, request);				
+				Category newCategory = Category.createCategoryEntry(businessID, request);
+				AgeRange newAgeRange = AgeRange.createAgeRangeEntry(businessID, request);
+				KidFriendlyDetail newKidFriendlyDetail = KidFriendlyDetail.createKidFriendlyDetailEntry(businessID, request);
+				BreastfeedingInfo newBreastfeedingInfo = BreastfeedingInfo.createBreastfeedingEntry(businessID, request);
+				PlayAreaInfo newPlayAreaInfo = PlayAreaInfo.createPlayAreaEntry(businessID, request);
+				RestaurantMenuInfo newRestaurantMenuInfo = RestaurantMenuInfo.createRestaurantMenuEntry(businessID, request);
+				RestroomInfo newRestroomInfo = RestroomInfo.createRestroomEntry(businessID, request);				
 				
 				// add objects to database
 				categoryDAO.add(newCategory);
@@ -294,7 +294,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		if (errorMessage.equals("PASS")){
 			
-			Business updatedBusiness = CreateTable.existingBusiness(request);
+			Business updatedBusiness = Business.createExistingBusinessEntry(request);
 			
 			// if name changed - check if dup 
 			String originalName = businessDAO.getPreviousName(updatedBusiness.getId());
@@ -318,13 +318,13 @@ public class FriendlyControllerServlet extends HttpServlet {
 				businessDAO.update(updatedBusiness);		
 				
 				// create other objects with businessID
-				Category updatedCategory = CreateTable.category(updatedBusiness.getId(), request);
-				AgeRange updatedAgeRange = CreateTable.ageRange(updatedBusiness.getId(), request);
-				KidFriendlyDetail updatedKidFriendlyDetail = CreateTable.kidFriendlyDetail(updatedBusiness.getId(), request);
-				BreastfeedingInfo updatedBreastfeedingInfo = CreateTable.breastfeedingInfo(updatedBusiness.getId(), request);
-				PlayAreaInfo updatedPlayAreaInfo = CreateTable.playAreaInfo(updatedBusiness.getId(), request);
-				RestaurantMenuInfo updatedRestaurantMenuInfo = CreateTable.restaurantMenuInfo(updatedBusiness.getId(), request);
-				RestroomInfo updatedRestroomInfo = CreateTable.restroomInfo(updatedBusiness.getId(), request);				
+				Category updatedCategory = Category.createCategoryEntry(updatedBusiness.getId(), request);
+				AgeRange updatedAgeRange = AgeRange.createAgeRangeEntry(updatedBusiness.getId(), request);
+				KidFriendlyDetail updatedKidFriendlyDetail = KidFriendlyDetail.createKidFriendlyDetailEntry(updatedBusiness.getId(), request);
+				BreastfeedingInfo updatedBreastfeedingInfo = BreastfeedingInfo.createBreastfeedingEntry(updatedBusiness.getId(), request);
+				PlayAreaInfo updatedPlayAreaInfo = PlayAreaInfo.createPlayAreaEntry(updatedBusiness.getId(), request);
+				RestaurantMenuInfo updatedRestaurantMenuInfo = RestaurantMenuInfo.createRestaurantMenuEntry(updatedBusiness.getId(), request);
+				RestroomInfo updatedRestroomInfo = RestroomInfo.createRestroomEntry(updatedBusiness.getId(), request);				
 				
 				// add objects to database
 				categoryDAO.update(updatedCategory);

@@ -1,5 +1,7 @@
 package com.kidfriendlystl;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class RestroomInfo {
 	
 	private int businessID;
@@ -116,6 +118,60 @@ public class RestroomInfo {
 
 	public void setNoChangingTable(boolean noChangingTable) {
 		this.noChangingTable = noChangingTable;
+	}
+
+	public static RestroomInfo createRestroomEntry(int businessID, HttpServletRequest request) 
+			throws Exception {
+		
+		// create empty object
+		RestroomInfo newRestroomInfo;
+		
+		// retrieve data
+		String restroomCleanRadio = request.getParameter("restroomClean");
+		String toddlerSeatRadio = request.getParameter("toddlerSeat");
+		String handDryerRadio = request.getParameter("handDryer");
+		String[] changingTables = request.getParameterValues("changingTable");
+		
+		// set data to params
+		Boolean clean = null;
+		if (restroomCleanRadio != null) {
+			clean = restroomCleanRadio.equals("1") ? true : false;
+		}
+		Boolean toddlerSeat = null;
+		if (toddlerSeatRadio != null) {
+			toddlerSeat = toddlerSeatRadio.equals("1") ? true : false;
+		}
+		Boolean handDryer = null;
+		if (handDryerRadio != null) {
+			handDryer = handDryerRadio.equals("1") ? true : false;
+		}
+	
+		boolean womensRoom = false;
+		boolean mensRoom = false;
+		boolean familyRoom = false;
+		boolean noChangingTable = false;
+		if (changingTables != null){
+			for (String table : changingTables) {
+				switch (table){
+					case "womensRoom" :
+						womensRoom = true;
+						break;
+					case "mensRoom" :
+						mensRoom = true;
+						break;
+					case "familyRoom" :
+						familyRoom = true;
+						break;
+					case "noChangingTable" :
+						noChangingTable = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newRestroomInfo = new RestroomInfo(businessID, clean, toddlerSeat, handDryer, womensRoom, mensRoom, familyRoom, noChangingTable);
+		return newRestroomInfo;
 	}
 	
 	

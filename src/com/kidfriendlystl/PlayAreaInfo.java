@@ -1,5 +1,7 @@
 package com.kidfriendlystl;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class PlayAreaInfo {
 	
 	private int businessID;
@@ -91,6 +93,51 @@ public class PlayAreaInfo {
 		}
 	public void setFun(Boolean fun) {
 		this.fun = fun;
+	}
+
+	public static PlayAreaInfo createPlayAreaEntry(int businessID, HttpServletRequest request) 
+			throws Exception {
+		// create empty object
+		PlayAreaInfo newPlayAreaInfo;
+		
+		// retrieve data from form
+		String playAreaCleanRadio = request.getParameter("playAreaClean");
+		String gatedRadio = request.getParameter("gated");
+		String funRadio = request.getParameter("fun");
+		String[] locations = request.getParameterValues("location");
+	
+		// set parameters 
+		Boolean clean = null;
+		if (playAreaCleanRadio != null) {
+			clean = playAreaCleanRadio.equals("1") ? true : false;
+		}
+		Boolean gated = null;
+		if (gatedRadio != null) {
+			gated = gatedRadio.equals("1") ? true : false;
+		}
+		Boolean fun = null;
+		if (funRadio != null) {
+			fun = funRadio.equals("1") ? true : false;
+		}
+		
+		boolean inside = false;
+		boolean outside = false;
+		if (locations != null) {
+			for (String location : locations) {
+				switch (location){
+					case "inside":
+						inside = true;
+						break;
+					case "outside":
+						outside = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newPlayAreaInfo = new PlayAreaInfo(businessID, clean, inside, outside, gated, fun);
+		return newPlayAreaInfo;
 	}
 
 }

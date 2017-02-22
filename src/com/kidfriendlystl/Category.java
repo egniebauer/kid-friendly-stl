@@ -1,5 +1,7 @@
 package com.kidfriendlystl;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Category {
 	
 	private int businessID;							// *required
@@ -112,6 +114,65 @@ public class Category {
 
 	public void setShopping(boolean shopping) {
 		this.shopping = shopping;
+	}
+
+	public static Category createCategoryEntry(int businessID, HttpServletRequest request) 
+			throws Exception {
+		
+		// create an empty Category object
+		Category newCategory;
+		
+		// retrieve form data
+		String[] categories = request.getParameterValues("category"); 
+		
+		// assign data to params
+		boolean activeLife = false;
+		boolean artsEntertainment = false;
+		boolean education = false;
+		boolean foodRestaurant = false;
+		boolean healthMedical = false;
+		boolean hotelTravel = false;
+		boolean publicServiceGovernment = false;
+		boolean religious = false;
+		boolean shopping = false;
+		
+		if (categories != null) {
+			for (String category : categories) {
+				switch (category) {
+					case "activeLife":
+						activeLife = true;
+						break;
+					case "artsEntertainment":
+						artsEntertainment = true;
+						break;
+					case "education":
+						education = true;
+						break;
+					case "foodRestaurant":
+						foodRestaurant = true;
+						break;
+					case "healthMedical":
+						healthMedical = true;
+						break;
+					case "hotelTravel":
+						hotelTravel = true;
+						break;
+					case "publicServiceGovernment":
+						publicServiceGovernment = true;
+						break;
+					case "religious":
+						religious = true;
+						break;
+					case "shopping":
+						shopping = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newCategory= new Category (businessID, activeLife, artsEntertainment, education, foodRestaurant, healthMedical, hotelTravel, publicServiceGovernment, religious, shopping);
+		return newCategory;
 	}
 	
 }

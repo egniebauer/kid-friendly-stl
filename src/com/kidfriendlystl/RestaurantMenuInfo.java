@@ -1,5 +1,7 @@
 package com.kidfriendlystl;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class RestaurantMenuInfo {
 	
 	private int businessID;
@@ -161,6 +163,89 @@ public class RestaurantMenuInfo {
 
 	public void setNoOpts(boolean noOpts) {
 		this.noOpts = noOpts;
+	}
+
+	public static RestaurantMenuInfo createRestaurantMenuEntry(int businessID, HttpServletRequest request) 
+			throws Exception {
+		// create empty object
+		RestaurantMenuInfo newRestaurantMenuInfo;
+		
+		// retrieve data
+		String activitiesRadio = request.getParameter("activities");
+		String[] seatingOptions = request.getParameterValues("seating");
+		String[] kidsMenu = request.getParameterValues("kidsMenu");
+		String[] fullMenu = request.getParameterValues("fullMenu");
+		
+		// set data to params
+		Boolean activities = null;
+		if (activitiesRadio != null) {
+			activities = activitiesRadio.equals("1") ? true : false;
+		}
+	
+		boolean highChair = false;
+		boolean booster = false;
+		if (seatingOptions != null){
+			for (String option : seatingOptions) {
+				switch (option){
+					case "highChair" :
+						highChair = true;
+						break;
+					case "booster" :
+						booster = true;
+						break;
+				}
+			}
+		}
+		
+		boolean healthy = false;
+		boolean allergyFriendly = false;
+		boolean unhealthy = false;
+		boolean noKidsMenu = false;		
+		if (kidsMenu != null) {
+			for (String option : kidsMenu) {
+				switch (option){
+					case "healthy" :
+						healthy = true;
+						break;
+					case "allergyFriendly" :
+						allergyFriendly = true;
+						break;
+					case "unhealthy" :
+						unhealthy = true;
+						break;
+					case "noKidsMenu" :
+						noKidsMenu = true;
+						break;
+				}
+			}
+		}
+		
+		boolean manyOpts = false;
+		boolean someOpts = false;
+		boolean fewOpts = false;
+		boolean noOpts = false;	
+		if (fullMenu != null) {
+			for (String option : fullMenu) {
+				switch (option){
+					case "manyOpts" :
+						manyOpts = true;
+						break;
+					case "someOpts" :
+						someOpts = true;
+						break;
+					case "fewOpts" :
+						fewOpts = true;
+						break;
+					case "noOpts" :
+						noOpts = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newRestaurantMenuInfo = new RestaurantMenuInfo(businessID, highChair, booster, activities, healthy, allergyFriendly, unhealthy, noKidsMenu, manyOpts, someOpts, fewOpts, noOpts);
+		return newRestaurantMenuInfo;
 	}
 
 }

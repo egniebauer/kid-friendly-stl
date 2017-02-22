@@ -1,5 +1,7 @@
 package com.kidfriendlystl;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class AgeRange {
 	
 	private int businessID;
@@ -70,5 +72,48 @@ public class AgeRange {
 
 	public void setTeen(boolean teen) {
 		this.teen = teen;
+	}
+
+	public static AgeRange createAgeRangeEntry(int businessID, HttpServletRequest request) 
+			throws Exception {
+		
+		// create an empty AgeRange object
+		AgeRange newAgeRange;
+		
+		// retrieve data from the form
+		String[] ages = request.getParameterValues("ageRange");
+		
+		//set params
+		boolean baby = false;
+		boolean toddler = false;
+		boolean preschooler = false;
+		boolean gradeSchooler = false;
+		boolean teen = false;
+	
+		if (ages != null){
+			for (String age: ages){
+				switch (age) {
+					case "baby":
+						baby = true;
+						break;
+					case "toddler":
+						toddler = true;
+						break;
+					case "preschooler":
+						preschooler = true;
+						break;
+					case "gradeSchooler":
+						gradeSchooler = true;
+						break;
+					case "teen":
+						teen = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newAgeRange = new AgeRange(businessID, baby, toddler, preschooler, gradeSchooler, teen);
+		return newAgeRange;
 	}
 }

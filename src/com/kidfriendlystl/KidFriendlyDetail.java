@@ -1,5 +1,7 @@
 package com.kidfriendlystl;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class KidFriendlyDetail {
 	
 	private int businessID;
@@ -102,6 +104,54 @@ public class KidFriendlyDetail {
 
 	public void setKidsFreeDiscountDetail(String kidsFreeDiscountDetail) {
 		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
+	}
+
+	public static KidFriendlyDetail createKidFriendlyDetailEntry(int businessID, HttpServletRequest request) 
+			throws Exception {
+		
+		// create empty object
+		KidFriendlyDetail newKidFriendlyDetail;
+		
+		// set params to false
+		
+		// retrieve data from form
+		String multipleFamiliesRadio = request.getParameter("multipleFamilies");
+		String kidsFreeDiscountRadio = request.getParameter("kidsFreeDiscount");
+		String kidsFreeDiscountDetail = request.getParameter("kidsFreeDiscountDetail");
+		String[] bestTimes = request.getParameterValues("bestTimes");
+	
+		// set params
+		Boolean multipleFamilies = null;
+		if (multipleFamiliesRadio != null) {
+			multipleFamilies = multipleFamiliesRadio.equals("1") ? true : false;
+		}
+		Boolean kidsFreeDiscount = null;
+		if (kidsFreeDiscountRadio !=null) {
+			kidsFreeDiscount = kidsFreeDiscountRadio.equals("1") ? true : false;
+		}
+		
+		boolean morning = false;
+		boolean afternoon = false;
+		boolean evening = false;
+		if (bestTimes != null) {
+			for (String time : bestTimes) {
+				switch (time) {
+					case "morning":
+						morning = true;
+						break;
+					case "afternoon":
+						afternoon = true;
+						break;
+					case "evening":
+						evening = true;
+						break;
+				}
+			}
+		}
+		
+		// pass params to object and return
+		newKidFriendlyDetail = new KidFriendlyDetail(businessID, multipleFamilies, morning, afternoon, evening, kidsFreeDiscount, kidsFreeDiscountDetail);
+		return newKidFriendlyDetail;
 	}
 
 }

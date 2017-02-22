@@ -1,5 +1,7 @@
 package com.kidfriendlystl;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Business {
 		
 	private int id;				// *required
@@ -153,6 +155,108 @@ public class Business {
 
 	public void setRating5(int rating5) {
 		this.rating5 = rating5;
+	}
+
+	public static Business createExistingBusinessEntry(HttpServletRequest request) {
+		
+		// read form data
+		String businessID = request.getParameter("businessID");
+		int id = Integer.parseInt(businessID);
+		String name = request.getParameter("businessName");
+		String address = request.getParameter("businessAddress");
+		String city = request.getParameter("businessCity");
+		State state = State.valueOf(request.getParameter("businessState")); 
+		String zip = request.getParameter("businessZip");
+		String phone = request.getParameter("businessPhone");
+		String website = request.getParameter("businessWebsite");
+		String businessRating = request.getParameter("businessRating");
+	
+		// format parameters (strip non-digits, leading whitespace, etc.)
+		name = name.replaceFirst("^\\s+", "");
+		city = city.replaceFirst("^\\s+", "");
+		address = address.replaceFirst("^\\s+", "");
+		zip = zip.replaceAll("[^0-9]", "");
+		phone = phone.replaceAll("[^0-9]", "");
+		phone = phone.replaceFirst("^1", "");
+	
+		// rating breakdown
+		int rating = businessRating != null ? Integer.parseInt(businessRating) : 0;
+		
+		int rating1 = 0;
+		int rating2 = 0;
+		int rating3 = 0;
+		int rating4 = 0;
+		int rating5 = 0;
+		
+		switch (rating) {
+			case 1:	rating1 = 1;
+					break;
+			case 2:	rating2 = 1;
+					break;
+			case 3:	rating3 = 1;
+					break;
+			case 4:	rating4 = 1;
+					break;
+			case 5:	rating5 = 1;
+					break;
+		}
+	
+		// create business object (with existing id)
+		Business existingBusiness = new Business(id, name, address, city, state, zip,
+						phone, website, rating1, rating2, rating3, rating4, rating5);
+		
+		// return business
+		return existingBusiness;
+	}
+
+	public static Business createNewBusinessEntry(HttpServletRequest request) {
+		
+		// read form data
+		String name = request.getParameter("businessName");
+		String address = request.getParameter("businessAddress");
+		String city = request.getParameter("businessCity");
+		State state = State.valueOf(request.getParameter("businessState")); 
+		String zip = request.getParameter("businessZip");
+		String phone = request.getParameter("businessPhone");
+		String website = request.getParameter("businessWebsite");
+		String businessRating = request.getParameter("businessRating");
+	
+		// format parameters (strip non-digits, leading whitespace, etc.)
+		name = name.replaceFirst("^\\s+", "");
+		city = city.replaceFirst("^\\s+", "");
+		address = address.replaceFirst("^\\s+", "");
+		zip = zip.replaceAll("[^0-9]", "");
+		phone = phone.replaceAll("[^0-9]", "");
+		phone = phone.replaceFirst("^1", "");
+				
+		// rating breakdown
+		int rating = businessRating != null ? Integer.parseInt(businessRating) : 0;
+		
+		int rating1 = 0;
+		int rating2 = 0;
+		int rating3 = 0;
+		int rating4 = 0;
+		int rating5 = 0;
+		
+		switch (rating) {
+			case 1:	rating1 = 1;
+					break;
+			case 2:	rating2 = 1;
+					break;
+			case 3:	rating3 = 1;
+					break;
+			case 4:	rating4 = 1;
+					break;
+			case 5:	rating5 = 1;
+					break;
+		}
+	
+		// create new business object (without existing id)
+		Business newBusiness =  new Business(name, address, city, state, zip,
+						phone, website, rating1, rating2, rating3, rating4, rating5);
+		
+		// return business
+		return newBusiness;
 	}	
 	
 }
