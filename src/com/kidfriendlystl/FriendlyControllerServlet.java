@@ -230,7 +230,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		if (errorMessage.equals("PASS"))
 		{
 			// create a new Business object
-			Business newBusiness = Business.createNewBusinessEntry(request);
+			Business newBusiness = Business.createNewBusiness(request);
 			
 			// check if duplicate 
 			boolean dup = businessDAO.isDuplicate(newBusiness.getName());
@@ -294,7 +294,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		
 		if (errorMessage.equals("PASS")){
 			
-			Business updatedBusiness = Business.createExistingBusinessEntry(request);
+			Business updatedBusiness = Business.createExistingBusiness(request);
 			
 			// if name changed - check if dup 
 			String originalName = businessDAO.getPreviousName(updatedBusiness.getId());

@@ -157,7 +157,7 @@ public class Business {
 		this.rating5 = rating5;
 	}
 
-	public static Business createExistingBusinessEntry(HttpServletRequest request) {
+	public static Business createExistingBusiness(HttpServletRequest request) {
 		
 		// read form data
 		String businessID = request.getParameter("businessID");
@@ -209,7 +209,7 @@ public class Business {
 		return existingBusiness;
 	}
 
-	public static Business createNewBusinessEntry(HttpServletRequest request) {
+	public static Business createNewBusiness(HttpServletRequest request) {
 		
 		// read form data
 		String name = request.getParameter("businessName");
