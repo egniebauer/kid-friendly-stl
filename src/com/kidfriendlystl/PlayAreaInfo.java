@@ -95,7 +95,7 @@ public class PlayAreaInfo {
 		this.fun = fun;
 	}
 
-	public static PlayAreaInfo createPlayAreaEntry(int businessID, HttpServletRequest request) 
+	public static PlayAreaInfo createPlayArea(int businessID, HttpServletRequest request) 
 			throws Exception {
 		// create empty object
 		PlayAreaInfo newPlayAreaInfo;

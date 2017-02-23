@@ -120,7 +120,7 @@ public class RestroomInfo {
 		this.noChangingTable = noChangingTable;
 	}
 
-	public static RestroomInfo createRestroomEntry(int businessID, HttpServletRequest request) 
+	public static RestroomInfo createRestroom(int businessID, HttpServletRequest request) 
 			throws Exception {
 		
 		// create empty object

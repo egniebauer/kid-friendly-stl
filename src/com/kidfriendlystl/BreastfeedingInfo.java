@@ -120,7 +120,7 @@ public class BreastfeedingInfo {
 		this.nonSpecificOpts = nonSpecificOpts;
 	}
 
-	public static BreastfeedingInfo createBreastfeedingEntry(int businessID, HttpServletRequest request) 
+	public static BreastfeedingInfo createBreastfeeding(int businessID, HttpServletRequest request) 
 			throws Exception {
 		
 		// create an empty Category object

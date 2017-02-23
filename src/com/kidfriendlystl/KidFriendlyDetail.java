@@ -106,7 +106,7 @@ public class KidFriendlyDetail {
 		this.kidsFreeDiscountDetail = kidsFreeDiscountDetail;
 	}
 
-	public static KidFriendlyDetail createKidFriendlyDetailEntry(int businessID, HttpServletRequest request) 
+	public static KidFriendlyDetail createKidFriendlyDetail(int businessID, HttpServletRequest request) 
 			throws Exception {
 		
 		// create empty object

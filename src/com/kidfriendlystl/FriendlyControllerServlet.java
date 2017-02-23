@@ -241,13 +241,13 @@ public class FriendlyControllerServlet extends HttpServlet {
 				int businessID = businessDAO.add(newBusiness);		
 				
 				// create other objects with businessID
-				Category newCategory = Category.createCategoryEntry(businessID, request);
-				AgeRange newAgeRange = AgeRange.createAgeRangeEntry(businessID, request);
-				KidFriendlyDetail newKidFriendlyDetail = KidFriendlyDetail.createKidFriendlyDetailEntry(businessID, request);
-				BreastfeedingInfo newBreastfeedingInfo = BreastfeedingInfo.createBreastfeedingEntry(businessID, request);
-				PlayAreaInfo newPlayAreaInfo = PlayAreaInfo.createPlayAreaEntry(businessID, request);
-				RestaurantMenuInfo newRestaurantMenuInfo = RestaurantMenuInfo.createRestaurantMenuEntry(businessID, request);
-				RestroomInfo newRestroomInfo = RestroomInfo.createRestroomEntry(businessID, request);				
+				Category newCategory = Category.createCategory(businessID, request);
+				AgeRange newAgeRange = AgeRange.createAgeRange(businessID, request);
+				KidFriendlyDetail newKidFriendlyDetail = KidFriendlyDetail.createKidFriendlyDetail(businessID, request);
+				BreastfeedingInfo newBreastfeedingInfo = BreastfeedingInfo.createBreastfeeding(businessID, request);
+				PlayAreaInfo newPlayAreaInfo = PlayAreaInfo.createPlayArea(businessID, request);
+				RestaurantMenuInfo newRestaurantMenuInfo = RestaurantMenuInfo.createRestaurantMenu(businessID, request);
+				RestroomInfo newRestroomInfo = RestroomInfo.createRestroom(businessID, request);				
 				
 				// add objects to database
 				categoryDAO.add(newCategory);
@@ -318,13 +318,13 @@ public class FriendlyControllerServlet extends HttpServlet {
 				businessDAO.update(updatedBusiness);		
 				
 				// create other objects with businessID
-				Category updatedCategory = Category.createCategoryEntry(updatedBusiness.getId(), request);
-				AgeRange updatedAgeRange = AgeRange.createAgeRangeEntry(updatedBusiness.getId(), request);
-				KidFriendlyDetail updatedKidFriendlyDetail = KidFriendlyDetail.createKidFriendlyDetailEntry(updatedBusiness.getId(), request);
-				BreastfeedingInfo updatedBreastfeedingInfo = BreastfeedingInfo.createBreastfeedingEntry(updatedBusiness.getId(), request);
-				PlayAreaInfo updatedPlayAreaInfo = PlayAreaInfo.createPlayAreaEntry(updatedBusiness.getId(), request);
-				RestaurantMenuInfo updatedRestaurantMenuInfo = RestaurantMenuInfo.createRestaurantMenuEntry(updatedBusiness.getId(), request);
-				RestroomInfo updatedRestroomInfo = RestroomInfo.createRestroomEntry(updatedBusiness.getId(), request);				
+				Category updatedCategory = Category.createCategory(updatedBusiness.getId(), request);
+				AgeRange updatedAgeRange = AgeRange.createAgeRange(updatedBusiness.getId(), request);
+				KidFriendlyDetail updatedKidFriendlyDetail = KidFriendlyDetail.createKidFriendlyDetail(updatedBusiness.getId(), request);
+				BreastfeedingInfo updatedBreastfeedingInfo = BreastfeedingInfo.createBreastfeeding(updatedBusiness.getId(), request);
+				PlayAreaInfo updatedPlayAreaInfo = PlayAreaInfo.createPlayArea(updatedBusiness.getId(), request);
+				RestaurantMenuInfo updatedRestaurantMenuInfo = RestaurantMenuInfo.createRestaurantMenu(updatedBusiness.getId(), request);
+				RestroomInfo updatedRestroomInfo = RestroomInfo.createRestroom(updatedBusiness.getId(), request);				
 				
 				// add objects to database
 				categoryDAO.update(updatedCategory);

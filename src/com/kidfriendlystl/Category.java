@@ -116,7 +116,7 @@ public class Category {
 		this.shopping = shopping;
 	}
 
-	public static Category createCategoryEntry(int businessID, HttpServletRequest request) 
+	public static Category createCategory(int businessID, HttpServletRequest request) 
 			throws Exception {
 		
 		// create an empty Category object

@@ -165,7 +165,7 @@ public class RestaurantMenuInfo {
 		this.noOpts = noOpts;
 	}
 
-	public static RestaurantMenuInfo createRestaurantMenuEntry(int businessID, HttpServletRequest request) 
+	public static RestaurantMenuInfo createRestaurantMenu(int businessID, HttpServletRequest request) 
 			throws Exception {
 		// create empty object
 		RestaurantMenuInfo newRestaurantMenuInfo;

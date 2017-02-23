@@ -74,7 +74,7 @@ public class AgeRange {
 		this.teen = teen;
 	}
 
-	public static AgeRange createAgeRangeEntry(int businessID, HttpServletRequest request) 
+	public static AgeRange createAgeRange(int businessID, HttpServletRequest request) 
 			throws Exception {
 		
 		// create an empty AgeRange object
