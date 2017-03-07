@@ -14,30 +14,39 @@
 	<title>${THE_BUSINESS.name}</title>
 </head>
 <body>
-<div class="container">
-<!-- HEADING -->
-	<div class="row">
-  		<div class="col-sm-12">
-			<h1>Kid Friendly STL</h1>
+<!-- NAVBAR -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<jsp:include page="navbar.jsp" />
+			</div>
 		</div>
 	</div>
+<!-- PAGE HEADING -->
+<br /><br /><br />
+	<div class="container">
+		<div class="row">
+	  		<div class="col-sm-12">
+				<h1>Kid Friendly STL</h1>
+			</div>
+		</div>
 <!-- Generate Links -->
-	<c:url var="updateLink" value="FriendlyControllerServlet">
-		<c:param name="command" value="LOAD" />
-		<c:param name="businessID" value="${THE_BUSINESS.id}" />
-	</c:url>
-	<c:url var="deleteLink" value="FriendlyControllerServlet">
-		<c:param name="command" value="DELETE" />
-		<c:param name="businessID" value="${THE_BUSINESS.id}" />
-	</c:url>
+		<c:url var="updateLink" value="FriendlyControllerServlet">
+			<c:param name="command" value="LOAD" />
+			<c:param name="businessID" value="${THE_BUSINESS.id}" />
+		</c:url>
+		<c:url var="deleteLink" value="FriendlyControllerServlet">
+			<c:param name="command" value="DELETE" />
+			<c:param name="businessID" value="${THE_BUSINESS.id}" />
+		</c:url>
 <!-- BUTTONS -->
 	<div class="row">
 		<div class="col-sm-12">
-			<a class="btn btn-default" href="${pageContext.request.contextPath}/" role="button" >home</a> 
+			<%-- <a class="btn btn-default" href="${pageContext.request.contextPath}/" role="button" >home</a> 
 			<button class="btn btn-default"  type="button" name="back" onclick="history.back()">back</button>
 			<a class="btn btn-default" href="${updateLink}" role="button">update</a>
 			<a class="btn btn-danger" href="${deleteLink}" role="button" 
-			onclick="if (!(confirm('Are you sure you want to delete this business?'))) return false">DELETE</a>
+			onclick="if (!(confirm('Are you sure you want to delete this business?'))) return false">DELETE</a> --%>
 		</div>
 	</div>
 	<div class="row">

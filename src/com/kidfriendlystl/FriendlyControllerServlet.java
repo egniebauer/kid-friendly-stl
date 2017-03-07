@@ -116,7 +116,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 //			case "SEARCH":
 //				searchBusinesses(request, response);
 //				break;
-
+				
             default:
                 listBusinesses(request, response);
             }
@@ -142,7 +142,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		request.setAttribute("AGE_RANGE_LIST", ageRanges);
 		
 		//send to JSP page (list)
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-businesses.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 		
 	}

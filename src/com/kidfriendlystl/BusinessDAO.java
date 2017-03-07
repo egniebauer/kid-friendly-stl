@@ -78,7 +78,7 @@ public class BusinessDAO {
 	public Business get(int theBusinessID) 
 			throws Exception{
 		
-		// create empty Business and int businessID
+		// create empty Business
 		Business theBusiness = null;
 		
 		// create JDBC objects
