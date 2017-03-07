@@ -38,7 +38,7 @@
 								</c:otherwise>
 							</c:choose>
 			        		<div class="navbar-right">
-								<p class="navbar-text">Signed in as <a href="#" class="navbar-link">${USER.email}</a></p>
+								<p class="navbar-text">Signed in as <a href="profile.jsp" class="navbar-link">${USER.email}</a></p>
 								<c:url var="logoutLink" value="LoginServlet">
 									<c:param name="command" value="LOGOUT" />
 									<c:param name="userEmail" value="${USER.email}" />

@@ -21,14 +21,27 @@
 </head>
 <body>
 	<div class="container">
+<!-- NAVBAR -->
 		<div class="row">
 			<div class="col-sm-12">
 				<jsp:include page="navbar.jsp" />
 			</div>
 		</div>
-		<br /><br /><br />
+<!-- PAGE HEADING -->
+	<br /><br /><br />
 		<div class="row">
-			<div class="col-sm-6  col-sm-offset-3">
+			<div class="col-sm-12">
+				<h1>Kid Friendly STL</h1>
+				<h1><small>${USER.administrator == true ? 'Admin' : 'User' } Profile</small></h1>
+			</div>
+		</div>
+		<br />
+<!-- RESULTS TABLE -->
+		<div class="row">
+			<div class="col-sm-12">
+				<p>${USER.userID}</p>
+				<p>${USER.administrator}</p>
+				<p>${USER.email}</p>
 			</div>
 		</div>
 	</div>

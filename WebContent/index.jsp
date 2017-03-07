@@ -48,10 +48,8 @@
 				<jsp:include page="navbar.jsp" />
 			</div>
 		</div>
-	</div>
 <!-- PAGE HEADING -->
-<br /><br /><br />
-	<div class="container">
+	<br /><br /><br />
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>Kid Friendly STL</h1>
@@ -61,8 +59,7 @@
 <!-- RESULTS TABLE -->
 		<div class="row">
 			<div class="col-sm-12">
-				<jsp:include page="list-businesses.jsp">
-				<br /><br /><br />
+				<jsp:include page="list-businesses.jsp" />
 			</div>
 		</div>
 	</div>	
