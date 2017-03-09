@@ -63,7 +63,7 @@ public class BusinessDAO {
 				Business currentBusiness = new Business(id, name, address, city, state, zip, 
 						phone, website, rating1, rating2, rating3, rating4, rating5);
 				
-				// add Student object to list
+				// add Business object to list
 				businesses.add(currentBusiness);
 			}
 			// return list

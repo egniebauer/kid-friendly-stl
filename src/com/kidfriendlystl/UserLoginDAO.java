@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.sql.DataSource;
 
@@ -110,8 +112,9 @@ public class UserLoginDAO {
 				boolean administrator = rs.getBoolean("admin"); 
 				String email = rs.getString("email"); 
 				String password = rs.getString("password");
+				ArrayList<Integer> favorites = new ArrayList<Integer>(getFavorites(userID));
 								
-				theUser = new User(userID, administrator, email, password);
+				theUser = new User(userID, administrator, email, password, favorites);
 			}
 			else {
 				throw new Exception("Could not find user: " + userEmail);
@@ -124,6 +127,44 @@ public class UserLoginDAO {
 			// close JDBC objects
 			DatabaseUtils.close(conn, stmt, rs);
 		}
+	}
+
+	private Collection<? extends Integer> getFavorites(int userID) throws SQLException {
+				
+		// create empty ArrayList
+		ArrayList<Integer> favorites = new ArrayList<>();
+		
+		// create JDBC objects
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// get connection
+			conn = dataSource.getConnection();
+			
+			// create PreparedStatement SELECT theUser
+			String sql = "SELECT * FROM kid_friendly_stl.favorite WHERE id LIKE ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, userID);
+			
+			// execute QUERY
+			rs = stmt.executeQuery();
+
+			// processes ResultSet
+			while(rs.next()) {
+				int businessID = rs.getInt("business_id");
+				// add Student object to list
+				favorites.add(businessID);
+			}
+			// return list
+			return favorites;
+		}
+		finally {
+			// close JDBC objects
+			DatabaseUtils.close(conn, stmt, rs);
+		}
+				
 	}
 
 	public void increaseLoginAttempts(String userEmail) throws SQLException {

@@ -142,8 +142,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 		request.setAttribute("AGE_RANGE_LIST", ageRanges);
 		
 		//send to JSP page (list)
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
 	}
 
@@ -343,8 +342,7 @@ public class FriendlyControllerServlet extends HttpServlet {
 			request.setAttribute("ERROR_MESSAGE", errorMessage);
 			
 			// send to .jsp page: oops.jsp
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/oops.jsp");
-			dispatcher.forward(request, response);
+			request.getRequestDispatcher("/oops.jsp").forward(request, response);
 		}
 		
 	}
