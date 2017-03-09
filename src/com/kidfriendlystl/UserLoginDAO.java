@@ -9,6 +9,8 @@ import java.util.Collection;
 
 import javax.sql.DataSource;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class UserLoginDAO {
 
 	private DataSource dataSource;
@@ -17,7 +19,7 @@ public class UserLoginDAO {
 		this.dataSource = theDataSource;
 	}
 	
-	public boolean verifyEmail(String userEmail) throws SQLException {
+	public boolean verifyUser(String userEmail, String userPassword) throws SQLException {
 		// create JDBC objects
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -36,43 +38,19 @@ public class UserLoginDAO {
 			rs = stmt.executeQuery();
 			
 			// return boolean
-			// if there's a ResultSet: true, else: false
 			if (rs.next()) {
-				return true;
+				
+				String hashed = rs.getString("password");
+				// verify password
+				if (BCrypt.checkpw(userPassword, hashed)) {
+					return true;
+				}
+				else {
+					// wrong password
+					return false;
+				}
 			} else {
-				return false;
-			}
-		}
-		finally {
-			// close JDBC objects
-			DatabaseUtils.close(conn, stmt, rs);
-		}
-	}
-
-	public boolean verifyPassword(String userEmail, String userPassword) throws SQLException {
-		// create JDBC objects
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		
-		try{
-			// get connection
-			conn = dataSource.getConnection();
-			
-			// create SQL String and PreparedStatement to SELECT userEmail, if name matches
-			String sql = "SELECT * FROM kid_friendly_stl.user_login WHERE email LIKE ? AND password LIKE ?";
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, userEmail);
-			stmt.setString(2, userPassword);
-
-			// execute SQL statement
-			rs = stmt.executeQuery();
-			
-			// return boolean
-			// if there's a ResultSet: true, else: false
-			if (rs.next()) {
-				return true;
-			} else {
+				// no user
 				return false;
 			}
 		}
@@ -83,7 +61,7 @@ public class UserLoginDAO {
 	}
 	
 
-	public User get(String userEmail, String userPassword) throws Exception{
+	public User get(String userEmail) throws Exception{
 				
 		// create empty USER
 		User theUser = null;
@@ -98,10 +76,9 @@ public class UserLoginDAO {
 			conn = dataSource.getConnection();
 			
 			// create PreparedStatement SELECT theUser
-			String sql = "SELECT * FROM kid_friendly_stl.user_login WHERE email LIKE ? AND password LIKE ?";
+			String sql = "SELECT * FROM kid_friendly_stl.user_login WHERE email LIKE ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, userEmail);
-			stmt.setString(2, userPassword);
 			
 			// execute QUERY
 			rs = stmt.executeQuery();

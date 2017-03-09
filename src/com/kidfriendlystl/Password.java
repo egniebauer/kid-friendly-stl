@@ -1,41 +1,44 @@
 package com.kidfriendlystl;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Password {
 
-	public static void main (String[] args) {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Password and Salt Generator");
+		System.out.println();
+		System.out.println("Enter password to hash:");
+		System.out.print(">_");
+		String password = in.nextLine();
+		System.out.println();
+		System.out.println("Here is the salt:");
+		// Generate salt
+		String salt = BCrypt.gensalt();
+		System.out.println("> " + salt);
+		System.out.println();
+		System.out.println("Here is the hash:");
+		// Hash a password for the first time
+		String hashed = BCrypt.hashpw(password, salt);
+		System.out.println("> " + hashed);
+		System.out.println(" ");
+		System.out.print("Let's verify your password. ");
+		System.out.println("Please reenter the password you wanted hashed:");
+		System.out.print(">_");
+		String candidate = in.nextLine();
+		System.out.println(" ");
 		
-	    String passwordToHash = "password";
-	    String generatedPassword = null;
-	    
-	    try {
-	    	
-	        // Create MessageDigest instance for MD5
-	        MessageDigest md = MessageDigest.getInstance("MD5");
-	        
-	        // Add password bytes to digest
-	        md.update(passwordToHash.getBytes());
-	        
-	        // Get the hash's bytes 
-	        byte[] bytes = md.digest();
-	        
-	        // This bytes[] has bytes in decimal format;
-	        // Convert it to hexadecimal format
-	        StringBuilder sb = new StringBuilder();
-	        for(int i=0; i< bytes.length ;i++)
-	        {
-	            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-	        }
-	        
-	        // Get complete hashed password in hex format
-	        generatedPassword = sb.toString();
-	    } 
-	    catch (NoSuchAlgorithmException e) 
-	    {
-	        e.printStackTrace();
-	    }
-	    System.out.println(generatedPassword);
+		// Check plaintext password matches one that has been previously hashed
+		if (BCrypt.checkpw(candidate, hashed)) {
+			System.out.println("It matches");
+		}
+		else {
+			System.out.println("It does not match");
+		}
+		
+		in.close();
 	}
+
 }

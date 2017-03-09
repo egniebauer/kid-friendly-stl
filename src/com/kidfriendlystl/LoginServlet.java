@@ -93,39 +93,30 @@ public class LoginServlet extends HttpServlet {
 		String userPassword = request.getParameter("userPassword");
 
 		// if user exists - check password
-		if (userLoginDAO.verifyEmail(userEmail)) {
-			if (userLoginDAO.verifyPassword(userEmail, userPassword)) {
-				
-				// send home, logged in
-				User validUser = userLoginDAO.get(userEmail, userPassword);
-				HttpSession session=request.getSession();  
-		        session.setAttribute("USER", validUser); 
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("FriendlyControllerServlet");
-				dispatcher.forward(request, response);
-				
-			} else {
+		if (userLoginDAO.verifyUser(userEmail, userPassword)) {
+			
+			// log user in - send home
+			User validUser = userLoginDAO.get(userEmail);
+			HttpSession session=request.getSession();  
+	        session.setAttribute("USER", validUser); 
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("FriendlyControllerServlet");
+			dispatcher.forward(request, response);
+			
+		} else {
+			try {
 				// increase login attempts
 				userLoginDAO.increaseLoginAttempts(userEmail);
-				errorMessage = "Email or Password invaild. Please try again or Create a New Account.";
+			} finally {
+				// set error message 
+				errorMessage = "Email or Password invaild. Please try again.";
 				request.setAttribute("ERROR_MESSAGE", errorMessage);
 
 				// send back to login.jsp with ERROR_MESSAGE
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 				dispatcher.forward(request, response);
 			}
-			
-		} else {
-			// set error message for user not found
-			errorMessage = "Email or Password invaild. Please try again or Create a New Account.";
-			request.setAttribute("ERROR_MESSAGE", errorMessage);
-			
-			// send back to login.jsp with ERROR_MESSAGE
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
 		}
-		// 
-		
 	}
 
 }
