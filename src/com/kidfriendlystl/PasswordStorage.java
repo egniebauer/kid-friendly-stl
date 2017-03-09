@@ -199,4 +199,19 @@ public class PasswordStorage
         return DatatypeConverter.printBase64Binary(array);
     }
 
+    
+    
+    
+    public static void main(String[] args) {
+    	String passwordHashed = "notHashed";
+    	
+    	try {
+			passwordHashed = createHash("password");
+			
+		} catch (CannotPerformOperationException e) {
+			e.printStackTrace();
+		}
+    	
+    	System.out.println(passwordHashed);
+    }
 }
