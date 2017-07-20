@@ -3,7 +3,7 @@
 
 <head th:fragment="head">
     <meta charset="UTF-8"/>
-    <title th:text="${title}">Kid Friendly STL</title>
+    <title>Kid Friendly STL</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -14,19 +14,20 @@
 <nav th:fragment="navigation" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" th:text="${title}">Kid Friendly STL</a>
+            <a class="navbar-brand">KID FRIENDLY STL</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                <li><a href="/admin/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Admin</a></li>
+                <li><a href="/business/"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listings</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/admin/">Admin Home</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/admin/category/add">Add Category</a></li>
-                        <li><a href="/admin/age-range/add">Add Age Range</a></li>
-                        <li><a href="/admin/times/add">Add Time</a></li>
+                        <li><a href="/admin/business/add">Business</a></li>
+                        <li><a href="/admin/category/add">Category</a></li>
+                        <li><a href="/admin/age-range/add">Age Range</a></li>
+                        <li><a href="/admin/times/add">Best Time</a></li>
                     </ul>
                 </li>
             </ul>
