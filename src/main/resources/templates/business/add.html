@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body class="container">
-<h1 th:text="${h1}">Add Category</h1>
-
-<nav th:replace="fragments :: navigation"></nav>
-
-<form method="POST" style="max-width:600px;" th:object="${business}">
-    <div class="form-group">
-        <label th:for="name">Name</label>
-        <input class="form-control" th:field="*{name}" />
-        <span th:errors="*{name}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="categoryId">Categories</label>
-        <select name="categoryId">
-            <option th:each="cat : *{categories}"
-                    th:text="${cat.name}"
-                    th:value="${cat.id}"></option>
-        </select>
-        <span th:errors="*{categoryId}" class="error"></span>
-    </div>
-    <input type="submit" value="Add Business" />
-</form>
-
-
-</body>
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+        <h1 th:text="${h1}">Add Business</h1>
+        <nav th:replace="fragments :: navigation"></nav>
+        <form method="POST" style="max-width:600px;" th:object="${form}">
+            <div class="form-group">
+                <label th:for="businessName">Name</label>
+                <input class="form-control" th:field="*{businessName}" />
+                <span th:errors="*{businessName}" class="error"></span>
+            </div>
+            <div class="form-group">
+                <ul>
+                    <li th:each="cat : ${categories}">
+                        <input type="checkbox" th:field="*{categoryIds}" th:value="${cat.id}" />
+                        <label th:for="${cat.id}"
+                               th:text="${cat.name}">Category</label>
+                    </li>
+                    <span th:errors="*{categoryIds}" class="error"></span>
+                </ul>
+            </div>
+            <div class="form-group">
+                <ul>
+                    <li th:each="range : ${ageRanges}">
+                        <input type="checkbox" th:field="*{ageRangeIds}" th:value="${range.id}" />
+                        <label th:for="${range.id}"
+                               th:text="${range.name}">Age Range</label>
+                    </li>
+                    <span th:errors="*{ageRangeIds}" class="error"></span>
+                </ul>
+            </div>
+            <div class="form-group">
+                <ul>
+                    <li th:each="time : ${bestTimes}">
+                        <input type="checkbox" th:field="*{bestTimesIds}" th:value="${time.id}" />
+                        <label th:for="${time.id}"
+                               th:text="${time.name}">Age Range</label>
+                    </li>
+                    <span th:errors="*{bestTimesIds}" class="error"></span>
+                </ul>
+            </div>
+            <input type="submit" value="Add Business" />
+        </form>
+    </body>
 </html>
