@@ -21,16 +21,16 @@ public class Business {
     @Size(min=3, max=140)
     private String name;
 
-    @ManyToMany(mappedBy = "businesses")
+    @ManyToMany
     private List<AgeRange> ageRanges;
 
-    @ManyToMany(mappedBy = "businesses")
+    @ManyToMany
     private List<BestTime> bestTimes;
 
-    @ManyToMany(mappedBy = "businesses")
+    @ManyToMany
     private List<Category> categories;
 
-    @ManyToMany(mappedBy = "businesses")
+    @ManyToMany
     private List<Rating> ratings;
 
 
@@ -66,5 +66,37 @@ public class Business {
 
     public List<Rating> getRatings() {
         return ratings;
+    }
+
+    public void addAgeRange(AgeRange ageRange) {
+        ageRanges.add(ageRange);
+    }
+
+    public void addBestTime(BestTime bestTime) {
+        bestTimes.add(bestTime);
+    }
+
+    public void addCategory(Category category) {
+        categories.add(category);
+    }
+
+    public void addRating(Rating rating) {
+        ratings.add(rating);
+    }
+
+    public void setAgeRanges(List<AgeRange> ageRanges) {
+        this.ageRanges = ageRanges;
+    }
+
+    public void setBestTimes(List<BestTime> bestTimes) {
+        this.bestTimes = bestTimes;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
