@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+    <h1>Kid Friendly Places in STL</h1>
+    <nav th:replace="fragments :: navigation"></nav>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table table-condensed table-striped" th:each="business : ${businesses}">
+                    <tr>
+                        <th th:text="${business.name}">Name</th>
+                        <th></th>
+                        <th><button type="button" class="btn btn-default btn-xs" href="#">Details <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li><strong>Categories</strong></li>
+                                <li th:each="cat : ${business.categories}" th:text="${cat.name}">Category</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li><strong>Age Ranges</strong></li>
+                                <li th:each="range : ${business.ageRanges}" th:text="${range.name}">Age Range</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li><strong>Best Times</strong></li>
+                                <li th:each="time : ${business.bestTimes}" th:text="${time.name}">Best Times</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
