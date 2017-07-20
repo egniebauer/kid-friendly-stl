@@ -13,17 +13,17 @@ import java.util.List;
  */
 
 @Entity
-public class BestTime {
+public class BestTime extends BusinessDetail {
 
     @Id
     @GeneratedValue
     private int id;
 
     @NotNull
-    @Size(min=3, max=15)
+    @Size(min=3, max=140)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "bestTimes")
     private List<Business> businesses;
 
     public BestTime() {

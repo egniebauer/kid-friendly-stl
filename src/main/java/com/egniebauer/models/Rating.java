@@ -23,7 +23,7 @@ public class Rating {
     @Max(5)
     private Integer rating;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "ratings")
     private List<Business> businesses;
 
     public Rating() {

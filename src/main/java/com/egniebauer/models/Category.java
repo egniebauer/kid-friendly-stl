@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Entity
-public class Category {
+public class Category extends BusinessDetail {
 
     @Id
     @GeneratedValue
@@ -23,7 +23,7 @@ public class Category {
     @Size(min=3, max=140)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "categories")
     private List<Business> businesses;
 
     public Category() {

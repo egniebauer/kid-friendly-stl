@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Entity
-public class AgeRange {
+public class AgeRange extends BusinessDetail {
 
     @Id
     @GeneratedValue
@@ -28,7 +28,7 @@ public class AgeRange {
     @Size(min=3, max=255)
     private String description;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "ageRanges")
     private List<Business> businesses;
 
     public AgeRange() {
