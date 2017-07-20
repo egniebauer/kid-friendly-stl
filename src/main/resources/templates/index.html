@@ -2,7 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
     <head th:replace="fragments :: head"></head>
     <body class="container">
-        <h1 th:text="${title}">Default Title</h1>
         <nav th:replace="fragments :: navigation"></nav>
+        <div class="jumbotron">
+            <h1>Kid Friendly STL!</h1>
+            <p>Personal Java Web Application Project: A resource for finding and rating kid-friendly locations in the Saint Louis area. A crowdsourced Java web application using an MVC model through servlets and JSPs with a responsive and user-friendly interface that implements CRUD functionality via JDBC for a MySQL database.</p>
+            <p><a class="btn btn-default btn-lg" href="https://github.com/egniebauer/kid-friendly-stl" role="button"> <img src="/images/GitHub_Logo.png" height="30"/></a></p>
+        </div>
     </body>
 </html>
