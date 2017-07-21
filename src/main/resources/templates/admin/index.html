@@ -33,8 +33,12 @@
                             </ul>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default btn-xs" href="/admin/business/update"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-danger btn-xs" href="/admin/business/delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/business/edit/' + ${business.id}}" role="button">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/business/remove/' + ${business.id}}" role="button">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
                         </td>
                     </tr>
                 </table>
@@ -47,8 +51,12 @@
                     <tr th:each="cat : ${categories}" >
                         <td th:text="${cat.name}">Categories</td>
                         <td>
-                            <button type="button" class="btn btn-default btn-xs" href="/admin/category/update"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-danger btn-xs" href="/admin/category/delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/categories/edit/' + ${cat.id}}" role="button">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/categories/remove/' + ${cat.id}}" role="button">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
                         </td>
                     </tr>
                 </table>
@@ -59,8 +67,12 @@
                     <tr th:each="range : ${ageRanges}" >
                         <td th:text="${range.name}">Age Range</td>
                         <td>
-                            <button type="button" class="btn btn-default btn-xs" href="/admin/age-range/update"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-danger btn-xs" href="/admin/age-range/delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/age-range/edit/' + ${range.id}}" role="button">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/age-range/remove/' + ${range.id}}" role="button">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
                         </td>
                     </tr>
                 </table>
@@ -71,8 +83,12 @@
                     <tr th:each="time : ${bestTimes}" >
                         <td th:text="${time.name}">Best Times</td>
                         <td>
-                            <button type="button" class="btn btn-default btn-xs" href="/admin/times/update"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-danger btn-xs" href="/admin/times/delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/times/edit/' + ${time.id}}" role="button">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/times/remove/' + ${time.id}}" role="button">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
                         </td>
                     </tr>
                 </table>
