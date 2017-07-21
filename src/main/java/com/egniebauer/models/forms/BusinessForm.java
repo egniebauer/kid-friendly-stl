@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Elizabeth G Niebauer
  */
-public class AddBusinessForm {
+public class BusinessForm {
 
     @NotNull
     @Size(min=3, max=140)
@@ -22,7 +22,9 @@ public class AddBusinessForm {
     @NotNull
     private List<Integer> bestTimesIds;
 
-    public AddBusinessForm() {
+    private Integer businessId;
+
+    public BusinessForm() {
     }
 
     public String getBusinessName() {
@@ -55,5 +57,13 @@ public class AddBusinessForm {
 
     public void setBestTimesIds(List<Integer> bestTimesIds) {
         this.bestTimesIds = bestTimesIds;
+    }
+
+    public Integer getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(Integer businessId) {
+        this.businessId = businessId;
     }
 }
