@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+        <nav th:replace="fragments :: navigation"></nav>
+        <h2>Categories</h2>
+        <a href="/admin/category/add">Add Category</a>
+        <table class="table">
+            <tr>
+                <th>Category Name</th>
+            </tr>
+            <tr th:each="category : ${categories}">
+                <td th:text="${category.name}"></td>
+            </tr>
+        </table>
+        <h2>Age Ranges</h2>
+        <p th:unless="${ageRanges} and ${ageRanges.size()}">No Age Ranges :(</p>
+        <a href="/admin/age-range/add">Add Age Range</a>
+        <table class="table">
+            <tr>
+                <th>Range Name</th>
+                <th>Description</th>
+            </tr>
+            <tr th:each="range : ${ageRanges}">
+                <td th:text="${range.name}"></td>
+                <td th:text="${range.description}"></td>
+            </tr>
+        </table>
+        <h2>Best Times</h2>
+        <p th:unless="${bestTimes} and ${bestTimes.size()}">No Times :(</p>
+        <a href="/admin/times/add">Add Time</a>
+        <table class="table">
+            <tr>
+                <th>Time Frame</th>
+            </tr>
+            <tr th:each="time : ${bestTimes}">
+                <td th:text="${time.name}"></td>
+            </tr>
+        </table>
+
+    </body>
+</html>
