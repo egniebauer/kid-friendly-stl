@@ -58,7 +58,7 @@ public class BusinessController {
         model.addAttribute("form", new BusinessForm());
         model.addAttribute("submitText", "Add Business");
 
-        return "business/add";
+        return "business/add-edit";
     }
 
     @RequestMapping(value = "admin/business/add", method = RequestMethod.POST)
@@ -74,7 +74,7 @@ public class BusinessController {
             model.addAttribute("form", new BusinessForm());
             model.addAttribute("submitText", "Add Business");
 
-            return "business/add";
+            return "business/add-edit";
         }
 
         Business newBusiness = new Business( form.getBusinessName() );
@@ -104,7 +104,7 @@ public class BusinessController {
         model.addAttribute("form", editForm);
         model.addAttribute("submitText", "Update");
 
-        return "business/add";
+        return "business/add-edit";
     }
 
 

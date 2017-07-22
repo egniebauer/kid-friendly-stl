@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
     <head th:replace="fragments :: head"></head>
     <body class="container">
-        <h1 th:text="${h1}">Add Business</h1>
+        <h1 th:text="${h1}">Business Form</h1>
         <nav th:replace="fragments :: navigation"></nav>
         <form method="POST" style="max-width:600px;" th:object="${form}">
             <div class="form-group">
@@ -40,7 +40,8 @@
                     <span th:errors="*{bestTimesIds}" class="error"></span>
                 </ul>
             </div>
-            <input type="submit" value="Add Business" />
+            <input type="hidden" th:value="${form.businessId}" />
+            <input type="submit" th:value="${submitText}" />
         </form>
     </body>
 </html>
