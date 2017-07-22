@@ -5,12 +5,13 @@ import com.egniebauer.models.data.AgeRangeDao;
 import com.egniebauer.models.data.BestTimeDao;
 import com.egniebauer.models.data.BusinessDao;
 import com.egniebauer.models.data.CategoryDao;
-import com.egniebauer.models.forms.AddBusinessForm;
+import com.egniebauer.models.forms.BusinessForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -54,12 +55,14 @@ public class BusinessController {
         model.addAttribute("ageRanges", ageRangeDao.findAll());
         model.addAttribute("bestTimes", bestTimeDao.findAll());
 
-        model.addAttribute("form", new AddBusinessForm());
+        model.addAttribute("form", new BusinessForm());
+        model.addAttribute("submitText", "Add Business");
+
         return "business/add";
     }
 
     @RequestMapping(value = "admin/business/add", method = RequestMethod.POST)
-    public String processAddBusiness(@ModelAttribute @Valid AddBusinessForm form,
+    public String processAddBusiness(@ModelAttribute @Valid BusinessForm form,
                                      Errors errors, Model model) {
 
         if (errors.hasErrors()) {
@@ -68,7 +71,9 @@ public class BusinessController {
             model.addAttribute("ageRanges", ageRangeDao.findAll());
             model.addAttribute("bestTimes", bestTimeDao.findAll());
 
-            model.addAttribute("form", new AddBusinessForm());
+            model.addAttribute("form", new BusinessForm());
+            model.addAttribute("submitText", "Add Business");
+
             return "business/add";
         }
 
@@ -81,6 +86,29 @@ public class BusinessController {
         businessDao.save(newBusiness);
         return "redirect:/admin";
     }
+
+    @RequestMapping(value = "admin/business/edit/{id}", method = RequestMethod.GET)
+    public String displayEditBusiness(Model model, @PathVariable int id) {
+
+        BusinessForm editForm = new BusinessForm();
+        Business editBusiness = businessDao.findOne(id);
+        editForm.prepopulateForm(editBusiness);
+
+        String h1 = "Edit " + editBusiness.getName();
+        model.addAttribute("h1", h1);
+
+        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("ageRanges", ageRangeDao.findAll());
+        model.addAttribute("bestTimes", bestTimeDao.findAll());
+
+        model.addAttribute("form", editForm);
+        model.addAttribute("submitText", "Update");
+
+        return "business/add";
+    }
+
+
+
 
     private void addDetailsFromIds(Business newBusiness, String type, Iterable<Integer> ids) {
 
