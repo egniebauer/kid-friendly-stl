@@ -67,19 +67,6 @@ public class BestTimeController {
         }
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddTime(@ModelAttribute @Valid BestTime newTime,
-                                 Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("h1", "Add Time");
-            model.addAttribute("title", "Kid Friendly STL - Admin");
-            return "bestTime/add";
-        }
-        bestTimeDao.save(newTime);
-        return "redirect:/admin";
-    }
-
     @RequestMapping(value = "add-edit", method = RequestMethod.POST)
     public String processAddEdit(@ModelAttribute @Valid BestTime bestTime,
                                  Errors errors, Model model) {
