@@ -5,15 +5,37 @@
         <nav th:replace="fragments :: navigation"></nav>
 
         <div class="row">
+            <div class="col-md-4">
+                <h1>Admin Panel</h1>
+            </div>
+            <div class="col-md-8">
+                <h1 class="text-right">
+                    <div class="btn-group" role="group" aria-label="add new basic details">
+                        <a class="btn btn-default" href="/admin/business/add" role="button">
+                            <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                            New Business</a>
+                        <a class="btn btn-default" href="/admin/category/add" role="button">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                            New Category</a>
+                        <a class="btn btn-default" href="/admin/age-range/add" role="button">
+                            <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+                            New Age Range</a>
+                        <a class="btn btn-default" href="/admin/times/add" role="button">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            New Time</a>
+                    </div>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
-                <h2>Businesses <a class="btn btn-primary" href="/admin/business/add" role="button">Add New</a> </h2>
                 <table class="table table-condensed table-striped">
                     <tr>
-                        <th>Name</th>
+                        <th>Businesses</th>
                         <th>Categories</th>
                         <th>Age Ranges</th>
                         <th>Best Times</th>
-                        <th></th>
+                        <th  class="text-right">Actions</th>
                     </tr>
                     <tr th:each="business : ${businesses}">
                         <td th:text="${business.name}"></td>
@@ -32,9 +54,12 @@
                                 <li th:each="time : ${business.bestTimes}" th:text="${time.name}">Best Times</li>
                             </ul>
                         </td>
-                        <td>
+                        <td  class="text-right">
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/business/view/' + ${business.id}}" role="button">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                            </a>
                             <a class="btn btn-default btn-xs" th:href="@{'/admin/business/edit/' + ${business.id}}" role="button">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </a>
                             <a class="btn btn-danger btn-xs" th:href="@{'/admin/business/remove/' + ${business.id}}" role="button">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -46,15 +71,21 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <h2>Categories <a class="btn btn-primary" href="/admin/categories/add" role="button">Add New</a> </h2>
-                <table class="table table-condensed table-striped">
+                <table class="table table-condensed table-striped table-bordered">
+                    <tr>
+                        <th>Categories</th>
+                        <th  class="text-right">Actions</th>
+                    </tr>
                     <tr th:each="cat : ${categories}" >
                         <td th:text="${cat.name}">Categories</td>
-                        <td>
-                            <a class="btn btn-default btn-xs" th:href="@{'/admin/categories/edit/' + ${cat.id}}" role="button">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <td  class="text-right">
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/category/view/' + ${cat.id}}" role="button">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                             </a>
-                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/categories/remove/' + ${cat.id}}" role="button">
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/category/edit/' + ${cat.id}}" role="button">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/category/remove/' + ${cat.id}}" role="button">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>
@@ -62,13 +93,19 @@
                 </table>
             </div>
             <div class="col-md-4">
-                <h2>Age Ranges <a class="btn btn-primary" href="/admin/age-range/add" role="button">Add New</a> </h2>
-                <table class="table table-condensed table-striped">
+                <table class="table table-condensed table-striped table-bordered">
+                    <tr>
+                        <th>Age Ranges</th>
+                        <th  class="text-right">Actions</th>
+                    </tr>
                     <tr th:each="range : ${ageRanges}" >
-                        <td th:text="${range.name}">Age Range</td>
-                        <td>
+                        <td th:text="${range.name} + ' (' + ${range.description} + ')'">Age Range</td>
+                        <td  class="text-right">
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/age-range/view/' + ${range.id}}" role="button">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                            </a>
                             <a class="btn btn-default btn-xs" th:href="@{'/admin/age-range/edit/' + ${range.id}}" role="button">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </a>
                             <a class="btn btn-danger btn-xs" th:href="@{'/admin/age-range/remove/' + ${range.id}}" role="button">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -78,15 +115,21 @@
                 </table>
             </div>
             <div class="col-md-4">
-                <h2>Best Times <a class="btn btn-primary" href="/admin/times/add" role="button">Add New</a> </h2>
-                <table class="table table-condensed table-striped">
+                <table class="table table-condensed table-striped table-bordered">
+                    <tr>
+                        <th>Best Times</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
                     <tr th:each="time : ${bestTimes}" >
                         <td th:text="${time.name}">Best Times</td>
-                        <td>
-                            <a class="btn btn-default btn-xs" th:href="@{'/admin/times/edit/' + ${time.id}}" role="button">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <td class="text-right">
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/time/view/' + ${time.id}}" role="button">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                             </a>
-                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/times/remove/' + ${time.id}}" role="button">
+                            <a class="btn btn-default btn-xs" th:href="@{'/admin/time/edit/' + ${time.id}}" role="button">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" th:href="@{'/admin/time/remove/' + ${time.id}}" role="button">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>
