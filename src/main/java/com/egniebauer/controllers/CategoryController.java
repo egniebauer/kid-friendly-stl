@@ -24,12 +24,28 @@ public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
 
+    @RequestMapping(value = "view/{id}", method = RequestMethod.GET)
+    public String displayCategory(Model model, @PathVariable int id) {
+
+        try {
+
+            Category category = categoryDao.findOne(id);
+            model.addAttribute("h1", category.getName());
+            model.addAttribute("category", category);
+            return "category/view";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCategory(Model model) {
 
         model.addAttribute("h1", "Add Category");
         model.addAttribute(new Category());
+        model.addAttribute("submitText", "Add");
         return "category/add-edit";
     }
 
@@ -67,6 +83,7 @@ public class CategoryController {
 
             model.addAttribute("h1", "Add Category");
             model.addAttribute(new Category());
+            model.addAttribute("submitText", "Add");
             return "category/add-edit";
         }
 
