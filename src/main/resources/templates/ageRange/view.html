@@ -7,17 +7,19 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h1 th:text="${h1}">View Age Range</h1>
+            <h1 th:text="${h1}">Information</h1>
         </div>
         <div class="col-md-4">
             <table class="table table-condensed table-striped table-bordered">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Description</th>
                 </tr>
                 <tr>
                     <td th:text="${ageRange.id}" ></td>
                     <td th:text="${ageRange.name}" ></td>
+                    <td th:text="${ageRange.description}" ></td>
                 </tr>
             </table>
         </div>

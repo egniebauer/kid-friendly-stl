@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +24,21 @@ public class AgeRangeController {
     @Autowired
     private AgeRangeDao ageRangeDao;
 
+    @RequestMapping(value = "view/{id}", method = RequestMethod.GET)
+    public String displayAgeRange(Model model, @PathVariable int id) {
+
+        try {
+
+            AgeRange ageRange = ageRangeDao.findOne(id);
+            model.addAttribute("h1", ageRange.getName());
+            model.addAttribute("ageRange", ageRange);
+            return "ageRange/view";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddAgeRange(Model model) {
