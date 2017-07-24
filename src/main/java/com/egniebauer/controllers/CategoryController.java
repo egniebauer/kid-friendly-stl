@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,31 +18,62 @@ import javax.validation.Valid;
  */
 
 @Controller
+@RequestMapping(value = "admin/category")
 public class CategoryController {
 
     @Autowired
     private CategoryDao categoryDao;
 
 
-    @RequestMapping(value = "admin/category/add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCategory(Model model) {
-        model.addAttribute("h1", "Add Category");
-        model.addAttribute("title", "Kid Friendly STL - Admin");
 
+        model.addAttribute("h1", "Add Category");
         model.addAttribute(new Category());
-        return "category/add";
+        return "category/add-edit";
     }
 
-    @RequestMapping(value = "admin/category/add", method = RequestMethod.POST)
-    public String processAddCategory(@ModelAttribute @Valid Category newCategory,
-                                     Errors errors, Model model) {
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+    public String displayEditCategory(Model model, @PathVariable int id) {
+
+        try {
+
+            Category category = categoryDao.findOne(id);
+            String h1 = "Edit " + category.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("category", category);
+            model.addAttribute("submitText", "Update");
+            return "category/add-edit";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
+
+    @RequestMapping(value = "add-edit", method = RequestMethod.POST)
+    public String processEditCategory(@ModelAttribute @Valid Category category,
+                                      Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+
+            if (categoryDao.exists(category.getId())) {
+
+                String h1 = "Edit " + category.getName();
+                model.addAttribute("h1", h1);
+                model.addAttribute("category", category);
+                model.addAttribute("submitText", "Update");
+                return "category/add-edit";
+            }
+
             model.addAttribute("h1", "Add Category");
-            model.addAttribute("title", "Kid Friendly STL - Admin");
-            return "category/add";
+            model.addAttribute(new Category());
+            return "category/add-edit";
         }
-        categoryDao.save(newCategory);
+
+        categoryDao.save(category);
         return "redirect:/admin";
     }
+
+
 }
