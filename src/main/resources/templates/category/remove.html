@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+    <h1 th:text="${h1}">Remove Category</h1>
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <p th:text="'Are you sure you want to delete ' + ${category.name} + '?'"></p>
+
+    <form method="POST" action="/admin/category/remove" style="max-width:600px;" th:object="${category}">
+        <input type="hidden" th:field="*{name}" th:value="${category.name}" />
+        <span th:errors="*{name}" class="error"></span>
+
+        <input type="hidden" th:field="*{id}" th:value="${category.id}" />
+        <span th:errors="*{id}" class="error"></span>
+
+        <input class="btn btn-danger"  type="submit" th:value="${submitText}" />
+    </form>
+</body>
+</html>

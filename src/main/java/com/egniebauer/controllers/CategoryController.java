@@ -61,7 +61,6 @@ public class CategoryController {
 
                 String h1 = "Edit " + category.getName();
                 model.addAttribute("h1", h1);
-                model.addAttribute("category", category);
                 model.addAttribute("submitText", "Update");
                 return "category/add-edit";
             }
@@ -75,5 +74,38 @@ public class CategoryController {
         return "redirect:/admin";
     }
 
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
+    public String displayRemoveCategory(Model model, @PathVariable int id) {
+
+        try {
+
+            Category category = categoryDao.findOne(id);
+            String h1 = "Remove " + category.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("category", category);
+            model.addAttribute("submitText", "DELETE");
+            return "category/remove";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemoveCategory(@ModelAttribute @Valid Category category,
+                                      Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+
+            String h1 = "Remove " + category.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("submitText", "DELETE");
+            return "category/remove";
+        }
+
+        categoryDao.delete(category);
+        return "redirect:/admin";
+    }
 
 }
