@@ -17,13 +17,14 @@ import javax.validation.Valid;
  */
 
 @Controller
+@RequestMapping(value = "admin/times")
 public class BestTimeController {
 
     @Autowired
     private BestTimeDao bestTimeDao;
 
 
-    @RequestMapping(value = "admin/times/add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddTime(Model model) {
         model.addAttribute("h1", "Add Time");
         model.addAttribute("title", "Kid Friendly STL - Admin");
@@ -32,7 +33,7 @@ public class BestTimeController {
         return "bestTime/add";
     }
 
-    @RequestMapping(value = "admin/times/add", method = RequestMethod.POST)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddTime(@ModelAttribute @Valid BestTime newTime,
                                  Errors errors, Model model) {
 
