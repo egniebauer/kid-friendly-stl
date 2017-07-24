@@ -41,12 +41,30 @@ public class BestTimeController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddTime(Model model) {
-        model.addAttribute("h1", "Add Time");
-        model.addAttribute("title", "Kid Friendly STL - Admin");
+    public String displayAdd(Model model) {
 
+        model.addAttribute("h1", "Add Time");
         model.addAttribute(new BestTime());
+        model.addAttribute("submitText", "Add");
         return "bestTime/add";
+    }
+
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+    public String displayEdit(Model model, @PathVariable int id) {
+
+        try {
+
+            BestTime bestTime = bestTimeDao.findOne(id);
+            String h1 = "Edit " + bestTime.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("category", bestTime);
+            model.addAttribute("submitText", "Update");
+            return "bestTime/add-edit";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
