@@ -79,4 +79,29 @@ public class BestTimeController {
         bestTimeDao.save(newTime);
         return "redirect:/admin";
     }
+
+    @RequestMapping(value = "add-edit", method = RequestMethod.POST)
+    public String processAddEdit(@ModelAttribute @Valid BestTime bestTime,
+                                 Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+
+            if (bestTimeDao.exists(bestTime.getId())) {
+
+                String h1 = "Edit " + bestTime.getName();
+                model.addAttribute("h1", h1);
+                model.addAttribute("submitText", "Update");
+                return "bestTime/add-edit";
+            }
+
+            model.addAttribute("h1", "Add Time");
+            model.addAttribute(new BestTime());
+            model.addAttribute("submitText", "Add");
+            return "bestTime/add-edit";
+        }
+
+        bestTimeDao.save(bestTime);
+        return "redirect:/admin";
+    }
+
 }
