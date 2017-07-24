@@ -25,7 +25,7 @@ public class CategoryController {
     private CategoryDao categoryDao;
 
     @RequestMapping(value = "view/{id}", method = RequestMethod.GET)
-    public String displayCategory(Model model, @PathVariable int id) {
+    public String displayInformation(Model model, @PathVariable int id) {
 
         try {
 
@@ -41,7 +41,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddCategory(Model model) {
+    public String displayAdd(Model model) {
 
         model.addAttribute("h1", "Add Category");
         model.addAttribute(new Category());
@@ -50,7 +50,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-    public String displayEditCategory(Model model, @PathVariable int id) {
+    public String displayEdit(Model model, @PathVariable int id) {
 
         try {
 
@@ -68,7 +68,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "add-edit", method = RequestMethod.POST)
-    public String processEditCategory(@ModelAttribute @Valid Category category,
+    public String processAddEdit(@ModelAttribute @Valid Category category,
                                       Errors errors, Model model) {
 
         if (errors.hasErrors()) {
@@ -92,7 +92,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
-    public String displayRemoveCategory(Model model, @PathVariable int id) {
+    public String displayRemove(Model model, @PathVariable int id) {
 
         try {
 
@@ -110,7 +110,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCategory(@ModelAttribute @Valid Category category,
+    public String processRemove(@ModelAttribute @Valid Category category,
                                       Errors errors, Model model) {
 
         if (errors.hasErrors()) {
