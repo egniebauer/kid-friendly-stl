@@ -17,13 +17,14 @@ import javax.validation.Valid;
  */
 
 @Controller
+@RequestMapping(value = "admin/age-range")
 public class AgeRangeController {
 
     @Autowired
     private AgeRangeDao ageRangeDao;
 
 
-    @RequestMapping(value = "admin/age-range/add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddAgeRange(Model model) {
         model.addAttribute("h1", "Add Age Range");
         model.addAttribute("title", "Kid Friendly STL - Admin");
@@ -32,7 +33,7 @@ public class AgeRangeController {
         return "ageRange/add";
     }
 
-    @RequestMapping(value = "admin/age-range/add", method = RequestMethod.POST)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddAgeRange(@ModelAttribute @Valid AgeRange newAgeRange,
                                      Errors errors, Model model) {
 
