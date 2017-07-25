@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 th:text="${h1}">Information</h1>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-condensed table-striped table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Categories</th>
+                    <th>Age Ranges</th>
+                    <th>Best Times</th>
+                </tr>
+                <tr>
+                    <td th:text="${business.id}" ></td>
+                    <td th:text="${business.name}" ></td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li th:each="cat : ${business.categories}" th:text="${cat.name} + ', id: ' + ${cat.id}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li th:each="range : ${business.ageRanges}" th:text="${range.name} + ', id: ' + ${range.id}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li th:each="time : ${business.bestTimes}" th:text="${time.name} + ', id: ' + ${time.id}"></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

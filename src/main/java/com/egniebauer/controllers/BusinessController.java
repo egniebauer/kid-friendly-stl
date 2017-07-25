@@ -47,6 +47,22 @@ public class BusinessController {
         return "business/index";
     }
 
+    @RequestMapping(value = "admin/business/view/{id}", method = RequestMethod.GET)
+    public String displayInformation(Model model, @PathVariable int id) {
+
+        try {
+
+            Business business = businessDao.findOne(id);
+            model.addAttribute("h1", business.getName());
+            model.addAttribute("business", business);
+            return "business/view";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
+
     @RequestMapping(value = "admin/business/add", method = RequestMethod.GET)
     public String displayAddBusiness(Model model) {
 
