@@ -6,7 +6,7 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="POST" action="/admin/category/add-edit" style="max-width:600px;" th:object="${bestTime}">
+<form method="POST" action="/admin/time/add-edit" style="max-width:600px;" th:object="${bestTime}">
     <div class="form-group">
         <label th:for="name">Name</label>
         <input class="form-control" th:field="*{name}" />
