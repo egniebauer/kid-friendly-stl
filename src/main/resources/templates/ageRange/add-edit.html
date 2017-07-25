@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
     <head th:replace="fragments :: head"></head>
     <body class="container">
-        <h1 th:text="${h1}">Add Category</h1>
         <nav th:replace="fragments :: navigation"></nav>
+        <h1 th:text="${h1}">Add Edit Form</h1>
         <form method="POST" style="max-width:600px;" th:object="${ageRange}">
             <div class="form-group">
                 <label th:for="name">Name</label>
@@ -15,7 +15,8 @@
                 <textarea class="form-control" rows="3" th:field="*{description}"></textarea>
                 <span th:errors="*{description}" class="error"></span>
             </div>
-            <input type="submit" value="Add Range" />
+            <input type="hidden" th:field="*{id}" th:value="${ageRange.id}" />
+            <input type="submit" th:value="${submitText}" />
         </form>
     </body>
 </html>
