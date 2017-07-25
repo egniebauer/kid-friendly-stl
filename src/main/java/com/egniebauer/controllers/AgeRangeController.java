@@ -41,24 +41,56 @@ public class AgeRangeController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddAgeRange(Model model) {
-        model.addAttribute("h1", "Add Age Range");
-        model.addAttribute("title", "Kid Friendly STL - Admin");
+    public String displayAdd(Model model) {
 
-        model.addAttribute(new AgeRange());
-        return "ageRange/add";
+        model.addAttribute("h1", "Add Age Range");
+        model.addAttribute("ageRange", new AgeRange());
+        model.addAttribute("submitText", "Add");
+        return "ageRange/add-edit";
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddAgeRange(@ModelAttribute @Valid AgeRange newAgeRange,
-                                     Errors errors, Model model) {
+
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+    public String displayEdit(Model model, @PathVariable int id) {
+
+        try {
+
+            AgeRange ageRange = ageRangeDao.findOne(id);
+            String h1 = "Edit " + ageRange.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("ageRange", ageRange);
+            model.addAttribute("submitText", "Update");
+            return "ageRange/add-edit";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
+
+
+    @RequestMapping(value = "add-edit", method = RequestMethod.POST)
+    public String processAddEdit(@ModelAttribute @Valid AgeRange ageRange,
+                                 Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+
+            if (ageRangeDao.exists(ageRange.getId())) {
+
+                String h1 = "Edit " + ageRange.getName();
+                model.addAttribute("h1", h1);
+                model.addAttribute("submitText", "Update");
+                return "ageRange/add-edit";
+            }
+
             model.addAttribute("h1", "Add Age Range");
-            model.addAttribute("title", "Kid Friendly STL - Admin");
-            return "ageRange/add";
+            model.addAttribute("ageRange", new AgeRange());
+            model.addAttribute("submitText", "Add");
+            return "ageRange/add-edit";
         }
-        ageRangeDao.save(newAgeRange);
+
+        ageRangeDao.save(ageRange);
         return "redirect:/admin";
     }
+
 }
