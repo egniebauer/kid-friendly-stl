@@ -63,4 +63,7 @@ public class AgeRange extends BusinessDetail {
         return businesses;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }
