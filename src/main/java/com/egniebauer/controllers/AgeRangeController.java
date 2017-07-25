@@ -68,7 +68,6 @@ public class AgeRangeController {
         }
     }
 
-
     @RequestMapping(value = "add-edit", method = RequestMethod.POST)
     public String processAddEdit(@ModelAttribute @Valid AgeRange ageRange,
                                  Errors errors, Model model) {
@@ -90,6 +89,41 @@ public class AgeRangeController {
         }
 
         ageRangeDao.save(ageRange);
+        return "redirect:/admin";
+    }
+
+
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
+    public String displayRemove(Model model, @PathVariable int id) {
+
+        try {
+
+            AgeRange ageRange = ageRangeDao.findOne(id);
+            String h1 = "Remove " + ageRange.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("ageRange", ageRange);
+            model.addAttribute("submitText", "DELETE");
+            return "ageRange/remove";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemove(@ModelAttribute @Valid AgeRange ageRange,
+                                Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+
+            String h1 = "Remove " + ageRange.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("submitText", "DELETE");
+            return "ageRange/remove";
+        }
+
+        ageRangeDao.delete(ageRange);
         return "redirect:/admin";
     }
 
