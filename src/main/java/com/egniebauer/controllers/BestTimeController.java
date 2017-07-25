@@ -44,9 +44,9 @@ public class BestTimeController {
     public String displayAdd(Model model) {
 
         model.addAttribute("h1", "Add Time");
-        model.addAttribute(new BestTime());
+        model.addAttribute("bestTime", new BestTime());
         model.addAttribute("submitText", "Add");
-        return "bestTime/add";
+        return "bestTime/add-edit";
     }
 
     @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class BestTimeController {
             BestTime bestTime = bestTimeDao.findOne(id);
             String h1 = "Edit " + bestTime.getName();
             model.addAttribute("h1", h1);
-            model.addAttribute("category", bestTime);
+            model.addAttribute("bestTime", bestTime);
             model.addAttribute("submitText", "Update");
             return "bestTime/add-edit";
 
@@ -82,7 +82,7 @@ public class BestTimeController {
             }
 
             model.addAttribute("h1", "Add Time");
-            model.addAttribute(new BestTime());
+            model.addAttribute("bestTime", new BestTime());
             model.addAttribute("submitText", "Add");
             return "bestTime/add-edit";
         }
