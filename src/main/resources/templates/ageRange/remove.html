@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+    <h1 th:text="${h1}">Remove Form</h1>
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <p th:text="'Are you sure you want to delete ' + ${ageRange.name} + '?'"></p>
+
+    <form method="POST" action="/admin/age-range/remove" style="max-width:600px;" th:object="${ageRange}">
+        <input type="hidden" th:field="*{name}" th:value="${ageRange.name}" />
+        <span th:errors="*{name}" class="error"></span>
+
+        <input type="hidden" th:field="*{id}" th:value="${ageRange.id}" />
+        <span th:errors="*{id}" class="error"></span>
+
+        <input type="hidden" th:field="*{description}" th:value="${ageRange.description}" />
+        <span th:errors="*{description}" class="error"></span>
+
+        <input class="btn btn-danger"  type="submit" th:value="${submitText}" />
+    </form>
+</body>
+</html>
