@@ -91,4 +91,38 @@ public class BestTimeController {
         return "redirect:/admin";
     }
 
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
+    public String displayRemove(Model model, @PathVariable int id) {
+
+        try {
+
+            BestTime bestTime = bestTimeDao.findOne(id);
+            String h1 = "Remove " + bestTime.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("bestTime", bestTime);
+            model.addAttribute("submitText", "DELETE");
+            return "bestTime/remove";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemove(@ModelAttribute @Valid BestTime bestTime,
+                                Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+
+            String h1 = "Remove " + bestTime.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("submitText", "DELETE");
+            return "bestTime/remove";
+        }
+
+        bestTimeDao.delete(bestTime);
+        return "redirect:/admin";
+    }
+
 }
