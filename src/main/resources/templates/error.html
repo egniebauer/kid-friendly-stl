@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+        <nav th:replace="fragments :: navigation"></nav>
+        <div class="jumbotron">
+            <h1>Ooops!</h1>
+            <p>There seems to be a problem with the page you requested (<span th:text="${path}"></span>).</p>
+            <ul class="list-unstyled">
+                <li th:if="${timestamp}" th:text="'timestamp: ' + ${timestamp}"></li>
+                <li th:if="${status}" th:text="'status: ' + ${status}"></li>
+                <li th:if="${error}" th:text="'error: ' + ${error}"></li>
+                <li th:if="${exception}" th:text="'exception: ' + ${exception}"></li>
+                <li th:if="${message}" th:text="'message: ' + ${message}"></li>
+                <li th:if="${trace}" th:text="'trace: ' + ${trace}"></li>
+            </ul>
+
+        </div>
+    </body>
+</html>
