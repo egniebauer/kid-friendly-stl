@@ -4,7 +4,6 @@ import com.egniebauer.models.AgeRange;
 import com.egniebauer.models.BestTime;
 import com.egniebauer.models.Business;
 import com.egniebauer.models.Category;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -19,19 +18,20 @@ public class BusinessForm {
     @Size(min=3, max=140)
     private String businessName;
 
-    @NotNull
-    private List<Integer> categoryIds;
+    @NotNull private List<Integer> categoryIds;
 
-    @NotNull
-    private List<Integer> ageRangeIds;
+    @NotNull private List<Integer> ageRangeIds;
 
-    @NotNull
-    private List<Integer> bestTimesIds;
+    @NotNull private List<Integer> bestTimesIds;
 
     private Integer businessId;
 
+
+
     public BusinessForm() {
     }
+
+
 
     public String getBusinessName() {
         return businessName;
@@ -45,10 +45,6 @@ public class BusinessForm {
         return categoryIds;
     }
 
-    public void setCategoryIds(List<Integer> categoryIds) {
-        this.categoryIds = categoryIds;
-    }
-
     public void addCategoryIds(List<Category> categories) {
         List<Integer> ids = new ArrayList<>();
 
@@ -57,6 +53,10 @@ public class BusinessForm {
         }
 
         setCategoryIds(ids);
+    }
+
+    public void setCategoryIds(List<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
     public List<Integer> getAgeRangeIds() {
@@ -110,4 +110,5 @@ public class BusinessForm {
         addBestTimesIds(editBusiness.getBestTimes());
         setBusinessId(editBusiness.getId());
     }
+
 }
