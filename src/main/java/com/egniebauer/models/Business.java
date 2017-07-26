@@ -99,4 +99,8 @@ public class Business {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
