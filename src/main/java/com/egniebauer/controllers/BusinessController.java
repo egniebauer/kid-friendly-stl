@@ -128,6 +128,40 @@ public class BusinessController {
         return "redirect:/admin";
     }
 
+    @RequestMapping(value = "admin/business/remove/{id}", method = RequestMethod.GET)
+    public String displayRemove(Model model, @PathVariable int id) {
+
+        try {
+
+            Business business = businessDao.findOne(id);
+            String h1 = "Remove " + business.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("business", business);
+            model.addAttribute("submitText", "DELETE");
+            return "business/remove";
+
+        } catch (IllegalArgumentException e) {
+
+            return "redirect:/admin";
+        }
+    }
+
+    @RequestMapping(value = "admin/business/remove", method = RequestMethod.POST)
+    public String processRemove(@ModelAttribute @Valid Business business,
+                                Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+
+            String h1 = "Remove " + business.getName();
+            model.addAttribute("h1", h1);
+            model.addAttribute("submitText", "DELETE");
+            return "business/remove";
+        }
+
+        businessDao.delete(business);
+        return "redirect:/admin";
+    }
+
     private void addDetailsFromIds(Business newBusiness, String type, Iterable<Integer> ids) {
 
             switch (type) {
